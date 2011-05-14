@@ -8,9 +8,9 @@ namespace Aperea.Specs.Services
 {
     internal class BehaviorNoWebUsers
     {
-        OnEstablish _context = fakeAccessor =>
-                               fakeAccessor.The<IRepository<Login>>()
-                                   .WhenToldTo(r => r.Entities)
-                                   .Return(new List<Login>().AsQueryable);
+        private OnEstablish _context = fakeAccessor =>
+                                       fakeAccessor.The<IRepository<Login>>()
+                                           .WhenToldTo(r => r.Entities)
+                                           .Return(new List<Login>().AsQueryable);
     }
 }

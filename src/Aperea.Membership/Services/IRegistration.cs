@@ -13,7 +13,6 @@ namespace Aperea.Services
                                             string confirmPassword);
 
         ChangePasswordResult SetPassword(string username, string newPassword,
-                                    string confirmPassword);
-
+                                         string confirmPassword);
     }
 }

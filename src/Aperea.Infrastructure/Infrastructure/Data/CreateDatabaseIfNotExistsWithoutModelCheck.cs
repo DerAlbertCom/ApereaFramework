@@ -10,11 +10,13 @@ namespace Aperea.Infrastructure.Data
         {
             bool databaseExists;
 
-            using (new TransactionScope(TransactionScopeOption.Suppress)) {
+            using (new TransactionScope(TransactionScopeOption.Suppress))
+            {
                 databaseExists = context.Database.Exists();
             }
 
-            if (databaseExists) {
+            if (databaseExists)
+            {
                 return;
             }
             context.Database.Create();

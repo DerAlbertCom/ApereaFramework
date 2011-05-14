@@ -32,7 +32,8 @@ namespace Aperea.MVC.Infrastructure
 
         private void BuildUp(IEnumerable<object> targets)
         {
-            foreach (var target in targets){
+            foreach (var target in targets)
+            {
                 _container.BuildUp(target);
             }
         }

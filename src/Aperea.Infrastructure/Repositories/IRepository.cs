@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Aperea.Repositories
 {
-    public interface IRepository<T> where T: class 
+    public interface IRepository<T> where T : class
     {
         IQueryable<T> Entities { get; }
         void Add(T entity);

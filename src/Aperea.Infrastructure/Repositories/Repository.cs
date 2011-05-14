@@ -10,13 +10,12 @@ using Aperea.Infrastructure.Data;
 
 namespace Aperea.Repositories
 {
-
     public class Repository<T> : IRepository<T>
         where T : class
     {
-        readonly IDatabaseContext _databaseContext;
+        private readonly IDatabaseContext _databaseContext;
 
-        DbSet<T> _objectSet;
+        private DbSet<T> _objectSet;
 
         public Repository(IDatabaseContext databaseContext)
         {
@@ -31,7 +30,8 @@ namespace Aperea.Repositories
         public IQueryable<T> Include(params string[] paths)
         {
             DbQuery<T> query = Set;
-            foreach (var path in paths) {
+            foreach (var path in paths)
+            {
                 query = query.Include(path);
             }
             return query;
@@ -41,7 +41,8 @@ namespace Aperea.Repositories
         {
             get
             {
-                if (_objectSet == null) {
+                if (_objectSet == null)
+                {
                     _objectSet = _databaseContext.CreateDbContext().Set<T>();
                 }
                 return _objectSet;
@@ -65,15 +66,18 @@ namespace Aperea.Repositories
 
         public void SaveAllChanges()
         {
-            try {
+            try
+            {
                 _databaseContext.CreateDbContext().ChangeTracker.DetectChanges();
                 _databaseContext.CreateDbContext().SaveChanges();
             }
-            catch (DbEntityValidationException e) {
+            catch (DbEntityValidationException e)
+            {
                 var sb = new StringBuilder();
                 sb.AppendLine();
-                foreach (var error in e.EntityValidationErrors) {
-                    sb.AppendLine("Entity: " + error. Entry.Entity.GetType());
+                foreach (var error in e.EntityValidationErrors)
+                {
+                    sb.AppendLine("Entity: " + error.Entry.Entity.GetType());
                     foreach (var validationError in error.ValidationErrors)
                     {
                         sb.AppendFormat("  {1} {0}", validationError.ErrorMessage, validationError.PropertyName);

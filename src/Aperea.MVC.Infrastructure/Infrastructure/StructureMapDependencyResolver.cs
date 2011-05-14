@@ -22,7 +22,8 @@ namespace Aperea.MVC.Infrastructure
 
         private object AddConcreteServiceTypeToContainer(Type serviceType)
         {
-            if (serviceType.IsAbstract){
+            if (serviceType.IsAbstract)
+            {
                 return null;
             }
             _container.Configure(x => x.For(serviceType).Use(serviceType));

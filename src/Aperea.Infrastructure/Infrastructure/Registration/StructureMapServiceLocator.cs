@@ -8,7 +8,7 @@ namespace Aperea.Infrastructure.Registration
 {
     public class StructureMapServiceLocator : ServiceLocatorImplBase
     {
-        readonly IContainer _container;
+        private readonly IContainer _container;
 
         public StructureMapServiceLocator(IContainer container)
         {

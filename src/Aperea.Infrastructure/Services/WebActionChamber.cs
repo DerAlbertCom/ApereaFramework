@@ -7,7 +7,7 @@ namespace Aperea.Services
 {
     public class WebActionChamber : IWebActionChamber
     {
-        readonly IRepository<RemoteAction> _repository;
+        private readonly IRepository<RemoteAction> _repository;
 
         public WebActionChamber(IRepository<RemoteAction> repository)
         {
@@ -17,11 +17,13 @@ namespace Aperea.Services
         public RemoteAction CreateAction(string actionName, string parameter)
         {
             RemoteAction action = TryGetActiveAction(actionName, parameter);
-            if (action == null) {
+            if (action == null)
+            {
                 action = new RemoteAction(actionName, parameter);
                 _repository.Add(action);
             }
-            else {
+            else
+            {
                 action.ConfirmationKey = Guid.NewGuid();
             }
 
@@ -29,7 +31,7 @@ namespace Aperea.Services
             return action;
         }
 
-         RemoteAction TryGetActiveAction(string actionName, string parameter)
+        private RemoteAction TryGetActiveAction(string actionName, string parameter)
         {
             return _repository.Entities.Where(e => e.Action == actionName && e.Parameter == parameter).SingleOrDefault();
         }

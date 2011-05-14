@@ -8,19 +8,20 @@ namespace Aperea.Specs.Services
 {
     internal class BehaviorExistingsUsers
     {
-        static FakeRepository<Login> repository;
+        private static FakeRepository<Login> repository;
 
-        OnEstablish _context =
+        private OnEstablish _context =
             accessor => { repository = new FakeRepository<Login>(accessor, CreateUsers(accessor)); };
 
-        static IList<Login> CreateUsers(IFakeAccessor accessor)
+        private static IList<Login> CreateUsers(IFakeAccessor accessor)
         {
-            IList<Login> users = new List<Login> {
-                new Login("aweinert", "info@der-albert.com"),
-                new Login("awn", "albert.weinert@webrunners.de"),
-                new Login("cvk", "christoph.vonkruechten@webrunners.de"),
-                new Login("fm", "frank.muellers@webrunners.de")
-            };
+            IList<Login> users = new List<Login>
+                                     {
+                                         new Login("aweinert", "info@der-albert.com"),
+                                         new Login("awn", "albert.weinert@webrunners.de"),
+                                         new Login("cvk", "christoph.vonkruechten@webrunners.de"),
+                                         new Login("fm", "frank.muellers@webrunners.de")
+                                     };
             users[1].Confirm();
             users[2].Confirm();
             users[0].SetPassword("kennwort", accessor.The<IHashing>());

@@ -66,7 +66,7 @@ namespace Aperea.EntityModels
             Changed();
         }
 
-        void Changed()
+        private void Changed()
         {
             Updated = DateTime.UtcNow;
         }

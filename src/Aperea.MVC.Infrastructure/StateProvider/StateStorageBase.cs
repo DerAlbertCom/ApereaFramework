@@ -17,7 +17,8 @@ namespace Aperea.MVC.StateProvider
         public T Get<T>(string key, Func<T> defaultStateCreator)
         {
             var value = _getAccessor(key);
-            if (value == null) {
+            if (value == null)
+            {
                 value = defaultStateCreator();
                 _setAccessor(key, value);
             }

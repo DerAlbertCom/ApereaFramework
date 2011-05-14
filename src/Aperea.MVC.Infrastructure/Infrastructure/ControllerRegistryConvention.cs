@@ -9,9 +9,9 @@ namespace Aperea.MVC.Infrastructure
     {
         public void Process(Type type, Registry registry)
         {
-            if (!type.IsAbstract && typeof(IController).IsAssignableFrom(type))
+            if (!type.IsAbstract && typeof (IController).IsAssignableFrom(type))
             {
-               registry.AddType(type, type);
+                registry.AddType(type, type);
             }
         }
     }

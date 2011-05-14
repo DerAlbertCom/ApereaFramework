@@ -5,7 +5,7 @@ namespace Aperea.EntityModels
 {
     public class SystemLanguage
     {
-        CultureInfo _cultureInfo;
+        private CultureInfo _cultureInfo;
 
         protected SystemLanguage()
         {
@@ -18,7 +18,7 @@ namespace Aperea.EntityModels
 
         public int Id { get; set; }
 
-        string _culture;
+        private string _culture;
 
         [StringLength(6)]
         [Required]
@@ -36,7 +36,8 @@ namespace Aperea.EntityModels
         {
             get
             {
-                if (_cultureInfo == null) {
+                if (_cultureInfo == null)
+                {
                     _cultureInfo = CultureInfo.GetCultureInfo(_culture);
                 }
                 return _cultureInfo.NativeName;

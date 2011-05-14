@@ -13,7 +13,7 @@ namespace Aperea.MVC.Settings
 
         public string[] PossibleCultures
         {
-            get { return _settings.Get<string>("Culture.PossibleCultures").Split(new[] { ';', ',' }); }
+            get { return _settings.Get<string>("Culture.PossibleCultures").Split(new[] {';', ','}); }
         }
 
         public string DefaultCulture

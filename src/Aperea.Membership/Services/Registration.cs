@@ -9,15 +9,15 @@ namespace Aperea.Services
         public const string ConfirmWebUserAction = "ConfirmWebUser";
         public const string PasswordResetAction = "PasswordReset";
 
-        readonly IRepository<Login> _repository;
-        readonly IUserRegistrationMail _mail;
-        readonly IHashing _hashing;
-        readonly IWebActionChamber _webActionChamber;
+        private readonly IRepository<Login> _repository;
+        private readonly IUserRegistrationMail _mail;
+        private readonly IHashing _hashing;
+        private readonly IWebActionChamber _webActionChamber;
 
         public Registration(IRepository<Login> repository,
-                                IUserRegistrationMail mail,
-                                IHashing hashing,
-                                IWebActionChamber webActionChamber)
+                            IUserRegistrationMail mail,
+                            IHashing hashing,
+                            IWebActionChamber webActionChamber)
         {
             _repository = repository;
             _webActionChamber = webActionChamber;
@@ -34,18 +34,22 @@ namespace Aperea.Services
             email = Normalize(email);
             Login login = GetExistingUser(username, email);
 
-            if (login != null && login.Confirmed) {
+            if (login != null && login.Confirmed)
+            {
                 return UserRegistrationResult.Exists;
             }
 
             RemoteAction remoteAction;
 
-            if (login != null) {
+            if (login != null)
+            {
                 remoteAction = _webActionChamber.GetActiveAction(ConfirmWebUserAction, username);
                 _mail.SendRegistrationConfirmation(login, remoteAction);
             }
-            else {
-                if (!UserDataIsValid(username, email)) {
+            else
+            {
+                if (!UserDataIsValid(username, email))
+                {
                     return UserRegistrationResult.InvalidUserdata;
                 }
                 login = new Login(username, email);
@@ -58,22 +62,23 @@ namespace Aperea.Services
             return UserRegistrationResult.Ok;
         }
 
-        string Normalize(string text)
+        private string Normalize(string text)
         {
             text = text.ToLowerInvariant();
-            while (text.Contains("  ")) {
+            while (text.Contains("  "))
+            {
                 text = text.Replace("  ", " ");
             }
             return text;
         }
 
-        bool UserDataIsValid(string username, string email)
+        private bool UserDataIsValid(string username, string email)
         {
             return _repository.Entities.Where(u => u.Username == username || u.EMail == email).Count() == 0;
         }
 
 
-        Login GetExistingUser(string username, string email)
+        private Login GetExistingUser(string username, string email)
         {
             return _repository.Entities.Where(e => e.Username == username && e.EMail == email).FirstOrDefault();
         }
@@ -94,11 +99,13 @@ namespace Aperea.Services
             var webUser = _repository.Entities.Where(e => e.EMail == email).SingleOrDefault();
             if (webUser == null)
                 return;
-            if (!webUser.Confirmed) {
+            if (!webUser.Confirmed)
+            {
                 var webAction = _webActionChamber.GetActiveAction(ConfirmWebUserAction, webUser.Username);
                 _mail.SendRegistrationConfirmation(webUser, webAction);
             }
-            else {
+            else
+            {
                 var webAction = _webActionChamber.CreateAction(PasswordResetAction, email);
                 _mail.SendPasswordResetRequest(webUser, webAction);
             }
