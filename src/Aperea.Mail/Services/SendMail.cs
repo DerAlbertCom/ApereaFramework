@@ -5,7 +5,7 @@ namespace Aperea.Services
 {
     public class SendMail : ISendMail
     {
-        readonly IMailSettings _settings;
+        private readonly IMailSettings _settings;
 
         public SendMail(IMailSettings settings)
         {
@@ -14,10 +14,11 @@ namespace Aperea.Services
 
         public void Send(string recipient, string subject, string body)
         {
-            var message = new MailMessage(new MailAddress(_settings.MailSender),new MailAddress(recipient)) {
-                Subject = subject,
-                Body = body
-            };
+            var message = new MailMessage(new MailAddress(_settings.MailSender), new MailAddress(recipient))
+                              {
+                                  Subject = subject,
+                                  Body = body
+                              };
             var smtp = new SmtpClient();
             smtp.Send(message);
         }

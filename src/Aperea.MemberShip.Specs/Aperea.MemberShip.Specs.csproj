@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F40775FF-130B-4F76-BE4A-704173CBA04F}</ProjectGuid>
+    <ProjectGuid>{19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aperea</RootNamespace>
-    <AssemblyName>Aperea.Membership</AssemblyName>
+    <RootNamespace>Aperea.Specs</RootNamespace>
+    <AssemblyName>Aperea.MemberShip.Specs</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,44 +31,58 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.7.4117.2\lib\NET40\FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Fakes">
+      <HintPath>..\packages\Machine.Fakes.0.2.3.1\lib\Machine.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Fakes.Adapters.FakeItEasy">
+      <HintPath>..\packages\Machine.Fakes.FakeItEasy.0.2.3.1\lib\Machine.Fakes.Adapters.FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\packages\Machine.Specifications.0.4.12.0\lib\Machine.Specifications.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityModels\Login.cs" />
-    <Compile Include="MembershipStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MembershipStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ChangePasswordResult.cs" />
-    <Compile Include="Services\IRegistration.cs" />
-    <Compile Include="Services\IUserRegistrationMail.cs" />
-    <Compile Include="Services\Models\UserRegistrationMailModel.cs" />
-    <Compile Include="Services\UserConfirmationResult.cs" />
-    <Compile Include="Services\Registration.cs" />
-    <Compile Include="Services\UserRegistrationMail.cs" />
-    <Compile Include="Services\UserRegistrationResult.cs" />
+    <Compile Include="Services\RegistrationSubject\BehaviorExistingsUsers.cs" />
+    <Compile Include="Services\RegistrationSubject\BehaviorNoWebUsers.cs" />
+    <Compile Include="Services\RegistrationSubject\BehaviorUserRegistration.cs" />
+    <Compile Include="Services\RegistrationSubject\LoginChangePasswordSpecs.cs" />
+    <Compile Include="Services\RegistrationSubject\LoginConfirmationSpecs.cs" />
+    <Compile Include="Services\RegistrationSubject\LoginPasswordResetSpecs.cs" />
+    <Compile Include="Services\RegistrationSubject\LoginRegistrationSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MembershipStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MembershipStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="EntityModels\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aperea.Infrastructure.Specs\Aperea.Infrastructure.Specs.csproj">
+      <Project>{CA173D94-05B3-47D1-BBCF-40AD795DB61B}</Project>
+      <Name>Aperea.Infrastructure.Specs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aperea.Infrastructure\Aperea.Infrastructure.csproj">
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
       <Name>Aperea.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aperea.Mail\Aperea.Mail.csproj">
-      <Project>{E6146512-6608-49E8-974C-D1414A23AA7A}</Project>
-      <Name>Aperea.Mail</Name>
+    <ProjectReference Include="..\Aperea.Membership\Aperea.Membership.csproj">
+      <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
+      <Name>Aperea.Membership</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

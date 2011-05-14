@@ -1,6 +1,6 @@
 namespace Aperea.Services
 {
-    public interface IUserRegistration
+    public interface IRegistration
     {
         UserRegistrationResult RegisterNewUser(string username, string email, string password,
                                                string confirmPassword);

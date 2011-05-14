@@ -4,7 +4,7 @@ using Aperea.Repositories;
 
 namespace Aperea.Services
 {
-    public class UserRegistration : IUserRegistration
+    public class Registration : IRegistration
     {
         public const string ConfirmWebUserAction = "ConfirmWebUser";
         public const string PasswordResetAction = "PasswordReset";
@@ -14,7 +14,7 @@ namespace Aperea.Services
         readonly IHashing _hashing;
         readonly IWebActionChamber _webActionChamber;
 
-        public UserRegistration(IRepository<Login> repository,
+        public Registration(IRepository<Login> repository,
                                 IUserRegistrationMail mail,
                                 IHashing hashing,
                                 IWebActionChamber webActionChamber)
