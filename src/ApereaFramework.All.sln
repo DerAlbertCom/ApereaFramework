@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Infrastructure", "Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC.Infrastructure", "Aperea.MVC.Infrastructure\Aperea.MVC.Infrastructure.csproj", "{BE3C5256-9E34-4AFC-9CF7-357713544943}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Membership", "Aperea.Membership\Aperea.Membership.csproj", "{F40775FF-130B-4F76-BE4A-704173CBA04F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Mail", "Aperea.Mail\Aperea.Mail.csproj", "{E6146512-6608-49E8-974C-D1414A23AA7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{BE3C5256-9E34-4AFC-9CF7-357713544943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE3C5256-9E34-4AFC-9CF7-357713544943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE3C5256-9E34-4AFC-9CF7-357713544943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F40775FF-130B-4F76-BE4A-704173CBA04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40775FF-130B-4F76-BE4A-704173CBA04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40775FF-130B-4F76-BE4A-704173CBA04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40775FF-130B-4F76-BE4A-704173CBA04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6146512-6608-49E8-974C-D1414A23AA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6146512-6608-49E8-974C-D1414A23AA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6146512-6608-49E8-974C-D1414A23AA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6146512-6608-49E8-974C-D1414A23AA7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

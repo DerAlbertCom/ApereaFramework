@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{90093D28-7D38-41D2-8250-DAD973A7788C}</ProjectGuid>
+    <ProjectGuid>{E6146512-6608-49E8-974C-D1414A23AA7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aperea</RootNamespace>
-    <AssemblyName>Aperea.Infrastructure</AssemblyName>
+    <AssemblyName>Aperea.Mail</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,51 +31,51 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\RazorEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\ICultureContext.cs" />
-    <Compile Include="EntityModels\SystemLanguage.cs" />
-    <Compile Include="EntityModels\RemoteAction.cs" />
-    <Compile Include="Enumeration.cs" />
-    <Compile Include="Infrastructure\Bootstrap\Bootstrapper.cs" />
-    <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
-    <Compile Include="Infrastructure\Data\CreateDatabaseIfNotExistsWithoutModelCheck.cs" />
-    <Compile Include="Infrastructure\Data\IDbContextFactory.cs" />
+    <Compile Include="EntityModels\MailTemplate.cs" />
+    <Compile Include="MailStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MailStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\Registration\RegisterStructureMap.cs" />
-    <Compile Include="Infrastructure\Registration\StructureMapAssemblyFilter.cs" />
-    <Compile Include="Infrastructure\Registration\StructureMapServiceLocator.cs" />
-    <Compile Include="Infrastructure\Data\EntityDatabaseContext.cs" />
-    <Compile Include="Infrastructure\Data\IDatabaseContext.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Services\Hashing.cs" />
-    <Compile Include="Services\IHashing.cs" />
-    <Compile Include="Services\IWebActionChamber.cs" />
-    <Compile Include="Services\WebActionChamber.cs" />
-    <Compile Include="Settings\ApplicationSettings.cs" />
-    <Compile Include="Settings\IApplicationSettings.cs" />
-    <Compile Include="UrlBuilder\IRemoteActionUrlBuilder.cs" />
+    <Compile Include="Services\ISendMail.cs" />
+    <Compile Include="Services\ISendTemplatedMail.cs" />
+    <Compile Include="Services\SendMail.cs" />
+    <Compile Include="Services\SendTemplatedMail.cs" />
+    <Compile Include="Settings\IMailSettings.cs" />
+    <Compile Include="Settings\MailSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aperea.Infrastructure\Aperea.Infrastructure.csproj">
+      <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
+      <Name>Aperea.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MailStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MailStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
