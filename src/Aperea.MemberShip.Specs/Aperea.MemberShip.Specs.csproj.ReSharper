@@ -1,0 +1,5 @@
+<Configuration>
+  <NamespaceFolders>
+    <SkipFolder>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD/d:Services/d:RegistrationSubject</SkipFolder>
+  </NamespaceFolders>
+</Configuration>
