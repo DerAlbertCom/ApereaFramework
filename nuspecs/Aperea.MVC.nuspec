@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Mvc</id>
-    <version>0.1.0.0</version>
+    <version>0.1.0.6</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
@@ -10,15 +10,14 @@
     <description>Package description</description>
     <tags>MVC</tags>
     <dependencies>
-		<dependency id="Aperea.Core" version="[0.1.0.0]" />
+      <dependency id="Aperea.Core" version="[0.1.0.6]" />
     </dependencies>
-	<frameworkAssemblies>
-		<frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
-		<frameworkAssembly assemblyName="System.Web.Mvc" targetFramework="net40" />
-	</frameworkAssemblies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework="net40" />
+    </frameworkAssemblies>
   </metadata>
-  	<files>
-	  <file src="..\out\Aperea.Mvc.dll" target="lib" /> 
-	</files>
-
+  <files>
+    <file src="..\out\Aperea.Mvc.dll" target="lib" />
+  </files>
 </package>
