@@ -68,13 +68,13 @@
     <Folder Include="EntityModels\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aperea.Infrastructure.Specs\Aperea.Infrastructure.Specs.csproj">
+    <ProjectReference Include="..\Aperea.Core.Specs\Aperea.Core.Specs.csproj">
       <Project>{CA173D94-05B3-47D1-BBCF-40AD795DB61B}</Project>
-      <Name>Aperea.Infrastructure.Specs</Name>
+      <Name>Aperea.Core.Specs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aperea.Infrastructure\Aperea.Infrastructure.csproj">
+    <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
-      <Name>Aperea.Infrastructure</Name>
+      <Name>Aperea.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aperea.Membership\Aperea.Membership.csproj">
       <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>

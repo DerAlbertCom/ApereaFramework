@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BE3C5256-9E34-4AFC-9CF7-357713544943}</ProjectGuid>
+    <ProjectGuid>{CA173D94-05B3-47D1-BBCF-40AD795DB61B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aperea.MVC</RootNamespace>
-    <AssemblyName>Aperea.MVC.Infrastructure</AssemblyName>
+    <RootNamespace>Aperea.Specs</RootNamespace>
+    <AssemblyName>Aperea.Core.Specs</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,43 +31,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.7.4117.2\lib\NET40\FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Fakes">
+      <HintPath>..\packages\Machine.Fakes.0.2.3.1\lib\Machine.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Fakes.Adapters.FakeItEasy">
+      <HintPath>..\packages\Machine.Fakes.FakeItEasy.0.2.3.1\lib\Machine.Fakes.Adapters.FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\packages\Machine.Specifications.0.4.12.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilter\DatabaseContextAttribute.cs" />
-    <Compile Include="ActionFilter\DependencyFilterAttribute.cs" />
-    <Compile Include="ActionFilter\ThreadCultureAttribute.cs" />
-    <Compile Include="Infrastructure\AspNetMvc3Registry.cs" />
-    <Compile Include="Infrastructure\ControllerRegistryConvention.cs" />
-    <Compile Include="Infrastructure\PropertyInjectionActionInvoker.cs" />
-    <Compile Include="Infrastructure\StructureMapDependencyResolver.cs" />
-    <Compile Include="Initialize\InfrastructureMvcFiltersInitialize.cs" />
+    <Compile Include="EntityModels\SystemLanguageSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\CultureSettings.cs" />
-    <Compile Include="Settings\ICultureSettings.cs" />
-    <Compile Include="StateProvider\HttpApplicationContextStateStorage.cs" />
-    <Compile Include="StateProvider\HttpContextStateStorage.cs" />
-    <Compile Include="StateProvider\HttpSessionStateStorage.cs" />
-    <Compile Include="StateProvider\IStateStorage.cs" />
-    <Compile Include="StateProvider\StateStorageBase.cs" />
+    <Compile Include="Repositories\FakeRepository.cs" />
+    <Compile Include="Repositories\IdGeneration.cs" />
+    <Compile Include="Services\FakeHashing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aperea.Infrastructure\Aperea.Infrastructure.csproj">
+    <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
-      <Name>Aperea.Infrastructure</Name>
+      <Name>Aperea.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

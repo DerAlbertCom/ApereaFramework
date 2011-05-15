@@ -10,8 +10,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Der-Albert.com")]
-[assembly: AssemblyProduct("Aperea.Mail")]
-[assembly: AssemblyCopyright("Copyright © Der-Albert.com 2011")]
+[assembly: AssemblyProduct("Aperea.Infrastructure")]
+[assembly: AssemblyCopyright("Copyright © Albert Weinert 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -25,16 +25,3 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("79847b85-c5ae-428b-ba6c-bb7712cdc0a8")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]

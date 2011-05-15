@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\FrameworkVersion.cs">
+      <Link>Properties\FrameworkVersion.cs</Link>
+    </Compile>
     <Compile Include="EntityModels\MailTemplate.cs" />
     <Compile Include="MailStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -63,9 +66,9 @@
     <Compile Include="Settings\MailSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aperea.Infrastructure\Aperea.Infrastructure.csproj">
+    <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
-      <Name>Aperea.Infrastructure</Name>
+      <Name>Aperea.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

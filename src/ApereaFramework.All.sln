@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Infrastructure", "Aperea.Infrastructure\Aperea.Infrastructure.csproj", "{90093D28-7D38-41D2-8250-DAD973A7788C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Core", "Aperea.Core\Aperea.Core.csproj", "{90093D28-7D38-41D2-8250-DAD973A7788C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC.Infrastructure", "Aperea.MVC.Infrastructure\Aperea.MVC.Infrastructure.csproj", "{BE3C5256-9E34-4AFC-9CF7-357713544943}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC", "Aperea.MVC\Aperea.MVC.csproj", "{BE3C5256-9E34-4AFC-9CF7-357713544943}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Membership", "Aperea.Membership\Aperea.Membership.csproj", "{F40775FF-130B-4F76-BE4A-704173CBA04F}"
 EndProject
@@ -11,9 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Mail", "Aperea.Mail\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MemberShip.Specs", "Aperea.MemberShip.Specs\Aperea.MemberShip.Specs.csproj", "{19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Infrastructure.Specs", "Aperea.Infrastructure.Specs\Aperea.Infrastructure.Specs.csproj", "{CA173D94-05B3-47D1-BBCF-40AD795DB61B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Core.Specs", "Aperea.Core.Specs\Aperea.Core.Specs.csproj", "{CA173D94-05B3-47D1-BBCF-40AD795DB61B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{C6FE1DA8-DFCF-4EFC-AB3C-A46ABF362BA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E453BF02-3BD2-4810-814A-A054989F58B0}"
+	ProjectSection(SolutionItems) = preProject
+		FrameworkVersion.cs = FrameworkVersion.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

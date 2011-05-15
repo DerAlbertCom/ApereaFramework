@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aperea</RootNamespace>
-    <AssemblyName>Aperea.Infrastructure</AssemblyName>
+    <AssemblyName>Aperea.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,6 +50,9 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\FrameworkVersion.cs">
+      <Link>Properties\FrameworkVersion.cs</Link>
+    </Compile>
     <Compile Include="Context\ICultureContext.cs" />
     <Compile Include="EntityModels\SystemLanguage.cs" />
     <Compile Include="EntityModels\RemoteAction.cs" />

@@ -80,4 +80,10 @@
     <Namespace>JetBrains.Annotations</Namespace>
     <DefaultNamespace>JetBrains.Annotations</DefaultNamespace>
   </CodeAnnotations>
+  <Daemon.SolutionSettings>
+    <SkipFilesAndFolders>
+      <Item>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD</Item>
+      <Item>CA173D94-05B3-47D1-BBCF-40AD795DB61B</Item>
+    </SkipFilesAndFolders>
+  </Daemon.SolutionSettings>
 </Configuration>
