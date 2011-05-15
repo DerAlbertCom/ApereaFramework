@@ -65,7 +65,7 @@
     <Compile Include="Infrastructure\Registration\RegisterStructureMap.cs" />
     <Compile Include="Infrastructure\Registration\StructureMapAssemblyFilter.cs" />
     <Compile Include="Infrastructure\Registration\StructureMapServiceLocator.cs" />
-    <Compile Include="Infrastructure\Data\EntityDatabaseContext.cs" />
+    <Compile Include="Infrastructure\Data\DatabaseContext.cs" />
     <Compile Include="Infrastructure\Data\IDatabaseContext.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />

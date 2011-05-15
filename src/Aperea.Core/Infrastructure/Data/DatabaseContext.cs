@@ -3,11 +3,11 @@ using System.Data.Entity;
 
 namespace Aperea.Infrastructure.Data
 {
-    public class EntityDatabaseContext : IDatabaseContext
+    public class DatabaseContext : IDatabaseContext
     {
         private readonly Lazy<DbContext> _context;
 
-        public EntityDatabaseContext(IDbContextFactory contextFactory)
+        public DatabaseContext(IDbContextFactory contextFactory)
         {
             _context = new Lazy<DbContext>(() => contextFactory.Context);
         }
