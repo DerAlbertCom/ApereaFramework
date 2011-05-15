@@ -72,17 +72,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annotations\LabelNameAttribute.cs" />
+    <Compile Include="Controllers\RemoteActionController.cs" />
     <Compile Include="ResourceStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ApereaStartBaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Data\ApereaStartEntities.cs" />
-    <Compile Include="Data\ApereaStartDbDevInitializer.cs" />
-    <Compile Include="Data\ApereaStartDbLiveInitializer.cs" />
+    <Compile Include="Data\DbEntities.cs" />
+    <Compile Include="Data\DbDevInitializer.cs" />
+    <Compile Include="Data\DbLiveInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -100,6 +101,9 @@
     <Compile Include="Models\PasswordResetRequestViewModel.cs" />
     <Compile Include="Models\PasswordResetViewModel.cs" />
     <Compile Include="Models\RegisterLoginViewModel.cs" />
+    <Compile Include="UrlBuilders\ActionUrlBuilder.cs" />
+    <Compile Include="UrlBuilders\IActionUrlBuilder.cs" />
+    <Compile Include="UrlBuilders\WebActionUrlBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -131,6 +135,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Readme.txt" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -157,7 +162,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutWithScript.cshtml" />
+    <None Include="Web.config.transform" />
+    <None Include="Views\Web.config.transform" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

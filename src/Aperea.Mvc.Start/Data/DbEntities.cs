@@ -3,7 +3,7 @@ using Aperea.EntityModels;
 
 namespace ApereaStart.Data
 {
-    public class ApereaStartEntities : DbContext
+    public class ApereaStartDbEntities : DbContext
     {
         public IDbSet<Login> Logins { get; set; }
         public IDbSet<RemoteAction> RemoteActions{ get; set; }

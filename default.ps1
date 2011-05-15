@@ -1,7 +1,4 @@
-﻿
-import-module .\tools\psake-version.psm1
-
-Properties {
+﻿Properties {
     $project_dir = Split-Path $psake.build_script_file
     $src_dir = "$project_dir\src"
     $out_dir = "$project_dir\out"
@@ -23,7 +20,6 @@ Task Clean {
 
 Task BuildWithoutBump {
     Write-Host "ApereaFramework.All.sln" -ForegroundColor Green
-    BumpRevision $version_file
 	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
 }
 Task Build -Depends BumpRevision,Clean {
@@ -58,12 +54,19 @@ Task SetPackageVersion {
     Set-PackageVersion "$nuspec_dir\Aperea.Mail.nuspec" $version @{"Aperea.Core"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Membership.nuspec" $version @{"Aperea.Mail"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Mvc.nuspec" $version @{"Aperea.Core"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.Mvc.Start.nuspec" $version @{"Aperea.Membership"="$version";"Aperea.MVC"="$version"}
 }
 
-Task NuGet -Depends BuildWithoutBump, SetPackageVersion  {
+Task NuGet -Depends ConvertStart, BuildWithoutBump, SetPackageVersion  {
     Write-Host "Building NuGet-Packages" -ForegroundColor Green   
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Membership.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.Start.nuspec" /OutputDirectory "$nupgk_dir\" }    
+}
+
+Task ConvertStart {
+    Write-Host "Converting MVC Project to NugetPackage" -ForegroundColor Green   
+	ConvertMvcProject "$src_dir\Aperea.MVC.Start\Aperea.Mvc.Start.csproj" "$out_dir\_ProjectContent"
 }
