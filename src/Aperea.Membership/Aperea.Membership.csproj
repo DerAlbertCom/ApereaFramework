@@ -50,12 +50,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ChangePasswordResult.cs" />
     <Compile Include="Services\IRegistration.cs" />
-    <Compile Include="Services\IUserRegistrationMail.cs" />
-    <Compile Include="Services\Models\UserRegistrationMailModel.cs" />
-    <Compile Include="Services\UserConfirmationResult.cs" />
+    <Compile Include="Services\IRegistrationMail.cs" />
+    <Compile Include="Services\Models\RegistrationMailModel.cs" />
+    <Compile Include="Services\RegistrationConfirmationResult.cs" />
     <Compile Include="Services\Registration.cs" />
-    <Compile Include="Services\UserRegistrationMail.cs" />
-    <Compile Include="Services\UserRegistrationResult.cs" />
+    <Compile Include="Services\RegistrationMail.cs" />
+    <Compile Include="Services\RegistrationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MembershipStrings.resx">

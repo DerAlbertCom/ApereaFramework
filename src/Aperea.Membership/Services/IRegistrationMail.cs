@@ -2,9 +2,9 @@
 
 namespace Aperea.Services
 {
-    public interface IUserRegistrationMail
+    public interface IRegistrationMail
     {
-        void SendRegistrationConfirmation(Login login, RemoteAction remoteAction);
+        void SendRegistrationConfirmationRequest(Login login, RemoteAction remoteAction);
         void SendPasswordResetRequest(Login login, RemoteAction remoteAction);
     }
 }

@@ -36,11 +36,11 @@ namespace Aperea.Specs.Repositories
 
             GetRepositoryFake()
                 .WhenToldTo(r => r.Add(Param<T>.IsNotNull))
-                .Callback<T>(webUser => _addEntities.Add(webUser));
+                .Callback<T>(login => _addEntities.Add(login));
 
             GetRepositoryFake()
                 .WhenToldTo(r => r.Remove(Param<T>.IsNotNull))
-                .Callback<T>(webUser => _removeEntities.Remove(webUser));
+                .Callback<T>(login => _removeEntities.Remove(login));
 
             GetRepositoryFake()
                 .WhenToldTo(r => r.SaveAllChanges())

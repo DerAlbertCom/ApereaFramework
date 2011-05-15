@@ -4,36 +4,36 @@ using Aperea.UrlBuilder;
 
 namespace Aperea.Services
 {
-    public class UserRegistrationMail : IUserRegistrationMail
+    public class RegistrationMail : IRegistrationMail
     {
-        private const string UserRegistrationConfirmation = "UserRegistration_Confirmation";
-        private const string PasswordResetRequest = "UserRegistration_PasswordResetRequest";
+        private const string RegistrationConfirmationRequest = "Registration_Confirmation";
+        private const string PasswordResetRequest = "Registration_PasswordResetRequest";
 
         private readonly ISendTemplatedMail _templateMail;
         private readonly IRemoteActionUrlBuilder _urlBuilder;
 
-        public UserRegistrationMail(ISendTemplatedMail templateMail, IRemoteActionUrlBuilder urlBuilder)
+        public RegistrationMail(ISendTemplatedMail templateMail, IRemoteActionUrlBuilder urlBuilder)
         {
             _templateMail = templateMail;
             _urlBuilder = urlBuilder;
         }
 
-        public void SendRegistrationConfirmation(Login login, RemoteAction remoteAction)
+        public void SendRegistrationConfirmationRequest(Login login, RemoteAction remoteAction)
         {
-            var model = new UserRegistrationMailModel
+            var model = new RegistrationMailModel
                             {
                                 ActionUrl = _urlBuilder.GetUrl(remoteAction),
-                                Username = login.Username,
+                                Login = login.Loginname,
                             };
-            _templateMail.SendMail(login.EMail, UserRegistrationConfirmation, model);
+            _templateMail.SendMail(login.EMail, RegistrationConfirmationRequest, model);
         }
 
         public void SendPasswordResetRequest(Login login, RemoteAction remoteAction)
         {
-            var model = new UserRegistrationMailModel
+            var model = new RegistrationMailModel
                             {
                                 ActionUrl = _urlBuilder.GetUrl(remoteAction),
-                                Username = login.Username,
+                                Login = login.Loginname,
                             };
             _templateMail.SendMail(login.EMail, PasswordResetRequest, model);
         }

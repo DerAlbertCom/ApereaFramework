@@ -10,14 +10,14 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsUsers>();
-                                         With<BehaviorUserRegistration>();
+                                         With<BehaviorExistingsLogins>();
+                                         With<BehaviorRegistration>();
                                      };
 
         private Because of = () => Subject.StartPasswordReset(email);
 
         private It should_send_a_password_reset_mail =
-            () => The<IUserRegistrationMail>()
+            () => The<IRegistrationMail>()
                       .WasToldTo(
                           m =>
                           m.SendPasswordResetRequest(Param<Login>.Matches(u => u.EMail == email),
@@ -30,7 +30,7 @@ namespace Aperea.Specs.Services
             () =>
             The<IRemoteActionChamber>().WasToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
 
-        private static string email = "albert.weinert@webrunners.de";
+        private static string email = "albert.weinert@awn-design.biz";
     }
 
     [Subject(typeof (Registration), "Password reset request")]
@@ -38,14 +38,14 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsUsers>();
-                                         With<BehaviorUserRegistration>();
+                                         With<BehaviorExistingsLogins>();
+                                         With<BehaviorRegistration>();
                                      };
 
         private Because of = () => Subject.StartPasswordReset(email);
 
         private It should_not_send_a_password_reset_mail =
-            () => The<IUserRegistrationMail>()
+            () => The<IRegistrationMail>()
                       .WasNotToldTo(
                           m =>
                           m.SendPasswordResetRequest(Param<Login>.Matches(u => u.EMail == email),
@@ -71,24 +71,24 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsUsers>();
-                                         With<BehaviorUserRegistration>();
+                                         With<BehaviorExistingsLogins>();
+                                         With<BehaviorRegistration>();
                                      };
 
         private Because of = () => Subject.StartPasswordReset(email);
 
         private It should_send_a_confirmation_email =
             () =>
-            The<IUserRegistrationMail>().WasToldTo(
+            The<IRegistrationMail>().WasToldTo(
                 m =>
-                m.SendRegistrationConfirmation(Param<Login>.Matches(u => u.Username == "aweinert"),
+                m.SendRegistrationConfirmationRequest(Param<Login>.Matches(u => u.Loginname == "aweinert"),
                                                Param<RemoteAction>.Matches(
                                                    a =>
                                                    a.Parameter == "aweinert" &&
-                                                   a.Action == Registration.ConfirmWebUserAction)));
+                                                   a.Action == Registration.ConfirmLoginAction)));
 
         private It should_not_send_a_password_reset_mail =
-            () => The<IUserRegistrationMail>()
+            () => The<IRegistrationMail>()
                       .WasNotToldTo(
                           m =>
                           m.SendPasswordResetRequest(Param<Login>.Matches(u => u.EMail == email),
@@ -109,29 +109,29 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorUserRegistration>();
-                                         users = With<BehaviorExistingsUsers>();
+                                         With<BehaviorRegistration>();
+                                         _logins = With<BehaviorExistingsLogins>();
                                      };
 
         private Because of = () => result = Subject.SetPassword("awn", "password", "password");
 
         private It should_save_the_new_password =
-            () => users[1].PasswordHash.ShouldEqual("hashpassword");
+            () => _logins[1].PasswordHash.ShouldEqual("hashpassword");
 
         private It should_test_if_the_confirmation_key_exists =
             () =>
             The<IRemoteActionChamber>().WasToldTo(
-                c => c.GetActiveAction(Registration.PasswordResetAction, "albert.weinert@webrunners.de"));
+                c => c.GetActiveAction(Registration.PasswordResetAction, "albert.weinert@awn-design.biz"));
 
         private It should_delete_the_confirmation_key =
             () =>
             The<IRemoteActionChamber>().WasToldTo(
-                c => c.RemoveAction(Registration.PasswordResetAction, "albert.weinert@webrunners.de"));
+                c => c.RemoveAction(Registration.PasswordResetAction, "albert.weinert@awn-design.biz"));
 
         private It should_the_result_ok = () => result.ShouldEqual(ChangePasswordResult.Ok);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsUsers users;
+        private static BehaviorExistingsLogins _logins;
     }
 
     [Subject(typeof (Registration), "Entering new Password on reset")]
@@ -139,23 +139,23 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorUserRegistration>();
-                                         users = With<BehaviorExistingsUsers>();
+                                         With<BehaviorRegistration>();
+                                         _logins = With<BehaviorExistingsLogins>();
                                      };
 
         private Because of = () => result = Subject.SetPassword("awn", "musdf", "password");
 
         private It should_not_save_the_new_password =
-            () => users[1].PasswordHash.ShouldEqual("hashkennwort");
+            () => _logins[1].PasswordHash.ShouldEqual("hashkennwort");
 
         private It should_not_delete_the_confirmation_key =
             () =>
             The<IRemoteActionChamber>().WasNotToldTo(
-                c => c.RemoveAction(Registration.PasswordResetAction, "albert.weinert@webrunners.de"));
+                c => c.RemoveAction(Registration.PasswordResetAction, "albert.weinert@awn-design.biz"));
 
         private It should_the_result_password_mismatch = () => result.ShouldEqual(ChangePasswordResult.PasswordMismatch);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsUsers users;
+        private static BehaviorExistingsLogins _logins;
     }
 }

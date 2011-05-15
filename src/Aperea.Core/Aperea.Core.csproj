@@ -75,7 +75,6 @@
     <Compile Include="Services\RemoteActionChamber.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\IApplicationSettings.cs" />
-    <Compile Include="UrlBuilder\IRemoteActionUrlBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

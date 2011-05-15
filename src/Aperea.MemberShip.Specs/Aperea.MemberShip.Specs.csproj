@@ -56,9 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\RegistrationSubject\BehaviorExistingsUsers.cs" />
-    <Compile Include="Services\RegistrationSubject\BehaviorNoWebUsers.cs" />
-    <Compile Include="Services\RegistrationSubject\BehaviorUserRegistration.cs" />
+    <Compile Include="Services\RegistrationSubject\BehaviorExistingsLogins.cs" />
+    <Compile Include="Services\RegistrationSubject\BehaviorNoLogins.cs" />
+    <Compile Include="Services\RegistrationSubject\BehaviorRegistration.cs" />
     <Compile Include="Services\RegistrationSubject\LoginChangePasswordSpecs.cs" />
     <Compile Include="Services\RegistrationSubject\LoginConfirmationSpecs.cs" />
     <Compile Include="Services\RegistrationSubject\LoginPasswordResetSpecs.cs" />

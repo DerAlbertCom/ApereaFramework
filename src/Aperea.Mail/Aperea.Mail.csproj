@@ -64,6 +64,7 @@
     <Compile Include="Services\SendTemplatedMail.cs" />
     <Compile Include="Settings\IMailSettings.cs" />
     <Compile Include="Settings\MailSettings.cs" />
+    <Compile Include="UrlBuilder\IRemoteActionUrlBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">

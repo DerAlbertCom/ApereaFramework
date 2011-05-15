@@ -6,7 +6,7 @@ using Machine.Fakes;
 
 namespace Aperea.Specs.Services
 {
-    internal class BehaviorNoWebUsers
+    internal class BehaviorNoLogins
     {
         private OnEstablish _context = fakeAccessor =>
                                        fakeAccessor.The<IRepository<Login>>()

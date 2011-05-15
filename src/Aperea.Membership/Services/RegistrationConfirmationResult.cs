@@ -1,6 +1,6 @@
 ﻿namespace Aperea.Services
 {
-    public enum UserConfirmationResult
+    public enum RegistrationConfirmationResult 
     {
         Error,
         Confirmed

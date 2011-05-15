@@ -4,7 +4,7 @@ using Machine.Fakes;
 
 namespace Aperea.Specs.Services
 {
-    internal class BehaviorUserRegistration
+    internal class BehaviorRegistration
     {
         private OnEstablish _context = fakeAccessor =>
                                            {

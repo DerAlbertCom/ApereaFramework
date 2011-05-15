@@ -59,5 +59,59 @@ namespace Aperea {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ChangePasswordResult_Error {
+            get {
+                return ResourceManager.GetString("ChangePasswordResult_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ChangePasswordResult_Ok {
+            get {
+                return ResourceManager.GetString("ChangePasswordResult_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the registration was successful.
+        /// </summary>
+        internal static string RegistrationResult_Ok {
+            get {
+                return ResourceManager.GetString("RegistrationResult_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Warning_Login_DataInvalid {
+            get {
+                return ResourceManager.GetString("Warning_Login_DataInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Warning_Login_Exists {
+            get {
+                return ResourceManager.GetString("Warning_Login_Exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Warning_Login_PasswordMismatch {
+            get {
+                return ResourceManager.GetString("Warning_Login_PasswordMismatch", resourceCulture);
+            }
+        }
     }
 }

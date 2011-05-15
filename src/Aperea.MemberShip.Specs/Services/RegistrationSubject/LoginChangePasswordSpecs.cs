@@ -9,19 +9,19 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorUserRegistration>();
-                                         users = With<BehaviorExistingsUsers>();
+                                         With<BehaviorRegistration>();
+                                         _logins = With<BehaviorExistingsLogins>();
                                      };
 
         private Because of = () => result = Subject.ChangePassword("awn", "kennwort", "password", "password");
 
         private It should_save_the_new_password =
-            () => users[1].PasswordHash.ShouldEqual("hashpassword");
+            () => _logins[1].PasswordHash.ShouldEqual("hashpassword");
 
         private It should_the_result_ok = () => result.ShouldEqual(ChangePasswordResult.Ok);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsUsers users;
+        private static BehaviorExistingsLogins _logins;
     }
 
     [Subject(typeof (Registration), "Changing Password")]
@@ -29,19 +29,19 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorUserRegistration>();
-                                         users = With<BehaviorExistingsUsers>();
+                                         With<BehaviorRegistration>();
+                                         _logins = With<BehaviorExistingsLogins>();
                                      };
 
         private Because of = () => result = Subject.ChangePassword("awn", "kennwort", "musdf", "password");
 
         private It should_not_save_the_new_password =
-            () => users[1].PasswordHash.ShouldEqual("hashkennwort");
+            () => _logins[1].PasswordHash.ShouldEqual("hashkennwort");
 
         private It should_the_result_password_mismatch = () => result.ShouldEqual(ChangePasswordResult.PasswordMismatch);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsUsers users;
+        private static BehaviorExistingsLogins _logins;
     }
 
     [Subject(typeof (Registration), "Changing Password")]
@@ -49,18 +49,18 @@ namespace Aperea.Specs.Services
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorUserRegistration>();
-                                         users = With<BehaviorExistingsUsers>();
+                                         With<BehaviorRegistration>();
+                                         _logins = With<BehaviorExistingsLogins>();
                                      };
 
         private Because of = () => result = Subject.ChangePassword("awn", "mues", "password", "password");
 
         private It should_not_save_the_new_password =
-            () => users[1].PasswordHash.ShouldEqual("hashkennwort");
+            () => _logins[1].PasswordHash.ShouldEqual("hashkennwort");
 
         private It should_the_result_invalid_password = () => result.ShouldEqual(ChangePasswordResult.InvalidPassword);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsUsers users;
+        private static BehaviorExistingsLogins _logins;
     }
 }

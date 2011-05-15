@@ -2,17 +2,17 @@ namespace Aperea.Services
 {
     public interface IRegistration
     {
-        UserRegistrationResult RegisterNewUser(string username, string email, string password,
+        RegistrationResult RegisterNewLogin(string loginname, string email, string password,
                                                string confirmPassword);
 
-        UserConfirmationResult ConfirmUser(string username);
+        RegistrationConfirmationResult ConfirmLogin(string loginname);
 
         void StartPasswordReset(string email);
 
-        ChangePasswordResult ChangePassword(string username, string oldPassword, string newPassword,
+        ChangePasswordResult ChangePassword(string loginname, string oldPassword, string newPassword,
                                             string confirmPassword);
 
-        ChangePasswordResult SetPassword(string username, string newPassword,
+        ChangePasswordResult SetPassword(string loginname, string newPassword,
                                          string confirmPassword);
     }
 }

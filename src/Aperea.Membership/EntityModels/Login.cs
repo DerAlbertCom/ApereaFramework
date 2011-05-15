@@ -10,11 +10,11 @@ namespace Aperea.EntityModels
         {
         }
 
-        public Login(string username, string email)
+        public Login(string loginname, string email)
         {
             Created = DateTime.UtcNow;
             Updated = DateTime.UtcNow;
-            Username = username;
+            Loginname = loginname;
             EMail = email;
             PasswordHash = string.Empty;
             Confirmed = false;
@@ -31,11 +31,11 @@ namespace Aperea.EntityModels
 
         [Required]
         [StringLength(128)]
-        public string Username { get; private set; }
+        public string Loginname { get; private set; }
 
         [Required]
         [StringLength(256)]
-        public string EMail { get; set; }
+        public string EMail { get; private set; }
 
         [Required]
         [StringLength(64)]
