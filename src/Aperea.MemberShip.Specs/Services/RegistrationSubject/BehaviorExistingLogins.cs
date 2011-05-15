@@ -6,14 +6,16 @@ using Machine.Fakes;
 
 namespace Aperea.Specs.Services
 {
-    internal class BehaviorExistingsLogins
+    internal class BehaviorExistingLogins
     {
-        private static FakeRepository<Login> repository;
+        private FakeRepository<Login> repository;
 
-        private OnEstablish _context =
-            accessor => { repository = new FakeRepository<Login>(accessor, CreateLogins(accessor)); };
+        public BehaviorExistingLogins(IFakeAccessor accessor)
+        {
+            repository = new FakeRepository<Login>(accessor, CreateLogins(accessor)); 
+        }
 
-        private static IList<Login> CreateLogins(IFakeAccessor accessor)
+        private IEnumerable<Login> CreateLogins(IFakeAccessor accessor)
         {
             IList<Login> logins = new List<Login>
                                      {
@@ -31,9 +33,11 @@ namespace Aperea.Specs.Services
             return logins;
         }
 
+
         public Login this[int index]
         {
             get { return repository[index]; }
         }
     }
+
 }

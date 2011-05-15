@@ -5,12 +5,12 @@ using Machine.Specifications;
 namespace Aperea.Specs.Services
 {
     [Subject(typeof (Registration), "Login Confirmation")]
-    public class When_a_login_is_up_to_confirmed : WithSubject<Registration>
+    public class When_a_login_is_up_to_confirmed : FakeSubject<Registration>
     {
         private Establish that =
             () =>
                 {
-                    _logins = With<BehaviorExistingsLogins>();
+                    _logins = new BehaviorExistingLogins(Accessor);
                     With<BehaviorRegistration>();
                 };
 
@@ -27,7 +27,7 @@ namespace Aperea.Specs.Services
                                                                 c.RemoveAction(Registration.ConfirmLoginAction,
                                                                                "aweinert"));
 
-        private static BehaviorExistingsLogins _logins;
+        private static BehaviorExistingLogins _logins;
         private static RegistrationConfirmationResult result;
     }
 }

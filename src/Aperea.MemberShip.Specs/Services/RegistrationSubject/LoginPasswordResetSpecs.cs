@@ -6,11 +6,11 @@ using Machine.Specifications;
 namespace Aperea.Specs.Services
 {
     [Subject(typeof (Registration), "Password reset request")]
-    public class When_an_user_start_resetting_his_password_with_his_email : WithSubject<Registration>
+    public class When_an_user_start_resetting_his_password_with_his_email : FakeSubject<Registration>
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsLogins>();
+                                         new BehaviorExistingLogins(Accessor);
                                          With<BehaviorRegistration>();
                                      };
 
@@ -34,11 +34,11 @@ namespace Aperea.Specs.Services
     }
 
     [Subject(typeof (Registration), "Password reset request")]
-    public class When_an_user_start_resetting_his_password_with_an_unknown_email : WithSubject<Registration>
+    public class When_an_user_start_resetting_his_password_with_an_unknown_email : FakeSubject<Registration>
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsLogins>();
+                                         new BehaviorExistingLogins(Accessor);
                                          With<BehaviorRegistration>();
                                      };
 
@@ -67,11 +67,11 @@ namespace Aperea.Specs.Services
     }
 
     [Subject(typeof (Registration), "Password reset request")]
-    public class When_an_unconfirmed_user_start_resetting_his_password_with_his_email : WithSubject<Registration>
+    public class When_an_unconfirmed_user_start_resetting_his_password_with_his_email : FakeSubject<Registration>
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsLogins>();
+                                         new BehaviorExistingLogins(Accessor);
                                          With<BehaviorRegistration>();
                                      };
 
@@ -105,12 +105,12 @@ namespace Aperea.Specs.Services
     }
 
     [Subject(typeof (Registration), "Entering new Password on reset")]
-    public class When_an_user_enters_matching_passwords_while_resetting_his_password : WithSubject<Registration>
+    public class When_an_user_enters_matching_passwords_while_resetting_his_password : FakeSubject<Registration>
     {
         private Establish that = () =>
                                      {
                                          With<BehaviorRegistration>();
-                                         _logins = With<BehaviorExistingsLogins>();
+                                         _logins = new BehaviorExistingLogins(Accessor);
                                      };
 
         private Because of = () => result = Subject.SetPassword("awn", "password", "password");
@@ -131,16 +131,16 @@ namespace Aperea.Specs.Services
         private It should_the_result_ok = () => result.ShouldEqual(ChangePasswordResult.Ok);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsLogins _logins;
+        private static BehaviorExistingLogins _logins;
     }
 
     [Subject(typeof (Registration), "Entering new Password on reset")]
-    public class When_an_user_enters_none_matching_passwords_while_resetting_his_password : WithSubject<Registration>
+    public class When_an_user_enters_none_matching_passwords_while_resetting_his_password : FakeSubject<Registration>
     {
         private Establish that = () =>
                                      {
                                          With<BehaviorRegistration>();
-                                         _logins = With<BehaviorExistingsLogins>();
+                                         _logins = new BehaviorExistingLogins(Accessor);
                                      };
 
         private Because of = () => result = Subject.SetPassword("awn", "musdf", "password");
@@ -156,6 +156,6 @@ namespace Aperea.Specs.Services
         private It should_the_result_password_mismatch = () => result.ShouldEqual(ChangePasswordResult.PasswordMismatch);
 
         private static ChangePasswordResult result;
-        private static BehaviorExistingsLogins _logins;
+        private static BehaviorExistingLogins _logins;
     }
 }

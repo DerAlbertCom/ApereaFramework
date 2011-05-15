@@ -7,7 +7,7 @@ using Machine.Specifications;
 namespace Aperea.Specs.Services
 {
     [Subject(typeof (Registration), "New Login")]
-    public class When_an_user_enters_username_email_and_same_passwords : WithSubject<Registration>
+    public class When_an_user_enters_username_email_and_same_passwords : FakeSubject<Registration>
     {
         private Establish that =
             () =>
@@ -44,11 +44,12 @@ namespace Aperea.Specs.Services
 
     [Subject(typeof (Registration), "New Login")]
     public class When_a_user_enters_an_existing_username_with_existing_email_for_an_unconfirmed_account :
-        WithSubject<Registration>
+        FakeSubject<Registration>
     {
         private Establish that = () =>
                                      {
-                                         With<BehaviorExistingsLogins>();
+                                         new BehaviorExistingLogins(Accessor);
+
                                          With<BehaviorRegistration>();
                                      };
 
@@ -77,12 +78,12 @@ namespace Aperea.Specs.Services
     }
 
     [Subject(typeof (Registration), "New Login")]
-    public class When_a_user_enters_an_existing_username : WithSubject<Registration>
+    public class When_a_user_enters_an_existing_username : FakeSubject<Registration>
     {
         private Establish that =
             () =>
                 {
-                    With<BehaviorExistingsLogins>();
+                    new BehaviorExistingLogins(Accessor);
                     With<BehaviorRegistration>();
                 };
 
@@ -109,12 +110,12 @@ namespace Aperea.Specs.Services
     }
 
     [Subject(typeof (Registration), "New Login")]
-    public class When_a_user_enters_an_existing_email : WithSubject<Registration>
+    public class When_a_user_enters_an_existing_email : FakeSubject<Registration>
     {
         private Establish that =
             () =>
                 {
-                    With<BehaviorExistingsLogins>();
+                    new BehaviorExistingLogins(Accessor);
                     With<BehaviorRegistration>();
                 };
 
@@ -141,12 +142,12 @@ namespace Aperea.Specs.Services
     }
 
     [Subject(typeof (Registration), "New Login")]
-    public class When_a_user_enters_an_username_and_different_passwords : WithSubject<Registration>
+    public class When_a_user_enters_an_username_and_different_passwords : FakeSubject<Registration>
     {
         private Establish that =
             () =>
                 {
-                    With<BehaviorExistingsLogins>();
+                    new BehaviorExistingLogins(Accessor);
                     With<BehaviorRegistration>();
                 };
 
