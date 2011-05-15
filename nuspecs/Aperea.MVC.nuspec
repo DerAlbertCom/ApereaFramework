@@ -17,4 +17,8 @@
 		<frameworkAssembly assemblyName="System.Web.Mvc" targetFramework="net40" />
 	</frameworkAssemblies>
   </metadata>
+  	<files>
+	  <file src="..\out\Aperea.Mvc.dll" target="lib" /> 
+	</files>
+
 </package>

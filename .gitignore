@@ -16,3 +16,4 @@
 deployed
 _ReSharper*/
 out/*
+nupkg/*

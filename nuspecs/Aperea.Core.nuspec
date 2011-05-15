@@ -12,10 +12,13 @@
     <dependencies>
 		<dependency id="structuremap" version="(2.6.2,2.7)" />
 		<dependency id="CommonServiceLocator" version="[1.0]" />
-		<dependency id="EntityFramework" version="(4.1.10331.0,4.2]" />
+		<dependency id="EntityFramework" version="(4.1.10331.0,4.2)" />
     </dependencies>
 	<frameworkAssemblies>
 		<frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="net40" />
 	</frameworkAssemblies>
   </metadata>
+	<files>
+	  <file src="..\out\Aperea.Core.dll" target="lib" /> 
+	</files>
 </package>

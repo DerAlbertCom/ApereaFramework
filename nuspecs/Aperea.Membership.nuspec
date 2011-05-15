@@ -16,4 +16,7 @@
 		<frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="net40" />
 	</frameworkAssemblies>
 	</metadata>
+	<files>
+	  <file src="..\out\Aperea.Membership.dll" target="lib" /> 
+	</files>
 </package>
