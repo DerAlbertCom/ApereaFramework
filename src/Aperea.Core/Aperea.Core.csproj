@@ -71,8 +71,8 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Services\Hashing.cs" />
     <Compile Include="Services\IHashing.cs" />
-    <Compile Include="Services\IWebActionChamber.cs" />
-    <Compile Include="Services\WebActionChamber.cs" />
+    <Compile Include="Services\IRemoteActionChamber.cs" />
+    <Compile Include="Services\RemoteActionChamber.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\IApplicationSettings.cs" />
     <Compile Include="UrlBuilder\IRemoteActionUrlBuilder.cs" />

@@ -28,7 +28,7 @@ namespace Aperea.Specs.Services
 
         private It should_generate_a_confirmation_key =
             () =>
-            The<IWebActionChamber>().WasToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
+            The<IRemoteActionChamber>().WasToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
 
         private static string email = "albert.weinert@webrunners.de";
     }
@@ -56,11 +56,11 @@ namespace Aperea.Specs.Services
 
         private It should_not_generate_a_confirmation_key =
             () =>
-            The<IWebActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
+            The<IRemoteActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
 
         private It should_not_delete_the_confirmation_key =
             () =>
-            The<IWebActionChamber>().WasNotToldTo(
+            The<IRemoteActionChamber>().WasNotToldTo(
                 c => c.RemoveAction(Registration.PasswordResetAction, email));
 
         private static string email = "nomail@there.de";
@@ -99,7 +99,7 @@ namespace Aperea.Specs.Services
 
         private It should_not_generate_a_confirmation_key =
             () =>
-            The<IWebActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
+            The<IRemoteActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.PasswordResetAction, email));
 
         private static string email = "info@der-albert.com";
     }
@@ -120,12 +120,12 @@ namespace Aperea.Specs.Services
 
         private It should_test_if_the_confirmation_key_exists =
             () =>
-            The<IWebActionChamber>().WasToldTo(
+            The<IRemoteActionChamber>().WasToldTo(
                 c => c.GetActiveAction(Registration.PasswordResetAction, "albert.weinert@webrunners.de"));
 
         private It should_delete_the_confirmation_key =
             () =>
-            The<IWebActionChamber>().WasToldTo(
+            The<IRemoteActionChamber>().WasToldTo(
                 c => c.RemoveAction(Registration.PasswordResetAction, "albert.weinert@webrunners.de"));
 
         private It should_the_result_ok = () => result.ShouldEqual(ChangePasswordResult.Ok);
@@ -150,7 +150,7 @@ namespace Aperea.Specs.Services
 
         private It should_not_delete_the_confirmation_key =
             () =>
-            The<IWebActionChamber>().WasNotToldTo(
+            The<IRemoteActionChamber>().WasNotToldTo(
                 c => c.RemoveAction(Registration.PasswordResetAction, "albert.weinert@webrunners.de"));
 
         private It should_the_result_password_mismatch = () => result.ShouldEqual(ChangePasswordResult.PasswordMismatch);

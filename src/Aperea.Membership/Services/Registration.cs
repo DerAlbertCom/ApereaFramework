@@ -12,15 +12,15 @@ namespace Aperea.Services
         private readonly IRepository<Login> _repository;
         private readonly IUserRegistrationMail _mail;
         private readonly IHashing _hashing;
-        private readonly IWebActionChamber _webActionChamber;
+        private readonly IRemoteActionChamber _remoteActionChamber;
 
         public Registration(IRepository<Login> repository,
                             IUserRegistrationMail mail,
                             IHashing hashing,
-                            IWebActionChamber webActionChamber)
+                            IRemoteActionChamber remoteActionChamber)
         {
             _repository = repository;
-            _webActionChamber = webActionChamber;
+            _remoteActionChamber = remoteActionChamber;
             _hashing = hashing;
             _mail = mail;
         }
@@ -43,7 +43,7 @@ namespace Aperea.Services
 
             if (login != null)
             {
-                remoteAction = _webActionChamber.GetActiveAction(ConfirmWebUserAction, username);
+                remoteAction = _remoteActionChamber.GetActiveAction(ConfirmWebUserAction, username);
                 _mail.SendRegistrationConfirmation(login, remoteAction);
             }
             else
@@ -56,7 +56,7 @@ namespace Aperea.Services
                 login.SetPassword(password, _hashing);
                 _repository.Add(login);
                 _repository.SaveAllChanges();
-                remoteAction = _webActionChamber.CreateAction(ConfirmWebUserAction, username);
+                remoteAction = _remoteActionChamber.CreateAction(ConfirmWebUserAction, username);
                 _mail.SendRegistrationConfirmation(login, remoteAction);
             }
             return UserRegistrationResult.Ok;
@@ -90,7 +90,7 @@ namespace Aperea.Services
                 return UserConfirmationResult.Error;
             login.Confirm();
             _repository.SaveAllChanges();
-            _webActionChamber.RemoveAction(ConfirmWebUserAction, username);
+            _remoteActionChamber.RemoveAction(ConfirmWebUserAction, username);
             return UserConfirmationResult.Confirmed;
         }
 
@@ -101,12 +101,12 @@ namespace Aperea.Services
                 return;
             if (!webUser.Confirmed)
             {
-                var webAction = _webActionChamber.GetActiveAction(ConfirmWebUserAction, webUser.Username);
+                var webAction = _remoteActionChamber.GetActiveAction(ConfirmWebUserAction, webUser.Username);
                 _mail.SendRegistrationConfirmation(webUser, webAction);
             }
             else
             {
-                var webAction = _webActionChamber.CreateAction(PasswordResetAction, email);
+                var webAction = _remoteActionChamber.CreateAction(PasswordResetAction, email);
                 _mail.SendPasswordResetRequest(webUser, webAction);
             }
         }
@@ -140,13 +140,13 @@ namespace Aperea.Services
             if (webUser == null)
                 return ChangePasswordResult.Error;
 
-            var webAction = _webActionChamber.GetActiveAction(PasswordResetAction, webUser.EMail);
+            var webAction = _remoteActionChamber.GetActiveAction(PasswordResetAction, webUser.EMail);
             if (webAction == null)
                 return ChangePasswordResult.Error;
 
             webUser.SetPassword(newPassword, _hashing);
             _repository.SaveAllChanges();
-            _webActionChamber.RemoveAction(PasswordResetAction, webUser.EMail);
+            _remoteActionChamber.RemoveAction(PasswordResetAction, webUser.EMail);
             return ChangePasswordResult.Ok;
         }
     }

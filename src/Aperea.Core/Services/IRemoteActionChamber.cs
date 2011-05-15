@@ -2,7 +2,7 @@
 
 namespace Aperea.Services
 {
-    public interface IWebActionChamber
+    public interface IRemoteActionChamber
     {
         RemoteAction CreateAction(string actionName, string parameter);
         RemoteAction GetActiveAction(string actionName, string parameter);

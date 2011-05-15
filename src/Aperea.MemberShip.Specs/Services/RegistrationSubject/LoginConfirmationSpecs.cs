@@ -21,7 +21,7 @@ namespace Aperea.Specs.Services
         private It should_the_result_shoud_user_confirmed = () => result.ShouldEqual(UserConfirmationResult.Confirmed);
 
         private It should_delete_the_confirmation_key = () =>
-                                                        The<IWebActionChamber>()
+                                                        The<IRemoteActionChamber>()
                                                             .WasToldTo(
                                                                 c =>
                                                                 c.RemoveAction(Registration.ConfirmWebUserAction,

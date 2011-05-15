@@ -10,7 +10,7 @@ namespace Aperea.Specs.Services
                                            {
                                                new FakeHashing(fakeAccessor);
 
-                                               fakeAccessor.The<IWebActionChamber>()
+                                               fakeAccessor.The<IRemoteActionChamber>()
                                                    .WhenToldTo(
                                                        c =>
                                                        c.CreateAction(Param<string>.IsNotNull, Param<string>.IsNotNull))
@@ -18,7 +18,7 @@ namespace Aperea.Specs.Services
                                                    Return<string, string>(
                                                        (action, parameter) => new RemoteAction(action, parameter));
 
-                                               fakeAccessor.The<IWebActionChamber>()
+                                               fakeAccessor.The<IRemoteActionChamber>()
                                                    .WhenToldTo(
                                                        c =>
                                                        c.GetActiveAction(Param<string>.IsNotNull,

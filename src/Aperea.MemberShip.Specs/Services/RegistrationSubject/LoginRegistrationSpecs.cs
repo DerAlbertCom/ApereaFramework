@@ -37,7 +37,7 @@ namespace Aperea.Specs.Services
                     )));
 
         private It should_create_a_registration_confirmation_action =
-            () => The<IWebActionChamber>().WasToldTo(c => c.CreateAction(Registration.ConfirmWebUserAction, "aweinert"));
+            () => The<IRemoteActionChamber>().WasToldTo(c => c.CreateAction(Registration.ConfirmWebUserAction, "aweinert"));
 
         private static UserRegistrationResult result;
     }
@@ -70,7 +70,7 @@ namespace Aperea.Specs.Services
 
         private It should_not_create_a_registration_confirmation_action =
             () =>
-            The<IWebActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.ConfirmWebUserAction, "aweinert"));
+            The<IRemoteActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.ConfirmWebUserAction, "aweinert"));
 
 
         private static UserRegistrationResult result;

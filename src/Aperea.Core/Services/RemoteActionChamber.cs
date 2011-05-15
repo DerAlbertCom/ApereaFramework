@@ -5,11 +5,11 @@ using Aperea.Repositories;
 
 namespace Aperea.Services
 {
-    public class WebActionChamber : IWebActionChamber
+    public class RemoteActionChamber : IRemoteActionChamber
     {
         private readonly IRepository<RemoteAction> _repository;
 
-        public WebActionChamber(IRepository<RemoteAction> repository)
+        public RemoteActionChamber(IRepository<RemoteAction> repository)
         {
             _repository = repository;
         }
