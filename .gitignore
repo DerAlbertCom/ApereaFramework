@@ -17,3 +17,4 @@ deployed
 _ReSharper*/
 out/*
 nupkg/*
+.wave-vs.net.backup
