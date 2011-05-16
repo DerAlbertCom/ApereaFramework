@@ -2,7 +2,7 @@
 
 namespace ApereaStart.Models
 {
-    public class PasswordResetRequestViewModel 
+    public class PasswordResetRequestViewModel
     {
         [Required]
         [StringLength(256)]

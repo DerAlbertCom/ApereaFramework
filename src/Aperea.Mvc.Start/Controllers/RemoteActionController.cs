@@ -6,7 +6,7 @@ namespace ApereaStart.Controllers
 {
     public class RemoteActionController : ApereaStartBaseController
     {
-        private readonly IRemoteActionWorkerFactory _factory;
+        readonly IRemoteActionWorkerFactory _factory;
 
         public RemoteActionController(IRemoteActionWorkerFactory factory)
         {

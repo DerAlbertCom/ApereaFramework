@@ -9,23 +9,25 @@ namespace Aperea.MVC.Views
 {
     public static class AdaptiveViewEngineHelpers
     {
-        private static bool UserAgentContains(this HttpContextBase c, string agentToFind)
+        static bool UserAgentContains(this HttpContextBase c, string agentToFind)
         {
             return (c.Request.UserAgent.IndexOf(agentToFind, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
-        private static bool IsMobileDevice(this HttpContextBase c)
+        static bool IsMobileDevice(this HttpContextBase c)
         {
             return c.Request.Browser.IsMobileDevice;
         }
 
-        public static void AddMobile<T>(this ViewEngineCollection viewEngines, Func<HttpContextBase, bool> isTheRightDevice, string pathToSearch)
+        public static void AddMobile<T>(this ViewEngineCollection viewEngines,
+                                        Func<HttpContextBase, bool> isTheRightDevice, string pathToSearch)
             where T : IViewEngine, new()
         {
             viewEngines.Add(new AdaptiveViewEngine(isTheRightDevice, pathToSearch, new T()));
         }
 
-        public static void AddMobile<T>(this ViewEngineCollection viewEngines, string userAgentSubstring, string pathToSearch)
+        public static void AddMobile<T>(this ViewEngineCollection viewEngines, string userAgentSubstring,
+                                        string pathToSearch)
             where T : IViewEngine, new()
         {
             viewEngines.Add(new AdaptiveViewEngine(c => c.UserAgentContains(userAgentSubstring), pathToSearch, new T()));
@@ -38,7 +40,7 @@ namespace Aperea.MVC.Views
         }
 
         public static void AddIPad<T>(this ViewEngineCollection viewEngines) //specific example helper
-    where T : IViewEngine, new()
+            where T : IViewEngine, new()
         {
             viewEngines.Add(new AdaptiveViewEngine(c => c.UserAgentContains("iPad"), "Mobile/iPad", new T()));
         }

@@ -9,91 +9,90 @@ namespace Aperea.Specs.Services
     [Subject(typeof (Registration), "New Login")]
     public class When_an_user_enters_username_email_and_same_passwords : FakeSubject<Registration>
     {
-        private Establish that =
-            () =>
-                {
-                    With<BehaviorNoLogins>();
-                    With<BehaviorRegistration>();
-                };
+        Establish that = () =>
+        {
+            With<BehaviorNoLogins>();
+            With<BehaviorRegistration>();
+        };
 
-        private Because of =
+        Because of =
             () => result = Subject.RegisterNewLogin("aweinert", "info@der-albert.com", "kennwort", "kennwort");
 
-        private It should_the_result_is_ok = () => result.ShouldEqual(RegistrationResult.Ok);
+        It should_the_result_is_ok = () => result.ShouldEqual(RegistrationResult.Ok);
 
-        private It should_send_a_confirmation_email =
+        It should_send_a_confirmation_email = () =>
+                                              The<IRegistrationMail>().WasToldTo(
+                                                  m => m.SendRegistrationConfirmationRequest(
+                                                      Param<Login>.Matches(u => u.Loginname == "aweinert"),
+                                                      Param<RemoteAction>.Matches(a => a.Parameter == "aweinert")));
+
+        It should_create_a_login_in_the_database = () =>
+                                                   The<IRepository<Login>>().WasToldTo(r => r.Add(
+                                                       Param<Login>.Matches(user =>
+                                                                            (user.EMail == "info@der-albert.com" &&
+                                                                             user.Loginname == "aweinert" &&
+                                                                             user.PasswordHash == "hashkennwort")
+                                                           )));
+
+        It should_create_a_registration_confirmation_action =
             () =>
-            The<IRegistrationMail>().WasToldTo(
-                m =>
-                m.SendRegistrationConfirmationRequest(Param<Login>.Matches(u => u.Loginname == "aweinert"),
-                                               Param<RemoteAction>.Matches(a => a.Parameter == "aweinert")));
+            The<IRemoteActionChamber>().WasToldTo(c => c.CreateAction(Registration.ConfirmLoginAction, "aweinert"));
 
-        private It should_create_a_login_in_the_database =
-            () => The<IRepository<Login>>().WasToldTo(r => r.Add(
-                Param<Login>.Matches(user =>
-                                     (user.EMail == "info@der-albert.com" &&
-                                      user.Loginname == "aweinert" &&
-                                      user.PasswordHash == "hashkennwort")
-                    )));
-
-        private It should_create_a_registration_confirmation_action =
-            () => The<IRemoteActionChamber>().WasToldTo(c => c.CreateAction(Registration.ConfirmLoginAction, "aweinert"));
-
-        private static RegistrationResult result;
+        static RegistrationResult result;
     }
 
     [Subject(typeof (Registration), "New Login")]
     public class When_a_user_enters_an_existing_username_with_existing_email_for_an_unconfirmed_account :
         FakeSubject<Registration>
     {
-        private Establish that = () =>
-                                     {
-                                         new BehaviorExistingLogins(Accessor);
+        Establish that = () =>
+        {
+            new BehaviorExistingLogins(Accessor);
 
-                                         With<BehaviorRegistration>();
-                                     };
+            With<BehaviorRegistration>();
+        };
 
-        private Because of =
+        Because of =
             () => result = Subject.RegisterNewLogin("aweinert", "info@der-albert.com", "kennwort", "kennwort");
 
-        private It should_the_result_is_ok = () => result.ShouldEqual(RegistrationResult.Ok);
+        It should_the_result_is_ok = () => result.ShouldEqual(RegistrationResult.Ok);
 
-        private It should_send_a_confirmation_email =
+        It should_send_a_confirmation_email =
             () =>
             The<IRegistrationMail>().WasToldTo(
                 m =>
                 m.SendRegistrationConfirmationRequest(Param<Login>.IsNotNull,
-                                               Param<RemoteAction>.Matches(a => a.Parameter == "aweinert")));
+                                                      Param<RemoteAction>.Matches(a => a.Parameter == "aweinert")));
 
-        private It should_not_create_a_login_in_the_database =
+        It should_not_create_a_login_in_the_database =
             () => The<IRepository<Login>>().WasNotToldTo(r => r.Add(
                 Param<Login>.Matches(user => user.Loginname == "aweinert")));
 
-        private It should_not_create_a_registration_confirmation_action =
+        It should_not_create_a_registration_confirmation_action =
             () =>
             The<IRemoteActionChamber>().WasNotToldTo(c => c.CreateAction(Registration.ConfirmLoginAction, "aweinert"));
 
 
-        private static RegistrationResult result;
+        static RegistrationResult result;
     }
 
     [Subject(typeof (Registration), "New Login")]
     public class When_a_user_enters_an_existing_username : FakeSubject<Registration>
     {
-        private Establish that =
+        Establish that =
             () =>
-                {
-                    new BehaviorExistingLogins(Accessor);
-                    With<BehaviorRegistration>();
-                };
+            {
+                new BehaviorExistingLogins(Accessor);
+                With<BehaviorRegistration>();
+            };
 
-        private Because of =
+        Because of =
             () => result = Subject.RegisterNewLogin("aweinert", "foo@bar.de", "kennwort", "kennwort");
 
-        private It should_the_result_should_invalid_userdata =
+        It should_the_result_should_invalid_userdata =
             () => result.ShouldEqual(RegistrationResult.InvalidLoginData);
 
-        private It should_not_send_a_confirmation_email =
+        It should_not_send_a_confirmation_email =
             () =>
             The<IRegistrationMail>().WasNotToldTo(
                 m =>
@@ -102,30 +101,31 @@ namespace Aperea.Specs.Services
                     Param<RemoteAction>.Matches(a => a.Parameter == "aweinert"))
                 );
 
-        private It shoud_not_create_a_login_in_the_database =
+        It shoud_not_create_a_login_in_the_database =
             () => The<IRepository<Login>>().WasNotToldTo(r => r.Add(
                 Param<Login>.Matches(user => user.Loginname == "aweinert")));
 
-        private static RegistrationResult result;
+        static RegistrationResult result;
     }
 
     [Subject(typeof (Registration), "New Login")]
     public class When_a_user_enters_an_existing_email : FakeSubject<Registration>
     {
-        private Establish that =
+        Establish that =
             () =>
-                {
-                    new BehaviorExistingLogins(Accessor);
-                    With<BehaviorRegistration>();
-                };
+            {
+                new BehaviorExistingLogins(Accessor);
+                With<BehaviorRegistration>();
+            };
 
-        private Because of =
-            () => result = Subject.RegisterNewLogin("dieaertze", "albert.weinert@awn-design.biz", "kennwort", "kennwort");
+        Because of =
+            () =>
+            result = Subject.RegisterNewLogin("dieaertze", "albert.weinert@awn-design.biz", "kennwort", "kennwort");
 
-        private It should_the_result_should_invalid_userdata =
+        It should_the_result_should_invalid_userdata =
             () => result.ShouldEqual(RegistrationResult.InvalidLoginData);
 
-        private It should_not_send_a_confirmation_email =
+        It should_not_send_a_confirmation_email =
             () =>
             The<IRegistrationMail>().WasNotToldTo(
                 m =>
@@ -134,30 +134,30 @@ namespace Aperea.Specs.Services
                     Param<RemoteAction>.Matches(a => a.Parameter == "dieaertze"))
                 );
 
-        private It should_not_create_a_login_in_the_database =
+        It should_not_create_a_login_in_the_database =
             () => The<IRepository<Login>>().WasNotToldTo(r => r.Add(
                 Param<Login>.Matches(user => user.Loginname == "dieaertze")));
 
-        private static RegistrationResult result;
+        static RegistrationResult result;
     }
 
     [Subject(typeof (Registration), "New Login")]
     public class When_a_user_enters_an_username_and_different_passwords : FakeSubject<Registration>
     {
-        private Establish that =
+        Establish that =
             () =>
-                {
-                    new BehaviorExistingLogins(Accessor);
-                    With<BehaviorRegistration>();
-                };
+            {
+                new BehaviorExistingLogins(Accessor);
+                With<BehaviorRegistration>();
+            };
 
-        private Because of =
+        Because of =
             () => result = Subject.RegisterNewLogin("mensch", "meier@schmitz.de", "kennwort", "password");
 
-        private It should_the_result_password_missmatch =
+        It should_the_result_password_missmatch =
             () => result.ShouldEqual(RegistrationResult.PasswordMismatch);
 
-        private It should_not_send_a_confirmation_email =
+        It should_not_send_a_confirmation_email =
             () =>
             The<IRegistrationMail>().WasNotToldTo(
                 m =>
@@ -166,10 +166,10 @@ namespace Aperea.Specs.Services
                     Param<RemoteAction>.Matches(a => a.Parameter == "mensch"))
                 );
 
-        private It shoud_not_create_a_login_in_the_database =
+        It shoud_not_create_a_login_in_the_database =
             () => The<IRepository<Login>>().WasNotToldTo(r => r.Add(
                 Param<Login>.Matches(login => login.Loginname == "mensch")));
 
-        private static RegistrationResult result;
+        static RegistrationResult result;
     }
 }

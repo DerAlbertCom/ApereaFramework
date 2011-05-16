@@ -8,7 +8,7 @@ namespace Aperea.MVC.Infrastructure
 {
     public class StructureMapDependencyResolver : IDependencyResolver
     {
-        private readonly IContainer _container;
+        readonly IContainer _container;
 
         public StructureMapDependencyResolver(IContainer container)
         {
@@ -20,7 +20,7 @@ namespace Aperea.MVC.Infrastructure
             return _container.TryGetInstance(serviceType) ?? AddConcreteServiceTypeToContainer(serviceType);
         }
 
-        private object AddConcreteServiceTypeToContainer(Type serviceType)
+        object AddConcreteServiceTypeToContainer(Type serviceType)
         {
             if (serviceType.IsAbstract)
             {

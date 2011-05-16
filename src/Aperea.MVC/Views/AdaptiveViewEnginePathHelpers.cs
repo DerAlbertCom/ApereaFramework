@@ -13,8 +13,8 @@ namespace Aperea.MVC.Views
 {
     public static class AdaptiveViewEnginePathHelpers
     {
-        private static string GetNewLayoutPath(HttpContextBase context, IAdaptiveViewEngine viewEngine,
-                                              string layoutFile)
+        static string GetNewLayoutPath(HttpContextBase context, IAdaptiveViewEngine viewEngine,
+                                       string layoutFile)
         {
             if (!viewEngine.IsTheRightDevice(context))
                 return String.Empty;
@@ -27,7 +27,7 @@ namespace Aperea.MVC.Views
             return MakeVirtualPath(path);
         }
 
-        private static string GetFullPathWithSearchPath(string path, string pathToSearch)
+        static string GetFullPathWithSearchPath(string path, string pathToSearch)
         {
             string fileName = Path.GetFileName(path);
             path = Path.GetDirectoryName(path);
@@ -36,10 +36,11 @@ namespace Aperea.MVC.Views
             return path;
         }
 
-        private static string MakeVirtualPath(string path)
+        static string MakeVirtualPath(string path)
         {
             var physicalPath = HostingEnvironment.ApplicationPhysicalPath;
-            if (path.StartsWith(path)){
+            if (path.StartsWith(path))
+            {
                 path = path.Substring(physicalPath.Length);
             }
             path = path.Replace(@"\", "/");
@@ -47,16 +48,18 @@ namespace Aperea.MVC.Views
             return path;
         }
 
-        private static IEnumerable<IAdaptiveViewEngine> GetViewEngines()
+        static IEnumerable<IAdaptiveViewEngine> GetViewEngines()
         {
             return ViewEngines.Engines.Where(ve => ve is IAdaptiveViewEngine).Cast<IAdaptiveViewEngine>();
         }
 
         public static string GetLayoutPath(this HttpContextBase httpContext, string layoutFile)
         {
-            foreach (var viewEngine in GetViewEngines()){
+            foreach (var viewEngine in GetViewEngines())
+            {
                 var newLayout = GetNewLayoutPath(httpContext, viewEngine, layoutFile);
-                if (!String.IsNullOrEmpty(newLayout)){
+                if (!String.IsNullOrEmpty(newLayout))
+                {
                     return newLayout;
                 }
             }

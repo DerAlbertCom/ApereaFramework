@@ -10,6 +10,6 @@ namespace Aperea.MVC.Views
     public interface IAdaptiveViewEngine : IViewEngine
     {
         Func<HttpContextBase, bool> IsTheRightDevice { get; }
-        string PathToSearch { get;}
+        string PathToSearch { get; }
     }
 }

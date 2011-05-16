@@ -9,10 +9,10 @@ namespace Aperea.MVC.Initialize
         public ApereaMvcRegistry()
         {
             Scan(x =>
-                     {
-                         x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
-                         x.With(new RemoteActionWorkerConvention());
-                     });
+            {
+                x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
+                x.With(new RemoteActionWorkerConvention());
+            });
         }
     }
 }

@@ -12,17 +12,17 @@ namespace Aperea.MVC.Infrastructure
         public AspNetMvc3Registry()
         {
             Scan(x =>
-                     {
-                         x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
-                         x.AddAllTypesOf<ModelValidatorProvider>();
-                         x.AddAllTypesOf<ModelMetadataProvider>();
-                         x.AddAllTypesOf<ValueProviderFactory>();
-                         x.AddAllTypesOf<IModelBinderProvider>();
-                         x.AddAllTypesOf<IControllerActivator>();
-                         x.AddAllTypesOf<IViewPageActivator>();
-                         x.AddAllTypesOf<IFilterProvider>();
-                         x.With(new ControllerRegistryConvention());
-                     });
+            {
+                x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
+                x.AddAllTypesOf<ModelValidatorProvider>();
+                x.AddAllTypesOf<ModelMetadataProvider>();
+                x.AddAllTypesOf<ValueProviderFactory>();
+                x.AddAllTypesOf<IModelBinderProvider>();
+                x.AddAllTypesOf<IControllerActivator>();
+                x.AddAllTypesOf<IViewPageActivator>();
+                x.AddAllTypesOf<IFilterProvider>();
+                x.With(new ControllerRegistryConvention());
+            });
 
             For<HttpContextBase>()
                 .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.PerRequest))

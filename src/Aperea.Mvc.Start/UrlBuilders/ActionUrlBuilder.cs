@@ -10,6 +10,7 @@ namespace ApereaStart.UrlBuilders
     {
         readonly HttpContextBase _httpContext;
         readonly HttpRequestBase _httpRequest;
+
         public ActionUrlBuilder(HttpContextBase httpContext, HttpRequestBase httpRequest)
         {
             _httpContext = httpContext;

@@ -24,9 +24,10 @@ namespace ApereaStart.Annotations
         string GetDisplayName()
         {
             string displayName = ResourceStrings.ResourceManager.GetString(_resourceName,
-                                                                   System.Threading.Thread.CurrentThread.
-                                                                       CurrentUICulture);
-            if (string.IsNullOrEmpty(displayName)) {
+                                                                           System.Threading.Thread.CurrentThread.
+                                                                               CurrentUICulture);
+            if (string.IsNullOrEmpty(displayName))
+            {
                 displayName = "Missing: " + _resourceName;
             }
             return displayName;

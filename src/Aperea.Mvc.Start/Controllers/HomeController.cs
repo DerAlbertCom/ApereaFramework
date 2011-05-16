@@ -4,9 +4,9 @@ namespace ApereaStart.Controllers
 {
     public class HomeController : ApereaStartBaseController
     {
-         public ActionResult Index()
-         {
-             return new ViewResult();
-         }
+        public ActionResult Index()
+        {
+            return new ViewResult();
+        }
     }
 }

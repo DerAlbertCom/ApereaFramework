@@ -10,7 +10,7 @@ namespace ApereaStart.Initialize
             RegisterGlobalFilters(GlobalFilters.Filters);
         }
 
-        private void RegisterGlobalFilters(GlobalFilterCollection filters)
+        void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
         }

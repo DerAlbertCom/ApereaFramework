@@ -8,22 +8,22 @@ namespace Aperea.Specs.Services
 {
     internal class BehaviorExistingLogins
     {
-        private FakeRepository<Login> repository;
+        readonly FakeRepository<Login> _repository;
 
         public BehaviorExistingLogins(IFakeAccessor accessor)
         {
-            repository = new FakeRepository<Login>(accessor, CreateLogins(accessor)); 
+            _repository = new FakeRepository<Login>(accessor, CreateLogins(accessor));
         }
 
-        private IEnumerable<Login> CreateLogins(IFakeAccessor accessor)
+        IEnumerable<Login> CreateLogins(IFakeAccessor accessor)
         {
             IList<Login> logins = new List<Login>
-                                     {
-                                         new Login("aweinert", "info@der-albert.com"),
-                                         new Login("awn", "albert.weinert@awn-design.biz"),
-                                         new Login("cvk", "christoph.vonkruechten@awn-design.biz"),
-                                         new Login("fm", "frank.muellers@awn-design.biz")
-                                     };
+                                  {
+                                      new Login("aweinert", "info@der-albert.com"),
+                                      new Login("awn", "albert.weinert@awn-design.biz"),
+                                      new Login("cvk", "christoph.vonkruechten@awn-design.biz"),
+                                      new Login("fm", "frank.muellers@awn-design.biz")
+                                  };
             logins[1].Confirm();
             logins[2].Confirm();
             logins[0].SetPassword("kennwort", accessor.The<IHashing>());
@@ -36,8 +36,7 @@ namespace Aperea.Specs.Services
 
         public Login this[int index]
         {
-            get { return repository[index]; }
+            get { return _repository[index]; }
         }
     }
-
 }

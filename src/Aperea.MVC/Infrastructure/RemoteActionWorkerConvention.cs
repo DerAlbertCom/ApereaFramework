@@ -10,20 +10,21 @@ namespace Aperea.MVC.Infrastructure
     {
         public void Process(Type type, Registry registry)
         {
-            if (!type.IsAbstract && typeof(IRemoteActionWorker).IsAssignableFrom(type)) {
+            if (!type.IsAbstract && typeof (IRemoteActionWorker).IsAssignableFrom(type))
+            {
                 WebActionNameAttribute nameAttribute = GetWebActionNameAttribute(type);
-                registry.AddType(typeof(IRemoteActionWorker), type,nameAttribute.WebActionName);
+                registry.AddType(typeof (IRemoteActionWorker), type, nameAttribute.WebActionName);
             }
         }
 
         WebActionNameAttribute GetWebActionNameAttribute(Type type)
         {
-            var attributes = type.GetCustomAttributes(typeof(WebActionNameAttribute), false);
+            var attributes = type.GetCustomAttributes(typeof (WebActionNameAttribute), false);
             if (attributes.Length == 0)
             {
                 throw new InvalidOperationException(string.Format("{0} has no WebActionNameAttribute", type.FullName));
             }
-            return (WebActionNameAttribute)attributes[0];
+            return (WebActionNameAttribute) attributes[0];
         }
     }
 }

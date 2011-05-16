@@ -7,7 +7,7 @@ namespace Aperea.Services
 {
     public class RemoteActionChamber : IRemoteActionChamber
     {
-        private readonly IRepository<RemoteAction> _repository;
+        readonly IRepository<RemoteAction> _repository;
 
         public RemoteActionChamber(IRepository<RemoteAction> repository)
         {
@@ -31,7 +31,7 @@ namespace Aperea.Services
             return action;
         }
 
-        private RemoteAction TryGetActiveAction(string actionName, string parameter)
+        RemoteAction TryGetActiveAction(string actionName, string parameter)
         {
             return _repository.Entities.Where(e => e.Action == actionName && e.Parameter == parameter).SingleOrDefault();
         }

@@ -9,10 +9,10 @@ namespace Aperea.Specs.Repositories
     public class FakeRepository<T>
         where T : class
     {
-        private readonly IFakeAccessor _fakeAccessor;
-        private readonly List<T> _entities = new List<T>();
-        private readonly List<T> _addEntities = new List<T>();
-        private readonly List<T> _removeEntities = new List<T>();
+        readonly IFakeAccessor _fakeAccessor;
+        readonly List<T> _entities = new List<T>();
+        readonly List<T> _addEntities = new List<T>();
+        readonly List<T> _removeEntities = new List<T>();
 
         public FakeRepository(IFakeAccessor fakeAccessor)
         {
@@ -28,7 +28,7 @@ namespace Aperea.Specs.Repositories
             SetRepositoryBehavior();
         }
 
-        private void SetRepositoryBehavior()
+        void SetRepositoryBehavior()
         {
             GetRepositoryFake()
                 .WhenToldTo(r => r.Entities)
@@ -45,16 +45,16 @@ namespace Aperea.Specs.Repositories
             GetRepositoryFake()
                 .WhenToldTo(r => r.SaveAllChanges())
                 .Callback(() =>
-                              {
-                                  SetIds(_addEntities);
-                                  _entities.AddRange(_addEntities);
-                                  _addEntities.Clear();
-                                  _removeEntities.All(entity => _entities.Remove(entity));
-                                  _removeEntities.Clear();
-                              });
+                {
+                    SetIds(_addEntities);
+                    _entities.AddRange(_addEntities);
+                    _addEntities.Clear();
+                    _removeEntities.All(entity => _entities.Remove(entity));
+                    _removeEntities.Clear();
+                });
         }
 
-        private void SetIds(IEnumerable<T> addEntities)
+        void SetIds(IEnumerable<T> addEntities)
         {
             foreach (var addEntity in addEntities)
             {
@@ -63,7 +63,7 @@ namespace Aperea.Specs.Repositories
         }
 
 
-        private static void SetId(T addEntity)
+        static void SetId(T addEntity)
         {
             var property = addEntity.GetType().GetProperty("Id");
             if (property == null)
@@ -77,7 +77,7 @@ namespace Aperea.Specs.Repositories
             property.SetValue(addEntity, IdGeneration.GetNextId(addEntity.GetType()), null);
         }
 
-        private IRepository<T> GetRepositoryFake()
+        IRepository<T> GetRepositoryFake()
         {
             return _fakeAccessor.The<IRepository<T>>();
         }

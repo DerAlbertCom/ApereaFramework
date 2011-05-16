@@ -9,10 +9,10 @@ namespace Aperea.Services
         public const string ConfirmLoginAction = "ConfirmLogin";
         public const string PasswordResetAction = "PasswordReset";
 
-        private readonly IRepository<Login> _repository;
-        private readonly IRegistrationMail _mail;
-        private readonly IHashing _hashing;
-        private readonly IRemoteActionChamber _remoteActionChamber;
+        readonly IRepository<Login> _repository;
+        readonly IRegistrationMail _mail;
+        readonly IHashing _hashing;
+        readonly IRemoteActionChamber _remoteActionChamber;
 
         public Registration(IRepository<Login> repository,
                             IRegistrationMail mail,
@@ -26,7 +26,7 @@ namespace Aperea.Services
         }
 
         public RegistrationResult RegisterNewLogin(string loginname, string email, string password,
-                                                  string confirmPassword)
+                                                   string confirmPassword)
         {
             if (password != confirmPassword)
                 return RegistrationResult.PasswordMismatch;
@@ -62,7 +62,7 @@ namespace Aperea.Services
             return RegistrationResult.Ok;
         }
 
-        private string Normalize(string text)
+        string Normalize(string text)
         {
             text = text.ToLowerInvariant();
             while (text.Contains("  "))
@@ -72,13 +72,13 @@ namespace Aperea.Services
             return text;
         }
 
-        private bool LoginDataIsValid(string loginname, string email)
+        bool LoginDataIsValid(string loginname, string email)
         {
             return _repository.Entities.Where(u => u.Loginname == loginname || u.EMail == email).Count() == 0;
         }
 
 
-        private Login GetExistingLogin(string loginname, string email)
+        Login GetExistingLogin(string loginname, string email)
         {
             return _repository.Entities.Where(e => e.Loginname == loginname && e.EMail == email).FirstOrDefault();
         }

@@ -13,7 +13,7 @@ namespace Aperea.Services
         public static readonly ChangePasswordResult PasswordMismatch = new ChangePasswordResult(3,
                                                                                                 "Warning_Login_PasswordMismatch");
 
-        private ChangePasswordResult(int value, string resultResourceStringName) : base(value, resultResourceStringName)
+        ChangePasswordResult(int value, string resultResourceStringName) : base(value, resultResourceStringName)
         {
         }
 

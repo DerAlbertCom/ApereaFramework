@@ -15,7 +15,7 @@ namespace Aperea.MVC.RemoteActions
         public string GetHash(RemoteAction action)
         {
             string hash = _hashing.GetHash(action.Action, action.Parameter).Substring(0, 8);
-            return hash.Replace("/","I").Replace("\\","U").Replace("+","4");
+            return hash.Replace("/", "I").Replace("\\", "U").Replace("+", "4");
         }
     }
 }

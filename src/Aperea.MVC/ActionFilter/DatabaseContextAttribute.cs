@@ -7,7 +7,7 @@ namespace Aperea.MVC.ActionFilter
 {
     public class DatabaseContextAttribute : DependencyFilterAttribute, IActionFilter
     {
-        private readonly IStateStorage _state = new HttpContextStateStorage();
+        readonly IStateStorage _state = new HttpContextStateStorage();
 
         public DatabaseContextAttribute()
         {

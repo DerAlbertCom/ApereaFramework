@@ -16,37 +16,38 @@ section {
 /* Styles for basic forms
 -----------------------------------------------------------*/
 
-fieldset 
+fieldset
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
 }
 
-legend 
+legend
 {
-    font-size:1.2em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
-textarea 
+textarea
 {
     min-height: 75px;
 }
 
-.editor-label 
+.editor-label
 {
     margin: 1em 0 0 0;
 }
 
-.editor-field 
+.editor-field
 {
-    margin:0.5em 0 0 0;
+    margin: 0.5em 0 0 0;
 }
 
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
+
 .field-validation-error
 {
     color: #ff0000;

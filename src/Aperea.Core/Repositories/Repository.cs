@@ -13,9 +13,9 @@ namespace Aperea.Repositories
     public class Repository<T> : IRepository<T>
         where T : class
     {
-        private readonly IDatabaseContext _databaseContext;
+        readonly IDatabaseContext _databaseContext;
 
-        private DbSet<T> _objectSet;
+        DbSet<T> _objectSet;
 
         public Repository(IDatabaseContext databaseContext)
         {

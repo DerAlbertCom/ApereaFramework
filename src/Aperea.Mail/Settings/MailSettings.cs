@@ -2,7 +2,7 @@
 {
     public class MailSettings : IMailSettings
     {
-        private readonly IApplicationSettings _settings;
+        readonly IApplicationSettings _settings;
 
         public MailSettings(IApplicationSettings settings)
         {

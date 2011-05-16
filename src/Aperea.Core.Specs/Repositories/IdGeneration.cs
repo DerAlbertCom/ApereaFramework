@@ -5,7 +5,7 @@ namespace Aperea.Specs.Repositories
 {
     public static class IdGeneration
     {
-        private static readonly Dictionary<Type, int> Dictionary = new Dictionary<Type, int>();
+        static readonly Dictionary<Type, int> Dictionary = new Dictionary<Type, int>();
 
         public static int GetNextId(Type type)
         {

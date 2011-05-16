@@ -29,7 +29,8 @@ namespace ApereaStart.RemoteActions
         public ActionResult Execute(RemoteAction webAction, ControllerContext context)
         {
             Login webUser = TryGetWebUser(webAction.Parameter);
-            if (webUser != null) {
+            if (webUser != null)
+            {
                 var model = new PasswordResetViewModel {Username = webUser.Loginname};
                 context.Controller.TempData.SetModel(model);
                 return RouteHelper.RedirectTo<RegistrationController>(c => c.PasswordReset());

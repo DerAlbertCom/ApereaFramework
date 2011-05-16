@@ -4,7 +4,7 @@ namespace Aperea.MVC.Settings
 {
     public class CultureSettings : ICultureSettings
     {
-        private readonly IApplicationSettings _settings;
+        readonly IApplicationSettings _settings;
 
         public CultureSettings(IApplicationSettings settings)
         {

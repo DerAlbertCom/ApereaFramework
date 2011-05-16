@@ -29,7 +29,7 @@ namespace Aperea.MVC.ActionFilter
             Thread.CurrentThread.CurrentUICulture = ci;
         }
 
-        private string GetCurrentCulture(ControllerContext filterContext)
+        string GetCurrentCulture(ControllerContext filterContext)
         {
             var cultureName = filterContext.RouteData.Values["culture"] as string;
             var settings = GetService<ICultureSettings>();
@@ -55,17 +55,17 @@ namespace Aperea.MVC.ActionFilter
             return cultureName;
         }
 
-        private string FindSpecificUserCulture(IEnumerable<string> userCultures)
+        string FindSpecificUserCulture(IEnumerable<string> userCultures)
         {
             return SearchInPossibleCultures(userCultures, culture => culture);
         }
 
-        private string FindNeutralUserCulture(IEnumerable<string> userCultures)
+        string FindNeutralUserCulture(IEnumerable<string> userCultures)
         {
             return SearchInPossibleCultures(userCultures, culture => culture.Split('-')[0]);
         }
 
-        private string SearchInPossibleCultures(IEnumerable<string> userCultures, Func<string, string> modifier)
+        string SearchInPossibleCultures(IEnumerable<string> userCultures, Func<string, string> modifier)
         {
             var settings = DependencyResolver.Current.GetService<ICultureSettings>();
             var possibleCultures = settings.PossibleCultures;
@@ -80,7 +80,7 @@ namespace Aperea.MVC.ActionFilter
             return string.Empty;
         }
 
-        private IEnumerable<string> GetUserCulture(ControllerContext filterContext)
+        IEnumerable<string> GetUserCulture(ControllerContext filterContext)
         {
             var userLanguages = filterContext.HttpContext.Request.UserLanguages;
             return userLanguages ?? new string[0];

@@ -6,7 +6,7 @@ namespace Aperea.MVC.Infrastructure
 {
     public class PropertyInjectionActionInvoker : ControllerActionInvoker
     {
-        private readonly IContainer _container;
+        readonly IContainer _container;
 
         public PropertyInjectionActionInvoker()
         {
@@ -30,7 +30,7 @@ namespace Aperea.MVC.Infrastructure
             return base.CreateActionResult(controllerContext, actionDescriptor, actionReturnValue);
         }
 
-        private void BuildUp(IEnumerable<object> targets)
+        void BuildUp(IEnumerable<object> targets)
         {
             foreach (var target in targets)
             {

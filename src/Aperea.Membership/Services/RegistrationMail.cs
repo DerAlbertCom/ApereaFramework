@@ -6,11 +6,11 @@ namespace Aperea.Services
 {
     public class RegistrationMail : IRegistrationMail
     {
-        private const string RegistrationConfirmationRequest = "Registration_Confirmation";
-        private const string PasswordResetRequest = "Registration_PasswordResetRequest";
+        const string RegistrationConfirmationRequest = "Registration_Confirmation";
+        const string PasswordResetRequest = "Registration_PasswordResetRequest";
 
-        private readonly ISendTemplatedMail _templateMail;
-        private readonly IRemoteActionUrlBuilder _urlBuilder;
+        readonly ISendTemplatedMail _templateMail;
+        readonly IRemoteActionUrlBuilder _urlBuilder;
 
         public RegistrationMail(ISendTemplatedMail templateMail, IRemoteActionUrlBuilder urlBuilder)
         {
@@ -21,20 +21,20 @@ namespace Aperea.Services
         public void SendRegistrationConfirmationRequest(Login login, RemoteAction remoteAction)
         {
             var model = new RegistrationMailModel
-                            {
-                                ActionUrl = _urlBuilder.GetUrl(remoteAction),
-                                Login = login.Loginname,
-                            };
+                        {
+                            ActionUrl = _urlBuilder.GetUrl(remoteAction),
+                            Login = login.Loginname,
+                        };
             _templateMail.SendMail(login.EMail, RegistrationConfirmationRequest, model);
         }
 
         public void SendPasswordResetRequest(Login login, RemoteAction remoteAction)
         {
             var model = new RegistrationMailModel
-                            {
-                                ActionUrl = _urlBuilder.GetUrl(remoteAction),
-                                Login = login.Loginname,
-                            };
+                        {
+                            ActionUrl = _urlBuilder.GetUrl(remoteAction),
+                            Login = login.Loginname,
+                        };
             _templateMail.SendMail(login.EMail, PasswordResetRequest, model);
         }
     }

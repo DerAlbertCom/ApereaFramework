@@ -5,8 +5,8 @@ namespace Aperea.MVC.StateProvider
 {
     public abstract class StateStorageBase : IStateStorage
     {
-        private readonly Func<string, object> _getAccessor;
-        private readonly Action<string, object> _setAccessor;
+        readonly Func<string, object> _getAccessor;
+        readonly Action<string, object> _setAccessor;
 
         protected StateStorageBase(Func<string, object> getAccessor, Action<string, object> setAccessor)
         {

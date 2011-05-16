@@ -5,7 +5,7 @@ namespace Aperea.Infrastructure.Data
 {
     public class DatabaseContext : IDatabaseContext
     {
-        private readonly Lazy<DbContext> _context;
+        readonly Lazy<DbContext> _context;
 
         public DatabaseContext(IDbContextFactory contextFactory)
         {

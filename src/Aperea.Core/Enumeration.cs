@@ -4,8 +4,8 @@ namespace Aperea
 {
     public abstract class Enumeration<T>
     {
-        private readonly T _value;
-        private readonly string _resultResourceStringName;
+        readonly T _value;
+        readonly string _resultResourceStringName;
 
         protected Enumeration(T value, string resultResourceStringName)
         {

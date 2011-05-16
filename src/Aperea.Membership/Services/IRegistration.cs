@@ -3,7 +3,7 @@ namespace Aperea.Services
     public interface IRegistration
     {
         RegistrationResult RegisterNewLogin(string loginname, string email, string password,
-                                               string confirmPassword);
+                                            string confirmPassword);
 
         RegistrationConfirmationResult ConfirmLogin(string loginname);
 

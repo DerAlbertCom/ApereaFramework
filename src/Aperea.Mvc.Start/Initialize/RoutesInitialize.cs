@@ -7,7 +7,7 @@ namespace ApereaStart.Initialize
 {
     public class RoutesInitialize : IBootstrapItem
     {
-        private readonly ICultureSettings _cultureSettings;
+        readonly ICultureSettings _cultureSettings;
 
         public RoutesInitialize(ICultureSettings cultureSettings)
         {
@@ -28,7 +28,8 @@ namespace ApereaStart.Initialize
             routes.MapRoute(
                 "Account", // Route name
                 "Account/{action}/{id}", // URL with parameters
-                new {
+                new
+                {
                     culture = _cultureSettings,
                     controller = "Account",
                     action = "Index",
@@ -39,7 +40,8 @@ namespace ApereaStart.Initialize
             routes.MapRoute(
                 "HashKey", // Route name
                 "{culture}/{controller}/{action}/{hash}/{key}", // URL with parameters
-                new {
+                new
+                {
                     culture = "",
                 } // Parameter defaults
                 );
@@ -47,7 +49,8 @@ namespace ApereaStart.Initialize
             routes.MapRoute(
                 "Default", // Route name
                 "{culture}/{controller}/{action}/{id}", // URL with parameters
-                new {
+                new
+                {
                     culture = _cultureSettings,
                     controller = "Home",
                     action = "Index",

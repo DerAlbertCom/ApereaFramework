@@ -20,7 +20,7 @@ namespace ApereaStart.Models
 
         [Required]
         [StringLength(1024)]
-        [Compare("Password", ErrorMessageResourceType = typeof(ResourceStrings),
+        [Compare("Password", ErrorMessageResourceType = typeof (ResourceStrings),
             ErrorMessageResourceName = "Error_The_password_and_confirmation_password_do_not_match")]
         [LabelName("ConfirmPassword")]
         [DataType(DataType.Password)]

@@ -8,9 +8,9 @@ namespace Aperea.Services
 {
     public class SendTemplatedMail : ISendTemplatedMail
     {
-        private readonly IRepository<MailTemplate> _repository;
-        private readonly ICultureContext _context;
-        private readonly ISendMail _sendMail;
+        readonly IRepository<MailTemplate> _repository;
+        readonly ICultureContext _context;
+        readonly ISendMail _sendMail;
 
         public SendTemplatedMail(IRepository<MailTemplate> repository, ISendMail sendMail, ICultureContext context)
         {
@@ -27,7 +27,7 @@ namespace Aperea.Services
             _sendMail.Send(recipient, subject, body);
         }
 
-        private MailTemplate GetMailTemplate(string templateName)
+        MailTemplate GetMailTemplate(string templateName)
         {
             var culture = _context.CurrentCulture;
             var mailTemplate = _repository.Entities
@@ -38,7 +38,7 @@ namespace Aperea.Services
             return GetFirstOrMissingTemplate(templateName, culture);
         }
 
-        private MailTemplate GetFirstOrMissingTemplate(string templateName, string culture)
+        MailTemplate GetFirstOrMissingTemplate(string templateName, string culture)
         {
             var mailTemplate = _repository.Entities
                 .Where(mt => mt.SystemLanguage.Culture == culture && mt.TemplateName == templateName)
@@ -46,14 +46,14 @@ namespace Aperea.Services
             if (mailTemplate != null)
                 return mailTemplate;
             return new MailTemplate
-                       {
-                           Subject = string.Format(MailStrings.Information_MissingTemplate, templateName, culture),
-                           Body =
-                               string.Format(MailStrings.Information_MissingTemplateForModel,
-                                             templateName,
-                                             culture),
-                           TemplateName = templateName
-                       };
+                   {
+                       Subject = string.Format(MailStrings.Information_MissingTemplate, templateName, culture),
+                       Body =
+                           string.Format(MailStrings.Information_MissingTemplateForModel,
+                                         templateName,
+                                         culture),
+                       TemplateName = templateName
+                   };
         }
     }
 }

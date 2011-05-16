@@ -7,6 +7,5 @@ namespace ApereaStart.Controllers
     [DatabaseContext]
     public class ApereaStartBaseController : Controller
     {
-
     }
 }

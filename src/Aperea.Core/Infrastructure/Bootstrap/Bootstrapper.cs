@@ -8,9 +8,9 @@ namespace Aperea.Infrastructure.Bootstrap
 {
     public class Bootstrapper
     {
-        private readonly List<IBootstrapItem> bootstrapItems;
+        readonly List<IBootstrapItem> bootstrapItems;
 
-        private Bootstrapper()
+        Bootstrapper()
         {
             bootstrapItems = new List<IBootstrapItem>();
         }
@@ -37,7 +37,7 @@ namespace Aperea.Infrastructure.Bootstrap
             return this;
         }
 
-        private bool AlreadyAdded(Type type)
+        bool AlreadyAdded(Type type)
         {
             return bootstrapItems.Any(bootstrapItem => bootstrapItem.GetType() == type);
         }
@@ -50,7 +50,7 @@ namespace Aperea.Infrastructure.Bootstrap
             }
         }
 
-        private static IBootstrapItem CreateInstance(Type type)
+        static IBootstrapItem CreateInstance(Type type)
         {
             IBootstrapItem item;
             try

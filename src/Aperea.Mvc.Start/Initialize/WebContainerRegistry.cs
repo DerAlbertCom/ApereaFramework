@@ -15,17 +15,17 @@ namespace ApereaStart.Initialize
         public WebContainerRegistry()
         {
             Scan(x =>
-                     {
-                         x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
-                         x.AddAllTypesOf(typeof (IRepository<>));
-                         x.WithDefaultConventions();
-                     });
+            {
+                x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
+                x.AddAllTypesOf(typeof (IRepository<>));
+                x.WithDefaultConventions();
+            });
 
             For<IDatabaseContext>()
                 .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.Hybrid));
         }
 
-        private void RegisterWebActionWorkers()
+        void RegisterWebActionWorkers()
         {
             var workers = from t in GetType().Assembly.GetTypes()
                           where t.IsClass && !t.IsAbstract && t.IsAssignableFrom(typeof (IRemoteActionWorker))

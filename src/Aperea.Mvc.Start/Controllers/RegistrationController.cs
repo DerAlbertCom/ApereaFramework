@@ -26,10 +26,12 @@ namespace ApereaStart.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterLogin(RegisterLoginViewModel model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 var result = _userRegistration.RegisterNewLogin(model.LoginName, model.EMail, model.Password,
-                                                               model.ConfirmPassword);
-                if (result == RegistrationResult.Ok) {
+                                                                model.ConfirmPassword);
+                if (result == RegistrationResult.Ok)
+                {
                     return RedirectToAction("RegisterLoginOk");
                 }
                 TempData.SetModel(model);
@@ -57,7 +59,8 @@ namespace ApereaStart.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PasswordResetRequest(PasswordResetRequestViewModel model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 _userRegistration.StartPasswordReset(model.EMail);
                 TempData.SetModel(model);
                 return RedirectToAction("PasswordResetRequestOk");
@@ -92,6 +95,7 @@ namespace ApereaStart.Controllers
         {
             Session.Remove("PasswordResetSecurityToken");
         }
+
         bool IsSecurityTokenValid(PasswordResetViewModel model)
         {
             return
@@ -108,9 +112,11 @@ namespace ApereaStart.Controllers
 
             if (!IsSecurityTokenValid(model))
                 return RedirectToAction("Index", "Home");
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 var result = _userRegistration.SetPassword(model.Username, model.Password, model.ConfirmPassword);
-                if (result == ChangePasswordResult.Ok) {
+                if (result == ChangePasswordResult.Ok)
+                {
                     TempData.SetModel(model);
                     return RedirectToAction("PasswordResetOk");
                 }
@@ -133,10 +139,12 @@ namespace ApereaStart.Controllers
             if (string.Compare(model.LoginName, User.Identity.Name, true) != 0)
                 return View(model);
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 var result = _userRegistration.ChangePassword(User.Identity.Name, model.OldPassword, model.Password,
                                                               model.ConfirmPassword);
-                if (result == ChangePasswordResult.Ok) {
+                if (result == ChangePasswordResult.Ok)
+                {
                     TempData.SetModel(model);
                     return RedirectToAction("ChangePasswordOk");
                 }
