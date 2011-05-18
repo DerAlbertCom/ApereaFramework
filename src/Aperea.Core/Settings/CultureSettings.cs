@@ -1,6 +1,4 @@
-﻿using Aperea.Settings;
-
-namespace Aperea.MVC.Settings
+﻿namespace Aperea.Settings
 {
     public class CultureSettings : ICultureSettings
     {

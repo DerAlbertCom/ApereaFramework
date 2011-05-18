@@ -1,7 +1,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Aperea.Infrastructure.Bootstrap;
-using Aperea.MVC.Settings;
+using Aperea.Settings;
 
 namespace ApereaStart.Initialize
 {

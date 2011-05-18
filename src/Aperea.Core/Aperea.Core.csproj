@@ -54,6 +54,12 @@
       <Link>Properties\FrameworkVersion.cs</Link>
     </Compile>
     <Compile Include="Context\ICultureContext.cs" />
+    <Compile Include="Data\ApereaDbContext.cs" />
+    <Compile Include="Data\CoreModelBuilder.cs" />
+    <Compile Include="Data\CoreSeeder.cs" />
+    <Compile Include="Data\DatabaseSeeder.cs" />
+    <Compile Include="Data\IDatabaseModelBuilder.cs" />
+    <Compile Include="Data\IDatabaseSeeder.cs" />
     <Compile Include="EntityModels\SystemLanguage.cs" />
     <Compile Include="EntityModels\RemoteAction.cs" />
     <Compile Include="Enumeration.cs" />
@@ -61,6 +67,7 @@
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
     <Compile Include="Infrastructure\Data\CreateDatabaseIfNotExistsWithoutModelCheck.cs" />
     <Compile Include="Infrastructure\Data\IDbContextFactory.cs" />
+    <Compile Include="Initialize\CoreRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Registration\RegisterStructureMap.cs" />
     <Compile Include="Infrastructure\Registration\StructureMapAssemblyFilter.cs" />
@@ -74,7 +81,9 @@
     <Compile Include="Services\IRemoteActionChamber.cs" />
     <Compile Include="Services\RemoteActionChamber.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Settings\CultureSettings.cs" />
     <Compile Include="Settings\IApplicationSettings.cs" />
+    <Compile Include="Settings\ICultureSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

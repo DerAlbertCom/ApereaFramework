@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Aperea.Services;
 
@@ -8,7 +9,9 @@ namespace Aperea.EntityModels
     {
         protected Login()
         {
+            Groups = new HashSet<LoginGroup>();
         }
+
 
         public Login(string loginname, string email)
         {
@@ -47,7 +50,7 @@ namespace Aperea.EntityModels
         [Required]
         public bool Active { get; private set; }
 
-        public DateTime? LastLogin { get; private set; }
+        public DateTime? LastLogin { get;  set; }
 
         public void SetPassword(string password, IHashing hashing)
         {
@@ -57,6 +60,12 @@ namespace Aperea.EntityModels
         public bool IsPasswordValid(string password, IHashing hashing)
         {
             return PasswordHash == hashing.GetHash(password, Created.Millisecond.ToString());
+        }
+
+        public ICollection<LoginGroup> Groups
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
         }
 
         public void Confirm()

@@ -1,4 +1,6 @@
-﻿using Aperea.Infrastructure.Data;
+﻿using Aperea.Data;
+using Aperea.Infrastructure.Data;
+using Microsoft.Practices.ServiceLocation;
 
 namespace ApereaStart.Data
 {
@@ -7,6 +9,7 @@ namespace ApereaStart.Data
         protected override void Seed(ApereaStartDbEntities context)
         {
             base.Seed(context);
+            DatabaseSeeder.SeedDatabase();
         }
     }
 }

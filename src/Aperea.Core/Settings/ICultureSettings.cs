@@ -1,4 +1,4 @@
-namespace Aperea.MVC.Settings
+namespace Aperea.Settings
 {
     public interface ICultureSettings
     {

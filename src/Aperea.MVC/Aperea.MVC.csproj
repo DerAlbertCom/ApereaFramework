@@ -41,8 +41,10 @@
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
@@ -76,8 +78,8 @@
     <Compile Include="RemoteActions\RemoteActionHashing.cs" />
     <Compile Include="RemoteActions\RouteHelper.cs" />
     <Compile Include="RemoteActions\RemoteActionWorkerFactory.cs" />
-    <Compile Include="Settings\CultureSettings.cs" />
-    <Compile Include="Settings\ICultureSettings.cs" />
+    <Compile Include="Security\ApereaMembershipProvider.cs" />
+    <Compile Include="Security\ApereaRoleProvider.cs" />
     <Compile Include="StateProvider\HttpApplicationContextStateStorage.cs" />
     <Compile Include="StateProvider\HttpContextStateStorage.cs" />
     <Compile Include="StateProvider\HttpSessionStateStorage.cs" />
@@ -96,6 +98,10 @@
     <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
       <Name>Aperea.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aperea.Membership\Aperea.Membership.csproj">
+      <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
+      <Name>Aperea.Membership</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

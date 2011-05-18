@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web.Mvc;
-using Aperea.MVC.Settings;
+using Aperea.Settings;
 
 namespace Aperea.MVC.ActionFilter
 {

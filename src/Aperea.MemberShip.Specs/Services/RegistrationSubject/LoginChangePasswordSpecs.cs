@@ -12,14 +12,13 @@ namespace Aperea.Specs.Services
             _logins = new BehaviorExistingLogins(Accessor);
         };
 
-        Because of = () => result = Subject.ChangePassword("awn", "kennwort", "password", "password");
+        Because of = () => _result = Subject.ChangePassword("awn", "kennwort", "password", "password");
 
-        It should_save_the_new_password =
-            () => _logins[1].PasswordHash.ShouldEqual("hashpassword");
+        It should_save_the_new_password = () => _logins[1].PasswordHash.ShouldEqual("hashpassword");
 
-        It should_the_result_ok = () => result.ShouldEqual(ChangePasswordResult.Ok);
+        It should_the_result_ok = () => _result.ShouldEqual(ChangePasswordResult.Ok);
 
-        static ChangePasswordResult result;
+        static ChangePasswordResult _result;
         static BehaviorExistingLogins _logins;
     }
 
