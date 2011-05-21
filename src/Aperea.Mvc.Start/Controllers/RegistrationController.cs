@@ -1,11 +1,12 @@
 using System.Web.Mvc;
+using Aperea.MVC.Controllers;
 using Aperea.MVC.Extensions;
 using Aperea.Services;
 using ApereaStart.Models;
 
 namespace ApereaStart.Controllers
 {
-    public class RegistrationController : ApereaStartBaseController
+    public class RegistrationController : ApereaBaseController
     {
         readonly IRegistration _userRegistration;
         readonly IHashing _hashing;

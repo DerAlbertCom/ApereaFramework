@@ -22,7 +22,7 @@ namespace Aperea.Infrastructure.Registration
             var names = ConfigurationManager.AppSettings["IoC.IncludeAssemblies"];
             if (!string.IsNullOrWhiteSpace(names))
             {
-                starts = names.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
+                starts = names.Split(new[] {';',','}, StringSplitOptions.RemoveEmptyEntries);
             }
             return starts;
         }

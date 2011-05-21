@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 
-namespace ApereaStart.UrlBuilders
+namespace Aperea.MVC.UrlBuilders
 {
     public interface IActionUrlBuilder
     {

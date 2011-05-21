@@ -63,6 +63,7 @@
     <Compile Include="ActionFilter\DependencyFilterAttribute.cs" />
     <Compile Include="ActionFilter\ThreadCultureAttribute.cs" />
     <Compile Include="Attributes\RemoteActionNameAttribute.cs" />
+    <Compile Include="Controllers\ApereaBaseController.cs" />
     <Compile Include="Extensions\TempDataDictionaryExtensions.cs" />
     <Compile Include="Infrastructure\AspNetMvc3Registry.cs" />
     <Compile Include="Infrastructure\ControllerRegistryConvention.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="StateProvider\HttpSessionStateStorage.cs" />
     <Compile Include="StateProvider\IStateStorage.cs" />
     <Compile Include="StateProvider\StateStorageBase.cs" />
+    <Compile Include="UrlBuilders\ActionUrlBuilder.cs" />
+    <Compile Include="UrlBuilders\IActionUrlBuilder.cs" />
     <Compile Include="Views\AdaptiveViewEngine.cs" />
     <Compile Include="Views\AdaptiveViewEngineHelpers.cs" />
     <Compile Include="Views\AdaptiveViewEnginePathHelpers.cs" />

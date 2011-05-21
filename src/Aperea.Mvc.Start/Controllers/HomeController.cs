@@ -1,8 +1,9 @@
 ﻿using System.Web.Mvc;
+using Aperea.MVC.Controllers;
 
 namespace ApereaStart.Controllers
 {
-    public class HomeController : ApereaStartBaseController
+    public class HomeController : ApereaBaseController
     {
         public ActionResult Index()
         {

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
+using Aperea.MVC.Controllers;
 using Aperea.MVC.RemoteActions;
 
 namespace ApereaStart.Controllers
 {
-    public class RemoteActionController : ApereaStartBaseController
+    public class RemoteActionController : ApereaBaseController
     {
         readonly IRemoteActionWorkerFactory _factory;
 

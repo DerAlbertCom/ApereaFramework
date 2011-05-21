@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ApereaStart.UrlBuilders
+namespace Aperea.MVC.UrlBuilders
 {
     public class ActionUrlBuilder : IActionUrlBuilder
     {

@@ -1,0 +1,15 @@
+﻿
+
+1. Change your Global.asax.cs Application_Start to
+
+        protected void Application_Start()
+        {
+            ApplicationStart.Initialize();
+        }
+		 
+2. remove the "normal" MVC Initialization (you find the new intialization in the ApereaStart.Initialize)
+
+3. Change you existing Controller to inherit from ApereaBaseController instead of controller
+
+4. Add @RenderSection("scripts", required:false)  to you _Layout.cshtml at the end of <body />
+ 

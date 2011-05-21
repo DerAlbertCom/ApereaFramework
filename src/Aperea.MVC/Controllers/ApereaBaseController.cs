@@ -1,11 +1,11 @@
 using System.Web.Mvc;
 using Aperea.MVC.ActionFilter;
 
-namespace ApereaStart.Controllers
+namespace Aperea.MVC.Controllers
 {
     [ThreadCulture]
     [DatabaseContext]
-    public class ApereaStartBaseController : Controller
+    public abstract class ApereaBaseController : Controller
     {
     }
 }

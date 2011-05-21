@@ -73,12 +73,12 @@
   <ItemGroup>
     <Compile Include="Annotations\LabelNameAttribute.cs" />
     <Compile Include="Controllers\RemoteActionController.cs" />
+    <Compile Include="Data\DbContextFactory.cs" />
     <Compile Include="ResourceStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Data\DbEntities.cs" />
@@ -100,8 +100,6 @@
     <Compile Include="Models\PasswordResetRequestViewModel.cs" />
     <Compile Include="Models\PasswordResetViewModel.cs" />
     <Compile Include="Models\RegisterLoginViewModel.cs" />
-    <Compile Include="UrlBuilders\ActionUrlBuilder.cs" />
-    <Compile Include="UrlBuilders\IActionUrlBuilder.cs" />
     <Compile Include="UrlBuilders\WebActionUrlBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +132,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="App_Readme\Readme.txt" />
+    <Content Include="App_Readme\ApereaFramework..txt" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
