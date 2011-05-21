@@ -9,7 +9,7 @@ using ApereaStart.Models;
 
 namespace ApereaStart.RemoteActions
 {
-    [WebActionName(Registration.ConfirmLoginAction)]
+    [RemoteActionName(Registration.ConfirmLoginAction)]
     public class ConfirmNewLoginActionWorker : IRemoteActionWorker
     {
         readonly IRegistration _registration;

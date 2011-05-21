@@ -9,7 +9,7 @@
         <add key="Culture.Default" value="en"/>
         <add key="Culture.PossibleCultures" value="en"/>
         <add key="Mail.Sender" value="email@$rootnamespace$.domain"/>
-        <add key="IoC.IncludeAssemblies" value="ApereaStart"/>
+        <add key="IoC.IncludeAssemblies" value="$rootnamespace$,Aperea"/>
     </appSettings>
     <system.web>
         <membership>

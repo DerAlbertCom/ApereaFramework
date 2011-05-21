@@ -4,9 +4,9 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace ApereaStart.Data
 {
-    public class ApereaStartDbLiveInitializer : CreateDatabaseIfNotExistsWithoutModelCheck<ApereaStartDbEntities>
+    public class DbLiveInitializer : CreateDatabaseIfNotExistsWithoutModelCheck<DbEntities>
     {
-        protected override void Seed(ApereaStartDbEntities context)
+        protected override void Seed(DbEntities context)
         {
             base.Seed(context);
             DatabaseSeeder.SeedDatabase();

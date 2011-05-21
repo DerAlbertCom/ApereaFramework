@@ -8,7 +8,7 @@ namespace ApereaStart.Initialize
     {
         public void Execute()
         {
-            Database.SetInitializer(new ApereaStartDbDevInitializer());
+            Database.SetInitializer(new DbDevInitializer());
         }
     }
 }

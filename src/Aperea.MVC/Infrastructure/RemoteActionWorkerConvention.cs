@@ -12,19 +12,19 @@ namespace Aperea.MVC.Infrastructure
         {
             if (!type.IsAbstract && typeof (IRemoteActionWorker).IsAssignableFrom(type))
             {
-                WebActionNameAttribute nameAttribute = GetWebActionNameAttribute(type);
+                RemoteActionNameAttribute nameAttribute = GetWebActionNameAttribute(type);
                 registry.AddType(typeof (IRemoteActionWorker), type, nameAttribute.WebActionName);
             }
         }
 
-        WebActionNameAttribute GetWebActionNameAttribute(Type type)
+        RemoteActionNameAttribute GetWebActionNameAttribute(Type type)
         {
-            var attributes = type.GetCustomAttributes(typeof (WebActionNameAttribute), false);
+            var attributes = type.GetCustomAttributes(typeof (RemoteActionNameAttribute), false);
             if (attributes.Length == 0)
             {
                 throw new InvalidOperationException(string.Format("{0} has no WebActionNameAttribute", type.FullName));
             }
-            return (WebActionNameAttribute) attributes[0];
+            return (RemoteActionNameAttribute) attributes[0];
         }
     }
 }

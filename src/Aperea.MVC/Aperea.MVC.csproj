@@ -62,7 +62,7 @@
     <Compile Include="ActionFilter\DatabaseContextAttribute.cs" />
     <Compile Include="ActionFilter\DependencyFilterAttribute.cs" />
     <Compile Include="ActionFilter\ThreadCultureAttribute.cs" />
-    <Compile Include="Attributes\WebActionNameAttribute.cs" />
+    <Compile Include="Attributes\RemoteActionNameAttribute.cs" />
     <Compile Include="Extensions\TempDataDictionaryExtensions.cs" />
     <Compile Include="Infrastructure\AspNetMvc3Registry.cs" />
     <Compile Include="Infrastructure\ControllerRegistryConvention.cs" />

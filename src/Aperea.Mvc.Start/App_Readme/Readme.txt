@@ -1,6 +1,4 @@
 ﻿
-TODO: 
-
 1.
 Change your Global.asax.cs Application_Start to
 
@@ -10,7 +8,3 @@ Change your Global.asax.cs Application_Start to
         }
 		 
 2. remove the "normal" MVC Initialization (you find the new intialization in the ApereaStart.Initialize)
-
-3. Open the ResourceStrings.resx and change the AccessModifier to Public
-
-4. Delete this file after these steps

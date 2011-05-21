@@ -1,7 +1,7 @@
 ﻿using Aperea.Infrastructure.Bootstrap;
 using Aperea.Infrastructure.Registration;
 
-namespace ApereaStart.Initialize
+namespace Aperea.Initialize
 {
     public static class ApplicationStart
     {

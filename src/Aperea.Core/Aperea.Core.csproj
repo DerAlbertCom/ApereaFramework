@@ -67,6 +67,7 @@
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
     <Compile Include="Infrastructure\Data\CreateDatabaseIfNotExistsWithoutModelCheck.cs" />
     <Compile Include="Infrastructure\Data\IDbContextFactory.cs" />
+    <Compile Include="Initialize\ApplicationStart.cs" />
     <Compile Include="Initialize\CoreRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Registration\RegisterStructureMap.cs" />

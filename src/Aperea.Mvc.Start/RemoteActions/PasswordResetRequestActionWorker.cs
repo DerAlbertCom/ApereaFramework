@@ -14,7 +14,7 @@ using ApereaStart.Models;
 
 namespace ApereaStart.RemoteActions
 {
-    [WebActionName(Registration.PasswordResetAction)]
+    [RemoteActionName(Registration.PasswordResetAction)]
     public class PasswordResetRequestActionWorker : IRemoteActionWorker
     {
         readonly IRegistration _userRegistration;

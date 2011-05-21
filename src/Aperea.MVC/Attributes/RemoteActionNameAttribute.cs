@@ -2,7 +2,7 @@
 
 namespace Aperea.MVC.Attributes
 {
-    public class WebActionNameAttribute : Attribute
+    public class RemoteActionNameAttribute : Attribute
     {
         readonly string _webActionName;
 
@@ -11,7 +11,7 @@ namespace Aperea.MVC.Attributes
             get { return _webActionName; }
         }
 
-        public WebActionNameAttribute(string webActionName)
+        public RemoteActionNameAttribute(string webActionName)
         {
             _webActionName = webActionName;
         }
