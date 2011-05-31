@@ -18,13 +18,7 @@ Task Clean {
 }
 
 
-Task BuildWithoutBump -Depends Clean {
-    Write-Host "ApereaFramework.All.sln" -ForegroundColor Green
-	Install-Packages $src_dir "$src_dir\packages"
-	
-	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
-}
-Task Build -Depends BumpRevision, BuildWithoutBump {
+Task Build -Depends  Clean {
     Write-Host "ApereaFramework.All.sln" -ForegroundColor Green
 }
 
@@ -43,7 +37,7 @@ Task BumpMinorVersion {
 }
 
 Task BumpMajorVersion {
-    BumpBuildVersion $version_file
+    BumpMajorVersion $version_file
 }
 
 Task SetPackageVersion {
@@ -57,7 +51,7 @@ Task SetPackageVersion {
     Set-PackageVersion "$nuspec_dir\Aperea.Mvc.Start.nuspec" $version @{"Aperea.Membership"="$version";"Aperea.MVC"="$version"}
 }
 
-Task NuGet -Depends ConvertStart, BuildWithoutBump, SetPackageVersion  {
+Task NuGet -Depends ConvertStart, Build, SetPackageVersion  {
     Write-Host "Building NuGet-Packages" -ForegroundColor Green   
 	md $nupgk_dir -force
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
@@ -65,6 +59,9 @@ Task NuGet -Depends ConvertStart, BuildWithoutBump, SetPackageVersion  {
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Membership.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.Start.nuspec" /OutputDirectory "$nupgk_dir\" }    
+}
+
+Task Release -Depends BumpRevision, NuGet  {
 }
 
 Task ConvertStart {

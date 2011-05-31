@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Membership</id>
-    <version>0.3.0.37</version>
+    <version>0.3.1.42</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
@@ -10,7 +10,7 @@
     <description>Package description</description>
     <tags>EntityFramework, User Management</tags>
     <dependencies>
-      <dependency id="Aperea.Mail" version="[0.3.0.37]" />
+      <dependency id="Aperea.Mail" version="[0.3.1.42]" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="net40" />
