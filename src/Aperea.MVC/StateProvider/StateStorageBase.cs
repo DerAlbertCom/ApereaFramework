@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.MVC.StateProvider
 {
@@ -37,7 +38,7 @@ namespace Aperea.MVC.StateProvider
 
         protected static HttpContextBase Context
         {
-            get { return new HttpContextWrapper(HttpContext.Current); }
+            get { return ServiceLocator.Current.GetInstance<HttpContextBase>(); }
         }
     }
 }

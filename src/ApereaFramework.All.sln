@@ -16,11 +16,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{C6FE1DA8-DFCF-4EFC-AB3C-A46ABF362BA8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E453BF02-3BD2-4810-814A-A054989F58B0}"
-	ProjectSection(SolutionItems) = preProject
-		FrameworkVersion.cs = FrameworkVersion.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Mvc.Start", "Aperea.Mvc.Start\Aperea.Mvc.Start.csproj", "{D7C06CAC-A925-4FFD-AE50-CD0F9DF4AE3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC.Specs", "Aperea.MVC.Specs\Aperea.MVC.Specs.csproj", "{FBE90326-C500-4AAE-80F3-E62B969F8DC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +55,10 @@ Global
 		{D7C06CAC-A925-4FFD-AE50-CD0F9DF4AE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C06CAC-A925-4FFD-AE50-CD0F9DF4AE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C06CAC-A925-4FFD-AE50-CD0F9DF4AE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBE90326-C500-4AAE-80F3-E62B969F8DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBE90326-C500-4AAE-80F3-E62B969F8DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBE90326-C500-4AAE-80F3-E62B969F8DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBE90326-C500-4AAE-80F3-E62B969F8DC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CA173D94-05B3-47D1-BBCF-40AD795DB61B} = {C6FE1DA8-DFCF-4EFC-AB3C-A46ABF362BA8}
 		{19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD} = {C6FE1DA8-DFCF-4EFC-AB3C-A46ABF362BA8}
+		{FBE90326-C500-4AAE-80F3-E62B969F8DC8} = {C6FE1DA8-DFCF-4EFC-AB3C-A46ABF362BA8}
 	EndGlobalSection
 EndGlobal

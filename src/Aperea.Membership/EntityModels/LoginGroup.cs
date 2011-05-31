@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace Aperea.EntityModels
 {
@@ -8,6 +8,7 @@ namespace Aperea.EntityModels
     {
         protected LoginGroup()
         {
+            Roles = new HashSet<SecurityRole>();
         }
 
         public LoginGroup(string groupName)
@@ -17,12 +18,16 @@ namespace Aperea.EntityModels
         }
 
         public int Id { get; set; }
+        [Required]
+        [StringLength(256)]
         public string GroupName { get; set; }
 
         public void AddRole(SecurityRole role)
         {
-            if (Roles.Contains(role))
+            if (Roles.Any(r=>r.RoleName==role.RoleName))
+            {
                 return;
+            }
             Roles.Add(role);
         }
         public ICollection<SecurityRole> Roles { get; set; }

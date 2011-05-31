@@ -22,13 +22,14 @@ namespace Aperea.Services
             if (login == null)
                 return false;
 
-            if (login.IsPasswordValid(password, _hashing))
+            if (!login.IsPasswordValid(password, _hashing))
             {
-                login.LastLogin = DateTime.UtcNow;
-                _repository.SaveAllChanges();
-                return true;
+                return false;
             }
-            return false;
+
+            login.LastLogin = DateTime.UtcNow;
+            _repository.SaveAllChanges();
+            return true;
         }
 
         Login FindLogin(string username)

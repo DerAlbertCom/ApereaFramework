@@ -72,8 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annotations\LabelNameAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\RemoteActionController.cs" />
     <Compile Include="Data\DbContextFactory.cs" />
+    <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="ResourceStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LayoutWithScript.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
     <None Include="Web.config.transform">
       <SubType>Designer</SubType>
     </None>

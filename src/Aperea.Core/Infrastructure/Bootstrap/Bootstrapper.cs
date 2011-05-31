@@ -8,11 +8,11 @@ namespace Aperea.Infrastructure.Bootstrap
 {
     public class Bootstrapper
     {
-        readonly List<IBootstrapItem> bootstrapItems;
+        readonly List<IBootstrapItem> _bootstrapItems;
 
         Bootstrapper()
         {
-            bootstrapItems = new List<IBootstrapItem>();
+            _bootstrapItems = new List<IBootstrapItem>();
         }
 
         public static Bootstrapper Start()
@@ -23,7 +23,7 @@ namespace Aperea.Infrastructure.Bootstrap
         public Bootstrapper FromDependencyResolver()
         {
             var instances = ServiceLocator.Current.GetAllInstances<IBootstrapItem>();
-            bootstrapItems.AddRange(instances);
+            _bootstrapItems.AddRange(instances);
             return this;
         }
 
@@ -33,18 +33,18 @@ namespace Aperea.Infrastructure.Bootstrap
             {
                 throw new ArgumentException(string.Format("the type {0} is already added", typeof (T)));
             }
-            bootstrapItems.Add(CreateInstance(typeof (T)));
+            _bootstrapItems.Add(CreateInstance(typeof (T)));
             return this;
         }
 
         bool AlreadyAdded(Type type)
         {
-            return bootstrapItems.Any(bootstrapItem => bootstrapItem.GetType() == type);
+            return _bootstrapItems.Any(bootstrapItem => bootstrapItem.GetType() == type);
         }
 
         public void Execute()
         {
-            foreach (var bootstrapItem in bootstrapItems)
+            foreach (var bootstrapItem in _bootstrapItems)
             {
                 bootstrapItem.Execute();
             }

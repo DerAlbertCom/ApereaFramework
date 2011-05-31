@@ -1,4 +1,5 @@
 ﻿using Aperea.Initialize;
+using Aperea.MVC.Initialize;
 
 namespace ApereaStart
 {
@@ -9,7 +10,7 @@ namespace ApereaStart
     {
         protected void Application_Start()
         {
-            ApplicationStart.Initialize();
+            MvcApplicationStart.Initialize(this);
         }
     }
 }

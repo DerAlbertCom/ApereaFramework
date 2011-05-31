@@ -53,6 +53,7 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>Properties\FrameworkVersion.cs</Link>
     </Compile>
+    <Compile Include="Context\CultureContext.cs" />
     <Compile Include="Context\ICultureContext.cs" />
     <Compile Include="Data\ApereaDbContext.cs" />
     <Compile Include="Data\CoreModelBuilder.cs" />

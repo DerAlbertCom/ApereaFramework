@@ -52,6 +52,9 @@
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Other" />
       </Naming2>
     </CSharp>
+    <HTML>
+      <FormatSettings />
+    </HTML>
     <JavaScript>
       <FormatSettings />
       <Naming2>
@@ -111,8 +114,10 @@
   <Daemon.SolutionSettings>
     <SkipFilesAndFolders>
       <Item>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD/d:Services/d:RegistrationSubject/f:FakeSubject.cs</Item>
+      <Item>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD/d:Services/d:RegistrationSubject/f:LoginChangePasswordSpecs.cs</Item>
       <Item>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD/d:Services/d:RegistrationSubject/f:LoginConfirmationSpecs.cs</Item>
       <Item>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD/d:Services/d:RegistrationSubject/f:LoginPasswordResetSpecs.cs</Item>
+      <Item>19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD/d:Services/d:RegistrationSubject/f:LoginRegistrationSpecs.cs</Item>
     </SkipFilesAndFolders>
   </Daemon.SolutionSettings>
 </Configuration>

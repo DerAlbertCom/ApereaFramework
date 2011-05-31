@@ -9,12 +9,12 @@ namespace Aperea.Infrastructure.Data
 
         public DatabaseContext(IDbContextFactory contextFactory)
         {
-            _context = new Lazy<DbContext>(() => contextFactory.Context);
+            _context = new Lazy<DbContext>(contextFactory.CreateDbContext);
         }
 
-        public DbContext CreateDbContext()
+        public DbContext DbContext
         {
-            return _context.Value;
+            get { return _context.Value; }
         }
 
         public void Dispose()

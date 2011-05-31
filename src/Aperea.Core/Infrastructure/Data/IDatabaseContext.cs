@@ -5,6 +5,6 @@ namespace Aperea.Infrastructure.Data
 {
     public interface IDatabaseContext : IDisposable
     {
-        DbContext CreateDbContext();
+        DbContext DbContext { get; }
     }
 }

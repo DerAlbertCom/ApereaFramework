@@ -11,17 +11,10 @@
         <add key="Mail.Sender" value="email@$rootnamespace$.domain"/>
         <add key="IoC.IncludeAssemblies" value="$rootnamespace$;Aperea"/>
     </appSettings>
+    <connectionStrings>
+        <add name="DbEntities" providerName="System.Data.SqlServerCe.4.0" connectionString="Data Source=|DataDirectory|DbEntities.sdf" />
+    </connectionStrings>
     <system.web>
-        <membership>
-            <providers>
-                <add name="ApereaMemberShipProvider" type="Aperea.MVC.Security.ApereaMembershipProvider, Aperea.MVC" />
-            </providers>
-        </membership>
-        <roleManager>
-            <providers>
-                <add name="ApereaRoleShipProvider" type="Aperea.MVC.Security.ApereaRoleProvider, Aperea.MVC" />
-            </providers>
-        </roleManager>
         <pages>
             <namespaces>
                 <add namespace="Aperea.MVC.Extensions"/>

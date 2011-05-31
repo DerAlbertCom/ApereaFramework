@@ -43,7 +43,7 @@ namespace Aperea.Repositories
             {
                 if (_objectSet == null)
                 {
-                    _objectSet = _databaseContext.CreateDbContext().Set<T>();
+                    _objectSet = _databaseContext.DbContext.Set<T>();
                 }
                 return _objectSet;
             }
@@ -68,8 +68,8 @@ namespace Aperea.Repositories
         {
             try
             {
-                _databaseContext.CreateDbContext().ChangeTracker.DetectChanges();
-                _databaseContext.CreateDbContext().SaveChanges();
+                _databaseContext.DbContext.ChangeTracker.DetectChanges();
+                _databaseContext.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {

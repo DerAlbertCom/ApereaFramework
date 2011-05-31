@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Aperea.Services;
 
 namespace Aperea.EntityModels
@@ -13,7 +14,7 @@ namespace Aperea.EntityModels
         }
 
 
-        public Login(string loginname, string email)
+        public Login(string loginname, string email):this()
         {
             Created = DateTime.UtcNow;
             Updated = DateTime.UtcNow;
@@ -54,19 +55,20 @@ namespace Aperea.EntityModels
 
         public void SetPassword(string password, IHashing hashing)
         {
-            PasswordHash = hashing.GetHash(password, Created.Millisecond.ToString());
+            PasswordHash = hashing.GetHash(password, GetLoginSalt());
+        }
+
+        string GetLoginSalt()
+        {
+            return (Created.Second*Created.Minute*Created.Hour).ToString();
         }
 
         public bool IsPasswordValid(string password, IHashing hashing)
         {
-            return PasswordHash == hashing.GetHash(password, Created.Millisecond.ToString());
+            return PasswordHash == hashing.GetHash(password, GetLoginSalt());
         }
 
-        public ICollection<LoginGroup> Groups
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
+        public ICollection<LoginGroup> Groups { get; set; }
 
         public void Confirm()
         {
@@ -78,6 +80,15 @@ namespace Aperea.EntityModels
         void Changed()
         {
             Updated = DateTime.UtcNow;
+        }
+
+        public void AddGroup(LoginGroup adminGroup)
+        {
+            if (Groups.Any(g=>g.GroupName==adminGroup.GroupName))
+            {
+                return;
+            }
+            Groups.Add(adminGroup);
         }
     }
 }

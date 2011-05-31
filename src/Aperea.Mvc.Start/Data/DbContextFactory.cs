@@ -6,9 +6,9 @@ namespace ApereaStart.Data
 {
     public class DbContextFactory : IDbContextFactory
     {
-        public DbContext Context
+        public DbContext CreateDbContext()
         {
-            get { return new DbEntities();}
+            return new DbEntities();
         }
     }
 }
