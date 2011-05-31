@@ -1,9 +1,6 @@
 ﻿
-$solutionFolder  = ".\src"
-$packagesFolder = Join-Path $solutionFolder "packages"
-$configFilter = Join-Path $solutionFolder "**\packages.config"
+import-module .\tools\psake-nuget.psm1
 
-$packages = Get-ChildItem $configFilter
-foreach ($package in $packages) {
-   .\tools\nuget install $package.Fullname  /OutputDirectory $packagesFolder
-}
+Install-Packages ".\src" ".\src\packages"
+
+remove-module psake-nuget

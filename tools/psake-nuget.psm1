@@ -14,6 +14,23 @@ function DontChangeFileName($name)
 	$name.EndsWith(".transform")
 }
 
+function Install-Packages {
+	param (
+		[Parameter(Position=0,Mandatory=1)]
+		[string]$solutionFolder,
+		[Parameter(Position=1,Mandatory=1)]
+		[string]$packagesFolder
+	)
+
+	$packagesFolder = Join-Path $solutionFolder "packages"
+	$configFilter = Join-Path $solutionFolder "**\packages.config"
+
+	$packages = Get-ChildItem $configFilter
+	foreach ($package in $packages) {
+	   .\tools\nuget install $package.Fullname  /OutputDirectory $packagesFolder
+	}
+}
+
 function ConvertMvcProject {
 	param (
 	[Parameter(Position=0,Mandatory=1)]
@@ -54,4 +71,4 @@ function ConvertMvcProject {
 	}
 }
 
-Export-ModuleMember "ConvertMvcProject"
+Export-ModuleMember "ConvertMvcProject", "Install-Packages"

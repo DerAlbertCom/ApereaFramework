@@ -18,14 +18,14 @@ Task Clean {
 }
 
 
-Task BuildWithoutBump {
+Task BuildWithoutBump -Depends Clean {
     Write-Host "ApereaFramework.All.sln" -ForegroundColor Green
+	Install-Packages $src_dir "$src_dir\packages"
+	
 	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
 }
-Task Build -Depends BumpRevision,Clean {
+Task Build -Depends BumpRevision, BuildWithoutBump {
     Write-Host "ApereaFramework.All.sln" -ForegroundColor Green
-    BumpRevision $version_file
-	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
 }
 
 Task BumpRevision {
@@ -59,6 +59,7 @@ Task SetPackageVersion {
 
 Task NuGet -Depends ConvertStart, BuildWithoutBump, SetPackageVersion  {
     Write-Host "Building NuGet-Packages" -ForegroundColor Green   
+	md $nupgk_dir -force
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Membership.nuspec" /OutputDirectory "$nupgk_dir\" }    
