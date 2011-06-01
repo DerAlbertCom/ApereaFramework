@@ -4,7 +4,6 @@ using System.Security.Principal;
 using Aperea.EntityModels;
 using Aperea.MVC.StateProvider;
 using Aperea.Repositories;
-using Aperea.Security;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.MVC.Security

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web;
-using Aperea.EntityModels;
+﻿using Aperea.EntityModels;
 using Aperea.MVC.Security;
 using Aperea.Repositories;
-using Aperea.Specs.Repositories;
 using Machine.Fakes;
 using Machine.Specifications;
-using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.MVC.Specs.Security
 {

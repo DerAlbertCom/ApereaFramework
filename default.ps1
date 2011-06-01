@@ -19,7 +19,9 @@ Task Clean {
 
 
 Task Build -Depends  Clean {
-    Write-Host "ApereaFramework.All.sln" -ForegroundColor Green
+    Write-Host "Building ApereaFramework.All.sln" -ForegroundColor Green	
+	Install-Packages $src_dir "$src_dir\packages"
+	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
 }
 
 Task BumpRevision {
@@ -41,9 +43,12 @@ Task BumpMajorVersion {
 }
 
 Task SetPackageVersion {
-    Write-Host "Building NgauGet-Packages" -ForegroundColor Green
     $version = Get-AssemblyInfoVersion $version_file
+	
+    Write-Host "Updating NuGet-Packages Version to $version" -ForegroundColor Green
+
     $depVersion = "[$version]"
+	
     Set-PackageVersion "$nuspec_dir\Aperea.Core.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Mail.nuspec" $version @{"Aperea.Core"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Membership.nuspec" $version @{"Aperea.Mail"=$depVersion}
@@ -52,7 +57,7 @@ Task SetPackageVersion {
 }
 
 Task NuGet -Depends ConvertStart, Build, SetPackageVersion  {
-    Write-Host "Building NuGet-Packages" -ForegroundColor Green   
+    Write-Host "Creating NuGet-Packages" -ForegroundColor Green   
 	md $nupgk_dir -force
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    

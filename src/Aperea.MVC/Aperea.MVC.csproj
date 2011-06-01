@@ -72,7 +72,6 @@
     <Compile Include="Infrastructure\StructureMapDependencyResolver.cs" />
     <Compile Include="Initialize\ApereaMvcRegistry.cs" />
     <Compile Include="Initialize\InfrastructureMvcFiltersInitialize.cs" />
-    <Compile Include="Initialize\MvcApplicationStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteActions\IRemoteActionHashing.cs" />
     <Compile Include="RemoteActions\IRemoteActionWorker.cs" />
@@ -80,6 +79,8 @@
     <Compile Include="RemoteActions\RemoteActionHashing.cs" />
     <Compile Include="RemoteActions\RouteHelper.cs" />
     <Compile Include="RemoteActions\RemoteActionWorkerFactory.cs" />
+    <Compile Include="Security\ApereaFormsAuthentication.cs" />
+    <Compile Include="Security\ApereaFormsAuthenticationModule.cs" />
     <Compile Include="Security\ApereaIdentity.cs" />
     <Compile Include="Security\ApereaPrincipal.cs" />
     <Compile Include="StateProvider\HttpApplicationContextStateStorage.cs" />
