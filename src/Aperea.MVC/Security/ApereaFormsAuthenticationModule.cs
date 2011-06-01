@@ -74,7 +74,7 @@ namespace Aperea.MVC.Security
             if (authTicket == null)
                 return;
 
-            Context.User = new ApereaPrincipal(new FormsIdentity(authTicket));
+            Context.User = new ApereaPrincipal(new ApereaIdentity(authTicket));
         }
     }
 }

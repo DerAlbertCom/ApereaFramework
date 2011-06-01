@@ -32,10 +32,15 @@ namespace Aperea.Services
             return true;
         }
 
-        Login FindLogin(string username)
+        public bool IsValidLogin(string loginName)
+        {
+            return FindLogin(loginName) != null;
+        }
+
+        Login FindLogin(string loginName)
         {
             var query = from l in _repository.Entities
-                        where l.Active && l.Confirmed && l.Loginname == username
+                        where l.Active && l.Confirmed && l.Loginname == loginName
                         select l;
             return query.SingleOrDefault();
         }
