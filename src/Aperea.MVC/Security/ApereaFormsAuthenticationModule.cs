@@ -50,7 +50,7 @@ namespace Aperea.MVC.Security
 
         private void OnAuthenticateRequest(object sender, EventArgs eventArgs)
         {
-            HttpCookie authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            HttpCookie authCookie = Context.Request.Cookies[ApereaFormsAuthentication.FormsCookieName];
 
             if (null == authCookie)
             {
