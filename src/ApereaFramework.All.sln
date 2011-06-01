@@ -16,6 +16,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{C6FE1DA8-DFCF-4EFC-AB3C-A46ABF362BA8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E453BF02-3BD2-4810-814A-A054989F58B0}"
+	ProjectSection(SolutionItems) = preProject
+		FrameworkVersion.cs = FrameworkVersion.cs
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Mvc.Start", "Aperea.Mvc.Start\Aperea.Mvc.Start.csproj", "{D7C06CAC-A925-4FFD-AE50-CD0F9DF4AE3B}"
 EndProject

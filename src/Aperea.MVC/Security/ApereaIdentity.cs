@@ -1,7 +1,7 @@
 using System.Security.Principal;
 using Aperea.EntityModels;
 
-namespace Aperea.Security
+namespace Aperea.MVC.Security
 {
     internal class ApereaIdentity : IIdentity
     {

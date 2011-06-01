@@ -22,5 +22,13 @@
                 <add namespace="$rootnamespace$.Models" />
             </namespaces>
         </pages>
+        <httpModules>
+            <add name="ApereaForms" type="Aperea.MVC.Security.ApereaFormsAuthenticationModule" />
+        </httpModules>
     </system.web>
+    <system.webServer>
+        <modules>
+            <add name="ApereaForms" type="Aperea.MVC.Security.ApereaFormsAuthenticationModule" />
+        </modules>
+    </system.webServer>
 </configuration>

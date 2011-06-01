@@ -1,8 +1,7 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using Aperea.MVC.Controllers;
+using Aperea.MVC.Security;
 using Aperea.Services;
 using ApereaStart.Models;
 
@@ -35,7 +34,7 @@ namespace ApereaStart.Controllers
             {
                 if (_validation.ValidateLoginForLogon(model.UserName, model.Password))
                 {
-                    SetAuthenticationTicket(model);
+                    ApereaFormsAuthentication.SignOn(model.UserName, model.RememberMe);
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -57,17 +56,11 @@ namespace ApereaStart.Controllers
             return View(model);
         }
 
-         void SetAuthenticationTicket(LogOnModel model)
-        {
-             FormsAuthentication.SetAuthCookie(model.UserName,model.RememberMe);
-        }
-
-        //
         // GET: /Account/LogOff
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            ApereaFormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }

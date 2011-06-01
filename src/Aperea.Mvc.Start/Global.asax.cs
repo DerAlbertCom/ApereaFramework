@@ -10,7 +10,7 @@ namespace ApereaStart
     {
         protected void Application_Start()
         {
-            MvcApplicationStart.Initialize(this);
+            ApplicationStart.Initialize();
         }
     }
 }
