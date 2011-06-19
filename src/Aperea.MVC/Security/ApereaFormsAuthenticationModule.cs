@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Web;
 using System.Web.Security;
 using Microsoft.Practices.ServiceLocation;
@@ -75,6 +76,7 @@ namespace Aperea.MVC.Security
                 return;
 
             Context.User = new ApereaPrincipal(new ApereaIdentity(authTicket));
+            Thread.CurrentPrincipal = Context.User;
         }
     }
 }

@@ -68,6 +68,13 @@ function ConvertMvcProject {
 				(Get-Content $file.Fullname) -replace "$rootNamespace","`$rootnamespace`$" | Out-File $destName
 			}
 		}
+		$objDir = Join-Path $outDir "obj"
+		if (Test-Path $objDir)
+		{
+			Remove-Item $objDir -Recurse -Force
+		}
+		
+		
 	}
 }
 

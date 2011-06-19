@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Aperea.EntityModels;
 using Aperea.Repositories;
+using Aperea.Security;
 
 namespace Aperea.Services
 {
@@ -10,6 +11,7 @@ namespace Aperea.Services
         public const string PasswordResetAction = "PasswordReset";
 
         readonly IRepository<Login> _repository;
+        readonly IGroupFactory _groupFactory;
         readonly IRegistrationMail _mail;
         readonly IHashing _hashing;
         readonly IRemoteActionChamber _remoteActionChamber;
@@ -17,10 +19,11 @@ namespace Aperea.Services
         public Registration(IRepository<Login> repository,
                             IRegistrationMail mail,
                             IHashing hashing,
-                            IRemoteActionChamber remoteActionChamber)
+                            IRemoteActionChamber remoteActionChamber, IGroupFactory groupFactory)
         {
             _repository = repository;
             _remoteActionChamber = remoteActionChamber;
+            _groupFactory = groupFactory;
             _hashing = hashing;
             _mail = mail;
         }
@@ -54,6 +57,7 @@ namespace Aperea.Services
                 }
                 login = new Login(loginname, email);
                 login.SetPassword(password, _hashing);
+                login.AddGroup(_groupFactory.GetGroup(MembershipGroups.Users));
                 _repository.Add(login);
                 _repository.SaveAllChanges();
                 remoteAction = _remoteActionChamber.CreateAction(ConfirmLoginAction, loginname);
@@ -76,7 +80,6 @@ namespace Aperea.Services
         {
             return _repository.Entities.Where(u => u.Loginname == loginname || u.EMail == email).Count() == 0;
         }
-
 
         Login GetExistingLogin(string loginname, string email)
         {

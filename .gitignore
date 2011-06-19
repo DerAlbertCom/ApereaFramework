@@ -19,3 +19,4 @@ out/*
 nupkg/*
 src/packages/**/*
 .wave-vs.net.backup
+*.local.xml

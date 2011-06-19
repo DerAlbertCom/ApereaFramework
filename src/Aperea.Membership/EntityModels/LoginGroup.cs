@@ -30,7 +30,7 @@ namespace Aperea.EntityModels
             }
             Roles.Add(role);
         }
-        public ICollection<SecurityRole> Roles { get; set; }
+        public virtual ICollection<SecurityRole> Roles { get; set; }
 
         public void RemoveRole(SecurityRole role)
         {

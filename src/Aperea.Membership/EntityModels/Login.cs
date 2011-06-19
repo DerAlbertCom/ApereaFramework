@@ -60,7 +60,7 @@ namespace Aperea.EntityModels
 
         string GetLoginSalt()
         {
-            return (Created.Second*Created.Minute*Created.Hour).ToString();
+            return (Created.Second*Created.Minute*Created.Hour).ToString() + Loginname.ToLowerInvariant();
         }
 
         public bool IsPasswordValid(string password, IHashing hashing)
@@ -68,7 +68,7 @@ namespace Aperea.EntityModels
             return PasswordHash == hashing.GetHash(password, GetLoginSalt());
         }
 
-        public ICollection<LoginGroup> Groups { get; set; }
+        public virtual ICollection<LoginGroup> Groups { get; set; }
 
         public void Confirm()
         {
