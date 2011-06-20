@@ -34,7 +34,7 @@ namespace Aperea.Infrastructure.Registration
 
                 c.For(typeof (Lazy<>))
                     .Use(typeof (Lazy<>))
-                    .WithProperty("isThreadSafe").EqualTo(false);
+                    .WithProperty("isThreadSafe").EqualTo(true);
 
                 c.SetAllProperties(x =>
                                    x.TypeMatches(

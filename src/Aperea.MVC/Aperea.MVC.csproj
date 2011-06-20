@@ -72,6 +72,18 @@
     <Compile Include="Infrastructure\StructureMapDependencyResolver.cs" />
     <Compile Include="Initialize\ApereaMvcRegistry.cs" />
     <Compile Include="Initialize\InfrastructureMvcFiltersInitialize.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceManager.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceProvider.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceStore.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceVirtualFile.cs" />
+    <Compile Include="Controllers\EmbeddedResourceController.cs" />
+    <Compile Include="PortableAreas\InputBuilderViewEngine.cs" />
+    <Compile Include="PortableAreas\InputBuilder.cs" />
+    <Compile Include="PortableAreas\MapExtensions.cs" />
+    <Compile Include="PortableAreas\PortableAreaContent.cs" />
+    <Compile Include="PortableAreas\PortableAreaMap.cs" />
+    <Compile Include="PortableAreas\PortableAreaRegistration.cs" />
+    <Compile Include="PortableAreas\PortableAreaStartupMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteActions\IRemoteActionHashing.cs" />
     <Compile Include="RemoteActions\IRemoteActionWorker.cs" />
@@ -98,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="PortableAreas\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">
