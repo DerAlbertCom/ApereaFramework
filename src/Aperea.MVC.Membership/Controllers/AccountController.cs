@@ -1,11 +1,10 @@
 ﻿using System.Web.Mvc;
-using System.Web.Security;
 using Aperea.MVC.Controllers;
+using Aperea.MVC.Membership.Areas.Model;
 using Aperea.MVC.Security;
 using Aperea.Services;
-using ApereaStart.Models;
 
-namespace ApereaStart.Controllers
+namespace Aperea.MVC.Membership.Areas.Controllers
 {
     public class AccountController : ApereaBaseController
     {
@@ -43,7 +42,7 @@ namespace ApereaStart.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToHomepage();
                     }
                 }
                 else
@@ -62,7 +61,7 @@ namespace ApereaStart.Controllers
         {
             ApereaFormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToHomepage();
         }
     }
 }

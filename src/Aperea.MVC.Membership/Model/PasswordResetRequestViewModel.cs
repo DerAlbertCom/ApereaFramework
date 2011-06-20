@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApereaStart.Models
+namespace Aperea.MVC.Membership.Areas.Model
 {
     public class PasswordResetRequestViewModel
     {

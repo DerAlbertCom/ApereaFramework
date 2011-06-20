@@ -55,15 +55,18 @@
     </Compile>
     <Compile Include="Context\CultureContext.cs" />
     <Compile Include="Context\ICultureContext.cs" />
+    <Compile Include="CoreModuleInfo.cs" />
     <Compile Include="Data\ApereaDbContext.cs" />
     <Compile Include="Data\CoreModelBuilder.cs" />
     <Compile Include="Data\CoreSeeder.cs" />
     <Compile Include="Data\DatabaseSeeder.cs" />
     <Compile Include="Data\IDatabaseModelBuilder.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
+    <Compile Include="EntityModels\Module.cs" />
     <Compile Include="EntityModels\SystemLanguage.cs" />
     <Compile Include="EntityModels\RemoteAction.cs" />
     <Compile Include="Enumeration.cs" />
+    <Compile Include="IModuleInfo.cs" />
     <Compile Include="Infrastructure\Bootstrap\Bootstrapper.cs" />
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
     <Compile Include="Infrastructure\Data\CreateDatabaseIfNotExistsWithoutModelCheck.cs" />

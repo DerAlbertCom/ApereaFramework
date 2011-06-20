@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
-using Aperea.MVC.Controllers;
 using Aperea.MVC.RemoteActions;
 
-namespace ApereaStart.Controllers
+namespace Aperea.MVC.Controllers
 {
     public class RemoteActionController : ApereaBaseController
     {

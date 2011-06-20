@@ -1,13 +1,14 @@
 using System.Web.Mvc;
 using Aperea.MVC.Controllers;
 using Aperea.MVC.Extensions;
+using Aperea.MVC.Membership.Areas.Model;
 using Aperea.Services;
-using ApereaStart.Models;
 
-namespace ApereaStart.Controllers
+namespace Aperea.MVC.Membership.Areas.Controllers
 {
     public class RegistrationController : ApereaBaseController
     {
+        const string PasswordResetSecurityToken = "PasswordResetSecurityToken";
         readonly IRegistration _userRegistration;
         readonly IHashing _hashing;
 
@@ -81,7 +82,7 @@ namespace ApereaStart.Controllers
 
             var model = TempData.GetModel<PasswordResetViewModel>();
             if (string.IsNullOrEmpty(model.Username))
-                return RedirectToAction("Index", "Home");
+                return RedirectToHomepage();
 
             SetSecurityToken(model);
             return View(model);
@@ -89,18 +90,18 @@ namespace ApereaStart.Controllers
 
         void SetSecurityToken(PasswordResetViewModel model)
         {
-            Session["PasswordResetSecurityToken"] = _hashing.GetHash(Session.SessionID, model.Username);
+            Session[PasswordResetSecurityToken] = _hashing.GetHash(Session.SessionID, model.Username);
         }
 
         void ClearSecurityToken()
         {
-            Session.Remove("PasswordResetSecurityToken");
+            Session.Remove(PasswordResetSecurityToken);
         }
 
         bool IsSecurityTokenValid(PasswordResetViewModel model)
         {
             return
-                string.Compare((string) Session["PasswordRestSecurityToken"],
+                string.Compare((string)Session[PasswordResetSecurityToken],
                                _hashing.GetHash(Session.SessionID, model.Username)) == 0;
         }
 
@@ -112,7 +113,7 @@ namespace ApereaStart.Controllers
                 return RedirectToAction("ChangePassword");
 
             if (!IsSecurityTokenValid(model))
-                return RedirectToAction("Index", "Home");
+                RedirectToHomepage();
             if (ModelState.IsValid)
             {
                 var result = _userRegistration.SetPassword(model.Username, model.Password, model.ConfirmPassword);

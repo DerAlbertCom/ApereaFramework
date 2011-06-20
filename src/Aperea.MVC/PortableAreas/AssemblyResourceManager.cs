@@ -10,7 +10,7 @@ namespace Aperea.MVC.PortableAreas
     /// </summary>
     public static class AssemblyResourceManager
     {
-        private static Dictionary<string, AssemblyResourceStore> assemblyResourceStores = InitializeAssemblyResourceStores();
+        private static readonly Dictionary<string, AssemblyResourceStore> AssemblyResourceStores = InitializeAssemblyResourceStores();
 
         private static Dictionary<string, AssemblyResourceStore> InitializeAssemblyResourceStores()
         {
@@ -25,13 +25,13 @@ namespace Aperea.MVC.PortableAreas
 
         public static AssemblyResourceStore GetResourceStoreForArea(string areaName)
         {
-            return assemblyResourceStores["/areas/" + areaName.ToLower()];
+            return AssemblyResourceStores["/areas/" + areaName.ToLower()];
         }
 
         public static AssemblyResourceStore GetResourceStoreFromVirtualPath(string virtualPath)
         {
             var checkPath = VirtualPathUtility.ToAppRelative(virtualPath).ToLower();
-            foreach (var resourceStore in assemblyResourceStores)
+            foreach (var resourceStore in AssemblyResourceStores)
             {
                 if (checkPath.Contains(resourceStore.Key) && resourceStore.Value.IsPathResourceStream(checkPath))
                 {
@@ -49,7 +49,7 @@ namespace Aperea.MVC.PortableAreas
 
         public static void RegisterAreaResources(AssemblyResourceStore assemblyResourceStore)
         {
-            assemblyResourceStores.Add(assemblyResourceStore.VirtualPath, assemblyResourceStore);
+            AssemblyResourceStores.Add(assemblyResourceStore.VirtualPath, assemblyResourceStore);
         }
     }
 }

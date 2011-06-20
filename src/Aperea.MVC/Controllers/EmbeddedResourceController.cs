@@ -15,44 +15,42 @@ namespace Aperea.MVC.Controllers
                 resourceName = resourcePath + "." + resourceName;
             }
 
-            var areaName = (string)this.RouteData.DataTokens["area"];
+            var areaName = (string) RouteData.DataTokens["area"];
             var resourceStore = AssemblyResourceManager.GetResourceStoreForArea(areaName);
             // pre-pend "~" so that it will be replaced with assembly namespace
             var resourceStream = resourceStore.GetResourceStream("~." + resourceName);
 
             if (resourceStream == null)
             {
-                this.Response.StatusCode = 404;
-                return null;
+                return new HttpNotFoundResult();
             }
 
             var contentType = GetContentType(resourceName);
-            return this.File(resourceStream, contentType);
+            return File(resourceStream, contentType);
         }
 
-        #region Private Members
-
-        private static string GetContentType(string resourceName)
+        static string GetContentType(string resourceName)
         {
             var extension = resourceName.Substring(resourceName.LastIndexOf('.')).ToLower();
-            return mimeTypes[extension];
+            return MimeTypes[extension];
         }
 
-        private static readonly Dictionary<string, string> mimeTypes = InitializeMimeTypes();
+        static readonly Dictionary<string, string> MimeTypes = InitializeMimeTypes();
 
-        private static Dictionary<string, string> InitializeMimeTypes()
+        static Dictionary<string, string> InitializeMimeTypes()
         {
-            var mimes = new Dictionary<string, string>();
-            mimes.Add(".gif", "image/gif");
-            mimes.Add(".png", "image/png");
-            mimes.Add(".jpg", "image/jpeg");
-            mimes.Add(".js", "text/javascript");
-            mimes.Add(".css", "text/css");
-            mimes.Add(".txt", "text/plain");
-            mimes.Add(".xml", "application/xml");
-            mimes.Add(".zip", "application/zip");
+            var mimes = new Dictionary<string, string>
+                        {
+                            {".gif", "image/gif"},
+                            {".png", "image/png"},
+                            {".jpg", "image/jpeg"},
+                            {".js", "text/javascript"},
+                            {".css", "text/css"},
+                            {".txt", "text/plain"},
+                            {".xml", "application/xml"},
+                            {".zip", "application/zip"}
+                        };
             return mimes;
         }
-        #endregion
     }
 }

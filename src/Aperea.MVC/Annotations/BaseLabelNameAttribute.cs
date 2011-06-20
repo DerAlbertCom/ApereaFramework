@@ -1,12 +1,13 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
+using System.Resources;
 
-namespace ApereaStart.Annotations
+namespace Aperea.MVC.Annotations
 {
-    public class LabelNameAttribute : DisplayNameAttribute
+    public abstract class BaseLabelNameAttribute : DisplayNameAttribute
     {
         readonly string _resourceName;
 
-        public LabelNameAttribute(string resourceName)
+        protected BaseLabelNameAttribute(string resourceName)
         {
             _resourceName = resourceName;
         }
@@ -23,14 +24,15 @@ namespace ApereaStart.Annotations
 
         string GetDisplayName()
         {
-            string displayName = ResourceStrings.ResourceManager.GetString(_resourceName,
-                                                                           System.Threading.Thread.CurrentThread.
-                                                                               CurrentUICulture);
+            string displayName = GetResourceManager().GetString(_resourceName, System.Threading.Thread.CurrentThread.
+                                                                                   CurrentUICulture);
             if (string.IsNullOrEmpty(displayName))
             {
                 displayName = "Missing: " + _resourceName;
             }
             return displayName;
         }
+
+        protected abstract ResourceManager GetResourceManager();
     }
 }

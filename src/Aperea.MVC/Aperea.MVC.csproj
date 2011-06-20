@@ -62,8 +62,10 @@
     <Compile Include="ActionFilter\DatabaseContextAttribute.cs" />
     <Compile Include="ActionFilter\DependencyFilterAttribute.cs" />
     <Compile Include="ActionFilter\ThreadCultureAttribute.cs" />
+    <Compile Include="Annotations\BaseLabelNameAttribute.cs" />
     <Compile Include="Attributes\RemoteActionNameAttribute.cs" />
     <Compile Include="Controllers\ApereaBaseController.cs" />
+    <Compile Include="Controllers\RemoteActionController.cs" />
     <Compile Include="Extensions\TempDataDictionaryExtensions.cs" />
     <Compile Include="Infrastructure\AspNetMvc3Registry.cs" />
     <Compile Include="Infrastructure\ControllerRegistryConvention.cs" />
@@ -110,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="PortableAreas\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aperea.Core\Aperea.Core.csproj">

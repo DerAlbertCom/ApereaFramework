@@ -59,6 +59,7 @@
     <Compile Include="Security\GroupFactory.cs" />
     <Compile Include="Security\IGroupFactory.cs" />
     <Compile Include="Security\IRoleFactory.cs" />
+    <Compile Include="Security\MembershipGroups.cs" />
     <Compile Include="Security\MembershipRoles.cs" />
     <Compile Include="Security\RoleFactory.cs" />
     <Compile Include="Services\ChangePasswordResult.cs" />
