@@ -50,6 +50,9 @@
     <Reference Include="Machine.Specifications">
       <HintPath>..\packages\Machine.Specifications.0.4.13.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Data\DatabaseContextSpecs.cs" />
     <Compile Include="EntityModels\SystemLanguageSpecs.cs" />
+    <Compile Include="Infrastructure\ContainerLazySpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FakeRepository.cs" />
     <Compile Include="Repositories\IdGeneration.cs" />

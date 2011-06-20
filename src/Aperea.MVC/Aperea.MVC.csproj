@@ -68,7 +68,7 @@
     <Compile Include="Infrastructure\AspNetMvc3Registry.cs" />
     <Compile Include="Infrastructure\ControllerRegistryConvention.cs" />
     <Compile Include="Infrastructure\PropertyInjectionActionInvoker.cs" />
-    <Compile Include="Infrastructure\RemoteActionWorkerConvention.cs" />
+    <Compile Include="Initialize\RemoteActionWorkerConvention.cs" />
     <Compile Include="Infrastructure\StructureMapDependencyResolver.cs" />
     <Compile Include="Initialize\ApereaMvcRegistry.cs" />
     <Compile Include="Initialize\InfrastructureMvcFiltersInitialize.cs" />

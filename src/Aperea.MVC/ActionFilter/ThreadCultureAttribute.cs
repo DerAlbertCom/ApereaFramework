@@ -37,13 +37,11 @@ namespace Aperea.MVC.ActionFilter
 
             if (string.IsNullOrEmpty(cultureName) || !possibleCultures.Contains(cultureName))
             {
-                var userCultures = GetUserCulture(filterContext);
-
-                cultureName = FindSpecificUserCulture(userCultures);
+                cultureName = FindSpecificUserCulture(GetUserCulture(filterContext));
 
                 if (string.IsNullOrEmpty(cultureName))
                 {
-                    cultureName = FindNeutralUserCulture(userCultures);
+                    cultureName = FindNeutralUserCulture(GetUserCulture(filterContext));
                 }
 
                 if (string.IsNullOrEmpty(cultureName))
@@ -67,7 +65,7 @@ namespace Aperea.MVC.ActionFilter
 
         string SearchInPossibleCultures(IEnumerable<string> userCultures, Func<string, string> modifier)
         {
-            var settings = DependencyResolver.Current.GetService<ICultureSettings>();
+            var settings = GetService<ICultureSettings>();
             var possibleCultures = settings.PossibleCultures;
             foreach (var culture in userCultures)
             {

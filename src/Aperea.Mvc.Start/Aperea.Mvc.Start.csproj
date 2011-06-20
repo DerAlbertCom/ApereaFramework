@@ -94,7 +94,6 @@
     <Compile Include="Initialize\RoutesInitialize.cs" />
     <Compile Include="Initialize\ViewEnginesInitialize.cs" />
     <Compile Include="Initialize\RemoteActionWorkerConvention.cs" />
-    <Compile Include="Initialize\WebContainerRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteActions\ConfirmNewLoginActionWorker.cs" />
     <Compile Include="RemoteActions\PasswordResetRequestActionWorker.cs" />

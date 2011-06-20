@@ -4,7 +4,7 @@ using Aperea.MVC.RemoteActions;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 
-namespace Aperea.MVC.Infrastructure
+namespace Aperea.MVC.Initialize
 {
     internal class RemoteActionWorkerConvention : IRegistrationConvention
     {
