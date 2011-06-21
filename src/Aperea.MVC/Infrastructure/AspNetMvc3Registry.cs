@@ -14,6 +14,7 @@ namespace Aperea.MVC.Infrastructure
             Scan(x =>
             {
                 x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
+                x.TheCallingAssembly();
                 x.AddAllTypesOf<ModelValidatorProvider>();
                 x.AddAllTypesOf<ModelMetadataProvider>();
                 x.AddAllTypesOf<ValueProviderFactory>();

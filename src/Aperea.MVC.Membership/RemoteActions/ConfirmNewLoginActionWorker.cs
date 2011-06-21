@@ -1,13 +1,13 @@
 ﻿using System.Web.Mvc;
 using Aperea.EntityModels;
-using Aperea.MVC.Areas.Membership.Controllers;
-using Aperea.MVC.Areas.Membership.Models;
+using Aperea.MVC.Areas.Account.Controllers;
+using Aperea.MVC.Areas.Account.Models;
 using Aperea.MVC.Attributes;
 using Aperea.MVC.Extensions;
 using Aperea.MVC.RemoteActions;
 using Aperea.Services;
 
-namespace Aperea.MVC.Areas.Membership.RemoteActions
+namespace Aperea.MVC.Areas.Account.RemoteActions
 {
     [RemoteActionName(Registration.ConfirmLoginAction)]
     public class ConfirmNewLoginActionWorker : IRemoteActionWorker

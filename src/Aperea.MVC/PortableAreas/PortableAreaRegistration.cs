@@ -35,33 +35,19 @@ namespace Aperea.MVC.PortableAreas
                                  controller = "EmbeddedResource",
                                  action = "Index",
                                  resourcePath = "Content." + subfolderName
-                             },
-                             null,
-                             new[] {GetNamespace()}
-                );
+                             },null);
         }
 
-        string GetNamespace()
+        protected string GetNamespace()
         {
             return GetType().Namespace;
         }
 
-        protected abstract Type ControllerType { get; }
-
-        public void RegisterDefaultRoutes(AreaRegistrationContext context)
+        protected virtual void RegisterDefaultRoutes(AreaRegistrationContext context)
         {
             CreateStaticResourceRoute(context, "images");
             CreateStaticResourceRoute(context, "styles");
             CreateStaticResourceRoute(context, "scripts");
-            context.MapRoute(AreaName + "-Default"
-                             , AreaRoutePrefix + "/{culture}/{controller}/{action}",
-                             new
-                             {
-                                 culture = "",
-                                 controller = "registration",
-                                 action = "RegisterLogin"
-                             },
-                             new[] {GetNamespace()});
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
@@ -70,9 +56,9 @@ namespace Aperea.MVC.PortableAreas
             CheckAreasWebConfigExists();
         }
 
-        public void RegisterAreaEmbeddedResources()
+        void RegisterAreaEmbeddedResources()
         {
-            var resourceStore = new AssemblyResourceStore(GetType(), "/" + AreaRoutePrefix + "/", GetNamespace());
+            var resourceStore = new AssemblyResourceStore(GetType(),  AreaRoutePrefix + "/", GetNamespace());
             AssemblyResourceManager.RegisterAreaResources(resourceStore);
         }
 

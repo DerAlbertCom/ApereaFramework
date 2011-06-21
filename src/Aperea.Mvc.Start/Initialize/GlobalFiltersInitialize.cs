@@ -10,6 +10,11 @@ namespace ApereaStart.Initialize
             RegisterGlobalFilters(GlobalFilters.Filters);
         }
 
+        public int Order
+        {
+            get { return 0; }
+        }
+
         void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());

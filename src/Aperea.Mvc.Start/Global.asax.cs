@@ -1,5 +1,6 @@
 ﻿using Aperea.Initialize;
 using Aperea.MVC.Initialize;
+using Glimpse.Core;
 
 namespace ApereaStart
 {

@@ -4,15 +4,15 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Aperea.EntityModels;
-using Aperea.MVC.Areas.Membership.Controllers;
-using Aperea.MVC.Areas.Membership.Models;
+using Aperea.MVC.Areas.Account.Controllers;
+using Aperea.MVC.Areas.Account.Models;
 using Aperea.MVC.Attributes;
 using Aperea.MVC.Extensions;
 using Aperea.MVC.RemoteActions;
 using Aperea.Repositories;
 using Aperea.Services;
 
-namespace Aperea.MVC.Areas.Membership.RemoteActions
+namespace Aperea.MVC.Areas.Account.RemoteActions
 {
     [RemoteActionName(Registration.PasswordResetAction)]
     public class PasswordResetRequestActionWorker : IRemoteActionWorker

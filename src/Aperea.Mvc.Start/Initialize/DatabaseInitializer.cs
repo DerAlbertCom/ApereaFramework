@@ -10,5 +10,10 @@ namespace ApereaStart.Initialize
         {
             Database.SetInitializer(new DbDevInitializer());
         }
+
+        public int Order
+        {
+            get { return 0; }
+        }
     }
 }

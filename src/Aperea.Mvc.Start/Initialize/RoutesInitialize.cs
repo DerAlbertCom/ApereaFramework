@@ -21,28 +21,25 @@ namespace ApereaStart.Initialize
             Register(RouteTable.Routes);
         }
 
+        public int Order
+        {
+            get { return 0; }
+        }
+
         void Register(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Account", // Route name
-                "Account/{action}/{id}", // URL with parameters
+                "Logon", // Route name
+                "Logon/{action}/{id}", // URL with parameters
                 new
                 {
-                    culture = _cultureSettings.DefaultCulture,
-                    controller = "Account",
+                    area="account",
+                    culture = "",
+                    controller = "Logon",
                     action = "Index",
                     id = UrlParameter.Optional
-                } // Parameter defaults
-                );
-
-            routes.MapRoute(
-                "HashKey", // Route name
-                "{culture}/{controller}/{action}/{hash}/{key}", // URL with parameters
-                new
-                {
-                    culture = _cultureSettings.DefaultCulture,
                 } // Parameter defaults
                 );
 

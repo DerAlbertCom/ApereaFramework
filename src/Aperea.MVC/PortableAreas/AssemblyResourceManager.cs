@@ -16,16 +16,12 @@ namespace Aperea.MVC.PortableAreas
         {
             var resourceStores = new Dictionary<string, AssemblyResourceStore>();
 
-            // Add default AssemblyResourceStore for input builders
-            var inputBuildersStore = new AssemblyResourceStore(typeof(AssemblyResourceProvider), "/views/inputbuilders", "MvcContrib.UI.InputBuilder.Views.InputBuilders");
-            resourceStores.Add(inputBuildersStore.VirtualPath, inputBuildersStore);
-
             return resourceStores;
         }
 
         public static AssemblyResourceStore GetResourceStoreForArea(string areaName)
         {
-            return AssemblyResourceStores["/areas/" + areaName.ToLower()];
+            return AssemblyResourceStores[areaName.ToLower()];
         }
 
         public static AssemblyResourceStore GetResourceStoreFromVirtualPath(string virtualPath)

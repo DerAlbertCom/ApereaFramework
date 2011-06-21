@@ -9,5 +9,10 @@ namespace ApereaStart.Controllers
         {
             return new ViewResult();
         }
+
+        public ActionResult About()
+        {
+            return new ViewResult();
+        }
     }
 }

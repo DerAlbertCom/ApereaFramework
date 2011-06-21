@@ -15,12 +15,12 @@ namespace Aperea.MVC.Controllers
                 resourceName = resourcePath + "." + resourceName;
             }
 
-            var areaName = (string) RouteData.DataTokens["area"];
+            var areaName = (string) RouteData.Values["area"];
             var resourceStore = AssemblyResourceManager.GetResourceStoreForArea(areaName);
             // pre-pend "~" so that it will be replaced with assembly namespace
             var resourceStream = resourceStore.GetResourceStream("~." + resourceName);
 
-            if (resourceStream == null)
+            if (string.IsNullOrEmpty(resourceName))
             {
                 return new HttpNotFoundResult();
             }

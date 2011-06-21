@@ -73,7 +73,6 @@
     <Compile Include="Initialize\RemoteActionWorkerConvention.cs" />
     <Compile Include="Infrastructure\StructureMapDependencyResolver.cs" />
     <Compile Include="Initialize\ApereaMvcRegistry.cs" />
-    <Compile Include="Initialize\InfrastructureMvcFiltersInitialize.cs" />
     <Compile Include="PortableAreas\AssemblyResourceManager.cs" />
     <Compile Include="PortableAreas\AssemblyResourceProvider.cs" />
     <Compile Include="PortableAreas\AssemblyResourceStore.cs" />
@@ -106,6 +105,8 @@
     <Compile Include="Views\AdaptiveViewEnginePathHelpers.cs" />
     <Compile Include="Views\IAdaptiveViewEngine.cs" />
     <Compile Include="Views\ApereaViewPage.cs" />
+    <Compile Include="Initialize\ViewEnginesInitialize.cs" />
+    <Compile Include="Views\ResourceViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

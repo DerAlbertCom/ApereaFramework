@@ -59,17 +59,23 @@ namespace Aperea.MVC.PortableAreas
 
         public string GetFullyQualifiedTypeFromPath(string path)
         {
-            var fileName = Path.GetFileName(path);
-            var endController = path.LastIndexOf(fileName)-1;
-            if (endController < 0)
-                return path;
-            path = path.Substring(0, endController);
-            var startController = path.LastIndexOf("/");
-            if (startController < 0)
-                return path;
-            var controller = path.Substring(startController + 1);
-            string resourceName = string.Format("{0}.views.{1}.{2}", namespaceName, controller, fileName);
+            if (!path.StartsWith("~/areas/",StringComparison.InvariantCultureIgnoreCase))
+                return string.Empty;
+            path = RemoveFirst(path, "areas/");
+            path = RemoveFirst(path, VirtualPath);
+
+            var resourceName = path.Replace("~", namespaceName).ToLower();
             return resourceName.Replace("/", ".");
+        }
+
+        static string RemoveFirst(string path, string urlPart)
+        {
+            var pos = path.IndexOf(urlPart, StringComparison.InvariantCultureIgnoreCase);
+            if (pos > 0)
+            {
+                path = path.Remove(pos, urlPart.Length);
+            }
+            return path;
         }
 
         public bool IsPathResourceStream(string path)

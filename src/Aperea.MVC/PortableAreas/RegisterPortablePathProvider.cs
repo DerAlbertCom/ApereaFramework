@@ -10,7 +10,12 @@ namespace Aperea.MVC.PortableAreas
         {
             HostingEnvironment.RegisterVirtualPathProvider(new AssemblyResourceProvider());
 
-            ViewEngines.Engines.Add(new InputBuilderViewEngine(new string[0]));
+//            ViewEngines.Engines.Add(new InputBuilderViewEngine(new string[0]));
+        }
+
+        public int Order
+        {
+            get { return 0; }
         }
     }
 }
