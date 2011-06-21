@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 // based on http://mvccontrib.codeplex.com/
 
@@ -14,28 +17,20 @@ namespace Aperea.MVC.PortableAreas
         Dictionary<string, string> resources;
         Type typeToLocateAssembly;
         string namespaceName;
-        PortableAreaMap map;
 
         public string VirtualPath { get; private set; }
 
         public AssemblyResourceStore(Type typeToLocateAssembly, string virtualPath, string namespaceName)
         {
-            Initialize(typeToLocateAssembly, virtualPath, namespaceName, null);
+            Initialize(typeToLocateAssembly, virtualPath, namespaceName);
         }
 
-        public AssemblyResourceStore(Type typeToLocateAssembly, string virtualPath, string namespaceName,
-                                     PortableAreaMap map)
+        void Initialize(Type typeToLocateAssembly, string virtualPath, string @namespace)
         {
-            Initialize(typeToLocateAssembly, virtualPath, namespaceName, map);
-        }
-
-        void Initialize(Type typeToLocateAssembly, string virtualPath, string namespaceName, PortableAreaMap map)
-        {
-            this.map = map;
             this.typeToLocateAssembly = typeToLocateAssembly;
             // should we disallow an empty virtual path?
             this.VirtualPath = virtualPath.ToLower();
-            this.namespaceName = namespaceName.ToLower();
+            this.namespaceName = @namespace.ToLower();
 
             var resourceNames = this.typeToLocateAssembly.Assembly.GetManifestResourceNames();
             resources = new Dictionary<string, string>(resourceNames.Length);
@@ -54,13 +49,7 @@ namespace Aperea.MVC.PortableAreas
             if (resources.TryGetValue(fullResourceName, out actualResourceName))
             {
                 Stream stream = this.typeToLocateAssembly.Assembly.GetManifestResourceStream(actualResourceName);
-
-                if (map != null &&
-                    (resourceName.ToLower().EndsWith(".aspx")
-                     || resourceName.ToLower().EndsWith(".master")))
-                    return map.Transform(stream);
-                else
-                    return stream;
+                return stream;
             }
             else
             {
@@ -70,10 +59,16 @@ namespace Aperea.MVC.PortableAreas
 
         public string GetFullyQualifiedTypeFromPath(string path)
         {
-            string resourceName = path.ToLower().Replace("~", this.namespaceName);
-            // we can make this more succinct if we don't have to check for emtpy virtual path (by preventing in constuctor)
-            if (!string.IsNullOrEmpty(VirtualPath))
-                resourceName = resourceName.Replace(VirtualPath, "");
+            var fileName = Path.GetFileName(path);
+            var endController = path.LastIndexOf(fileName)-1;
+            if (endController < 0)
+                return path;
+            path = path.Substring(0, endController);
+            var startController = path.LastIndexOf("/");
+            if (startController < 0)
+                return path;
+            var controller = path.Substring(startController + 1);
+            string resourceName = string.Format("{0}.views.{1}.{2}", namespaceName, controller, fileName);
             return resourceName.Replace("/", ".");
         }
 

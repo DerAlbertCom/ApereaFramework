@@ -71,6 +71,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\sdf\sdfAreaRegistration.cs" />
     <Compile Include="Data\DbContextFactory.cs" />
     <Compile Include="ResourceStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -151,6 +152,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LayoutWithScript.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Areas\Web.config" />
     <None Include="Web.config.transform">
       <SubType>Designer</SubType>
     </None>
@@ -172,6 +175,10 @@
       <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
       <Name>Aperea.Membership</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Aperea.MVC.Membership\Aperea.MVC.Membership.csproj">
+      <Project>{6A60E356-F86A-4485-B7E2-444556D1B9DC}</Project>
+      <Name>Aperea.MVC.Membership</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aperea.MVC\Aperea.MVC.csproj">
       <Project>{BE3C5256-9E34-4AFC-9CF7-357713544943}</Project>
       <Name>Aperea.MVC</Name>
@@ -184,6 +191,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\account\views\" />
+    <Folder Include="Areas\sdf\Controllers\" />
+    <Folder Include="Areas\sdf\Models\" />
+    <Folder Include="Areas\sdf\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

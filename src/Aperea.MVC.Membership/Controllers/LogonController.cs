@@ -1,16 +1,16 @@
 ﻿using System.Web.Mvc;
+using Aperea.MVC.Areas.Membership.Models;
 using Aperea.MVC.Controllers;
-using Aperea.MVC.Membership.Areas.Model;
 using Aperea.MVC.Security;
 using Aperea.Services;
 
-namespace Aperea.MVC.Membership.Areas.Controllers
+namespace Aperea.MVC.Areas.Membership.Controllers
 {
-    public class AccountController : ApereaBaseController
+    public class LogonController : ApereaBaseController
     {
         readonly ILoginValidation _validation;
 
-        public AccountController(ILoginValidation validation)
+        public LogonController(ILoginValidation validation)
         {
             _validation = validation;
         }
@@ -18,7 +18,7 @@ namespace Aperea.MVC.Membership.Areas.Controllers
         //
         // GET: /Account/LogOn
 
-        public ActionResult LogOn()
+        public ActionResult Index()
         {
             return View(new LogOnModel());
         }
@@ -27,7 +27,7 @@ namespace Aperea.MVC.Membership.Areas.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult Index(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -40,10 +40,7 @@ namespace Aperea.MVC.Membership.Areas.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    else
-                    {
-                        return RedirectToHomepage();
-                    }
+                    return RedirectToHomepage();
                 }
                 else
                 {

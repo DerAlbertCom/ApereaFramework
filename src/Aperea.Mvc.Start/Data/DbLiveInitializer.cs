@@ -1,6 +1,5 @@
 ﻿using Aperea.Data;
 using Aperea.Infrastructure.Data;
-using Microsoft.Practices.ServiceLocation;
 
 namespace ApereaStart.Data
 {

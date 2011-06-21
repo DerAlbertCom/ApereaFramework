@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Aperea.MVC.PortableAreas
 {
-	public class InputBuilderViewEngine : WebFormViewEngine
+	public class InputBuilderViewEngine : RazorViewEngine
 	{
 		public InputBuilderViewEngine(string[] subdirs)
 		{

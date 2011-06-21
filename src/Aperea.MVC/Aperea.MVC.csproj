@@ -80,10 +80,7 @@
     <Compile Include="PortableAreas\AssemblyResourceVirtualFile.cs" />
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
     <Compile Include="PortableAreas\InputBuilderViewEngine.cs" />
-    <Compile Include="PortableAreas\InputBuilder.cs" />
-    <Compile Include="PortableAreas\MapExtensions.cs" />
-    <Compile Include="PortableAreas\PortableAreaContent.cs" />
-    <Compile Include="PortableAreas\PortableAreaMap.cs" />
+    <Compile Include="PortableAreas\RegisterPortablePathProvider.cs" />
     <Compile Include="PortableAreas\PortableAreaRegistration.cs" />
     <Compile Include="PortableAreas\PortableAreaStartupMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

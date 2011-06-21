@@ -7,12 +7,12 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.Messaging
 {
-    public class InMemoryMessageBus : IMessageBus
+    public class MessageBus : IMessageBus
     {
         private readonly IServiceLocator locator;
         private readonly SynchronizationContext threadContext;
 
-        public InMemoryMessageBus(IServiceLocator locator)
+        public MessageBus(IServiceLocator locator)
         {
             this.locator = locator;
             threadContext = AsyncOperationManager.SynchronizationContext;

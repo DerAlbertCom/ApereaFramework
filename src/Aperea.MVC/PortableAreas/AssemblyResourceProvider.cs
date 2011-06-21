@@ -6,13 +6,12 @@ using System.Web.Hosting;
 
 namespace Aperea.MVC.PortableAreas
 {
-	public class AssemblyResourceProvider : VirtualPathProvider
-	{
-		
+    public class AssemblyResourceProvider : VirtualPathProvider
+    {
         public override bool FileExists(string virtualPath)
         {
             bool exists = base.FileExists(virtualPath);
-            return exists ? exists : AssemblyResourceManager.IsEmbeddedViewResourcePath(virtualPath);
+            return exists || AssemblyResourceManager.IsEmbeddedViewResourcePath(virtualPath);
         }
 
         public override VirtualFile GetFile(string virtualPath)
@@ -28,7 +27,10 @@ namespace Aperea.MVC.PortableAreas
             }
         }
 
-        public override System.Web.Caching.CacheDependency GetCacheDependency(string virtualPath, System.Collections.IEnumerable virtualPathDependencies, DateTime utcStart)
+        public override System.Web.Caching.CacheDependency GetCacheDependency(string virtualPath,
+                                                                              System.Collections.IEnumerable
+                                                                                  virtualPathDependencies,
+                                                                              DateTime utcStart)
         {
             if (AssemblyResourceManager.IsEmbeddedViewResourcePath(virtualPath))
             {
@@ -36,7 +38,9 @@ namespace Aperea.MVC.PortableAreas
             }
             else
             {
-                string[] dependencies = virtualPathDependencies.OfType<string>().Where(s => !s.ToLower().Contains("/views/inputbuilders")).ToArray();
+                string[] dependencies =
+                    virtualPathDependencies.OfType<string>().Where(s => !s.ToLower().Contains("/views/inputbuilders")).
+                        ToArray();
                 return base.GetCacheDependency(virtualPath, dependencies, utcStart);
             }
         }
@@ -45,5 +49,5 @@ namespace Aperea.MVC.PortableAreas
         {
             return null;
         }
-	}
+    }
 }

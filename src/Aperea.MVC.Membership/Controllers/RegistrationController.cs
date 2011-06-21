@@ -1,10 +1,10 @@
 using System.Web.Mvc;
+using Aperea.MVC.Areas.Membership.Models;
 using Aperea.MVC.Controllers;
 using Aperea.MVC.Extensions;
-using Aperea.MVC.Membership.Areas.Model;
 using Aperea.Services;
 
-namespace Aperea.MVC.Membership.Areas.Controllers
+namespace Aperea.MVC.Areas.Membership.Controllers
 {
     public class RegistrationController : ApereaBaseController
     {

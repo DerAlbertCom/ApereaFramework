@@ -30,7 +30,7 @@ namespace ApereaStart.Initialize
                 "Account/{action}/{id}", // URL with parameters
                 new
                 {
-                    culture = _cultureSettings,
+                    culture = _cultureSettings.DefaultCulture,
                     controller = "Account",
                     action = "Index",
                     id = UrlParameter.Optional
@@ -42,7 +42,7 @@ namespace ApereaStart.Initialize
                 "{culture}/{controller}/{action}/{hash}/{key}", // URL with parameters
                 new
                 {
-                    culture = "",
+                    culture = _cultureSettings.DefaultCulture,
                 } // Parameter defaults
                 );
 
@@ -51,7 +51,7 @@ namespace ApereaStart.Initialize
                 "{culture}/{controller}/{action}/{id}", // URL with parameters
                 new
                 {
-                    culture = _cultureSettings,
+                    culture = _cultureSettings.DefaultCulture,
                     controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional

@@ -1,15 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Aperea.MVC.Membership.Areas.Annotations;
+using Aperea.MVC.Areas.Membership.Annotations;
 
-namespace Aperea.MVC.Membership.Areas.Model
+namespace Aperea.MVC.Areas.Membership.Models
 {
-    public class PasswordResetViewModel
+    public class RegisterLoginViewModel
     {
         [Required]
         [StringLength(128)]
-        [HiddenInput]
-        public string Username { get; set; }
+        [LabelName("Username")]
+        public string LoginName { get; set; }
+
+        [Required]
+        [StringLength(256)]
+        [LabelName("EMail")]
+        [DataType(DataType.EmailAddress)]
+        public string EMail { get; set; }
 
         [Required]
         [StringLength(1024)]

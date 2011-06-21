@@ -9,6 +9,7 @@ namespace Aperea.Data
         {
             modelBuilder.Entity<RemoteAction>();
             modelBuilder.Entity<SystemLanguage>();
+            modelBuilder.Entity<Module>();
         }
     }
 }
