@@ -1,9 +1,7 @@
-﻿using System;
-using System.Web.Mvc;
-using Aperea.MVC.Areas.Account.Controllers;
+﻿using System.Web.Mvc;
 using Aperea.MVC.PortableAreas;
 
-namespace Aperea.MVC.Areas.Account
+namespace Aperea.MVC.Authentication
 {
     public class MembershipAreaRegistration : PortableAreaRegistration
     {

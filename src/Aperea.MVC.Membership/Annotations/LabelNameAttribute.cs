@@ -1,7 +1,7 @@
 ﻿using System.Resources;
 using Aperea.MVC.Annotations;
 
-namespace Aperea.MVC.Areas.Account.Annotations
+namespace Aperea.MVC.Authentication.Annotations
 {
     internal class LabelNameAttribute : BaseLabelNameAttribute
     {

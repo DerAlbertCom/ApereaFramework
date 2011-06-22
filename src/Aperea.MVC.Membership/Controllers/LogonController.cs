@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
-using Aperea.MVC.Areas.Account.Models;
+using Aperea.MVC.Authentication.Models;
 using Aperea.MVC.Controllers;
 using Aperea.MVC.Security;
 using Aperea.Services;
 
-namespace Aperea.MVC.Areas.Account.Controllers
+namespace Aperea.MVC.Authentication.Controllers
 {
     public class LogonController : ApereaBaseController
     {

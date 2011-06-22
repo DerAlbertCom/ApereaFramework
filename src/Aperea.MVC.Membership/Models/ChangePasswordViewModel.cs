@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Aperea.MVC.Areas.Account.Annotations;
+using Aperea.MVC.Authentication.Annotations;
 
-namespace Aperea.MVC.Areas.Account.Models
+namespace Aperea.MVC.Authentication.Models
 {
     public class ChangePasswordViewModel
     {

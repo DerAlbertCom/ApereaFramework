@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Aperea.MVC.Areas.Account.Models
+namespace Aperea.MVC.Authentication.Models
 {
     public class LogOnModel
     {

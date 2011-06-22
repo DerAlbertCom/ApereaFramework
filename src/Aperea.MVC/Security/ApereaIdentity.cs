@@ -1,7 +1,6 @@
 using System.Security.Principal;
 using System.Web.Security;
 using Aperea.EntityModels;
-using Aperea.Repositories;
 using Aperea.Services;
 using Microsoft.Practices.ServiceLocation;
 
@@ -9,16 +8,18 @@ namespace Aperea.MVC.Security
 {
     internal class ApereaIdentity : IIdentity
     {
+        const string AuthenticationName = "ApereaFramework";
+
         public ApereaIdentity()
         {
             Name = "";
             IsAuthenticated = false;
-            AuthenticationType = "ApereaFramework";
+            AuthenticationType = AuthenticationName;
         }
 
         public ApereaIdentity(FormsAuthenticationTicket ticket)
         {
-            AuthenticationType = "ApereaFramework";
+            AuthenticationType = AuthenticationName;
             IsAuthenticated = IsValidLogin(ticket.Name);
 
             if (IsAuthenticated)
@@ -37,7 +38,7 @@ namespace Aperea.MVC.Security
         {
             Name = login.Loginname;
             IsAuthenticated = true;
-            AuthenticationType = "ApereaFramework";
+            AuthenticationType = AuthenticationName;
         }
 
         public string Name { get; private set; }
