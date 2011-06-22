@@ -97,6 +97,15 @@ namespace Aperea.MVC.Authentication {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password and confirmation password do not match.
+        /// </summary>
+        public static string Error_The_password_and_confirmation_password_do_not_match {
+            get {
+                return ResourceManager.GetString("Error_The_password_and_confirmation_password_do_not_match", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string PageTitle_ChangePassword {

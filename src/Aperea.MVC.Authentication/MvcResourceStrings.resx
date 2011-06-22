@@ -129,6 +129,9 @@
   <data name="Button_RegisterLogin" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="Error_The_password_and_confirmation_password_do_not_match" xml:space="preserve">
+    <value>The password and confirmation password do not match</value>
+  </data>
   <data name="PageTitle_ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>

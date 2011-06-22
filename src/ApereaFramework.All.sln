@@ -5,11 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Core", "Aperea.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC", "Aperea.MVC\Aperea.MVC.csproj", "{BE3C5256-9E34-4AFC-9CF7-357713544943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Authentication", "Aperea.Membership\Aperea.Authentication.csproj", "{F40775FF-130B-4F76-BE4A-704173CBA04F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Authentication", "Aperea.Authentication\Aperea.Authentication.csproj", "{F40775FF-130B-4F76-BE4A-704173CBA04F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Mail", "Aperea.Mail\Aperea.Mail.csproj", "{E6146512-6608-49E8-974C-D1414A23AA7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MemberShip.Specs", "Aperea.MemberShip.Specs\Aperea.MemberShip.Specs.csproj", "{19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Authentication.Specs", "Aperea.Authentication.Specs\Aperea.Authentication.Specs.csproj", "{19B7D05B-BDE9-4D9A-9D84-3626F3AB92DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Core.Specs", "Aperea.Core.Specs\Aperea.Core.Specs.csproj", "{CA173D94-05B3-47D1-BBCF-40AD795DB61B}"
 EndProject
@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Mvc.Start", "Aperea.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC.Specs", "Aperea.MVC.Specs\Aperea.MVC.Specs.csproj", "{FBE90326-C500-4AAE-80F3-E62B969F8DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC.Authentication", "Aperea.MVC.Membership\Aperea.MVC.Authentication.csproj", "{6A60E356-F86A-4485-B7E2-444556D1B9DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.MVC.Authentication", "Aperea.MVC.Authentication\Aperea.MVC.Authentication.csproj", "{6A60E356-F86A-4485-B7E2-444556D1B9DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
