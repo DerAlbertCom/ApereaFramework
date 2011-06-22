@@ -51,8 +51,9 @@ Task SetPackageVersion {
 	
     Set-PackageVersion "$nuspec_dir\Aperea.Core.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Mail.nuspec" $version @{"Aperea.Core"=$depVersion}
-    Set-PackageVersion "$nuspec_dir\Aperea.Membership.nuspec" $version @{"Aperea.Mail"=$depVersion}
-    Set-PackageVersion "$nuspec_dir\Aperea.Mvc.nuspec" $version @{"Aperea.Core"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.Authentication.nuspec" $version @{"Aperea.Mail"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.MVC.nuspec" $version @{"Aperea.Core"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.MVC.Authentication.nuspec" $version @{"Aperea.Authentication"=$depVersion;"Aperea.MVC"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Mvc.Start.nuspec" $version @{"Aperea.Membership"="$version";"Aperea.MVC"="$version"}
 }
 
@@ -61,8 +62,9 @@ Task NuGet -Depends ConvertStart, Build, SetPackageVersion  {
 	md $nupgk_dir -force
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Membership.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.MVC.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.MVC.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.Start.nuspec" /OutputDirectory "$nupgk_dir\" }    
 }
 

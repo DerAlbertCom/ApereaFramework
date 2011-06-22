@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Aperea.MVC</id>
+    <id>Aperea.MVC.Authentication</id>
     <version>0.5.0.51</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
@@ -10,8 +10,8 @@
     <description>Package description</description>
     <tags>MVC</tags>
     <dependencies>
-      <dependency id="Aperea.Core" version="[0.5.0.51]" />
-      <dependency id="Mvc3Futures" version="[3.0,4.0)" />
+      <dependency id="Aperea.Authentication" version="[0.5.0.51]" />
+      <dependency id="Aperea.MVC" version="[0.5.0.51]" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />

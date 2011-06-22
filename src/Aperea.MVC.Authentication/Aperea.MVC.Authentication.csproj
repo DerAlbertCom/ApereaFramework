@@ -130,9 +130,7 @@
     <EmbeddedResource Include="Views\Registration\RegisterLogin.cshtml" />
     <EmbeddedResource Include="Views\Registration\RegisterLoginConfirmed.cshtml" />
     <EmbeddedResource Include="Views\Registration\RegisterLoginOk.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LayoutWithScript.cshtml" />
     <EmbeddedResource Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
