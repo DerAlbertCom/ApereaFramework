@@ -78,8 +78,7 @@
     <Compile Include="PortableAreas\AssemblyResourceStore.cs" />
     <Compile Include="PortableAreas\AssemblyResourceVirtualFile.cs" />
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
-    <Compile Include="PortableAreas\InputBuilderViewEngine.cs" />
-    <Compile Include="PortableAreas\RegisterPortablePathProvider.cs" />
+    <Compile Include="PortableAreas\PortableAreaInitialize.cs" />
     <Compile Include="PortableAreas\PortableAreaRegistration.cs" />
     <Compile Include="PortableAreas\PortableAreaStartupMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,8 +104,7 @@
     <Compile Include="Views\AdaptiveViewEnginePathHelpers.cs" />
     <Compile Include="Views\IAdaptiveViewEngine.cs" />
     <Compile Include="Views\ApereaViewPage.cs" />
-    <Compile Include="Initialize\ViewEnginesInitialize.cs" />
-    <Compile Include="Views\ResourceViewEngine.cs" />
+    <Compile Include="Views\ViewEnginesInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -116,9 +114,9 @@
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
       <Name>Aperea.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aperea.Membership\Aperea.Membership.csproj">
+    <ProjectReference Include="..\Aperea.Membership\Aperea.Authentication.csproj">
       <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
-      <Name>Aperea.Membership</Name>
+      <Name>Aperea.Authentication</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

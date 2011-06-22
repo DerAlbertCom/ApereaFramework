@@ -10,8 +10,6 @@ namespace Aperea.MVC.PortableAreas
 {
     public abstract class PortableAreaRegistration : AreaRegistration
     {
-        public static Action CheckAreasWebConfigExists = () => { EnsureAreasWebConfigExists(); };
-
         protected virtual string AreaRoutePrefix
         {
             get { return AreaName; }
@@ -38,7 +36,7 @@ namespace Aperea.MVC.PortableAreas
                              },null);
         }
 
-        protected string GetNamespace()
+        string GetNamespace()
         {
             return GetType().Namespace;
         }
@@ -53,7 +51,7 @@ namespace Aperea.MVC.PortableAreas
         public override void RegisterArea(AreaRegistrationContext context)
         {
             RegisterArea(context, ServiceLocator.Current.GetInstance<IMessageBus>());
-            CheckAreasWebConfigExists();
+            EnsureAreasWebConfigExists();
         }
 
         void RegisterAreaEmbeddedResources()

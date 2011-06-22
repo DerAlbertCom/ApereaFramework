@@ -80,7 +80,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\sdf\sdfAreaRegistration.cs" />
     <Compile Include="Data\DbContextFactory.cs" />
     <Compile Include="ResourceStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -184,13 +183,13 @@
       <Project>{E6146512-6608-49E8-974C-D1414A23AA7A}</Project>
       <Name>Aperea.Mail</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aperea.Membership\Aperea.Membership.csproj">
+    <ProjectReference Include="..\Aperea.Membership\Aperea.Authentication.csproj">
       <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
-      <Name>Aperea.Membership</Name>
+      <Name>Aperea.Authentication</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aperea.MVC.Membership\Aperea.MVC.Membership.csproj">
+    <ProjectReference Include="..\Aperea.MVC.Membership\Aperea.MVC.Authentication.csproj">
       <Project>{6A60E356-F86A-4485-B7E2-444556D1B9DC}</Project>
-      <Name>Aperea.MVC.Membership</Name>
+      <Name>Aperea.MVC.Authentication</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aperea.MVC\Aperea.MVC.csproj">
       <Project>{BE3C5256-9E34-4AFC-9CF7-357713544943}</Project>
@@ -204,9 +203,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\sdf\Controllers\" />
-    <Folder Include="Areas\sdf\Models\" />
-    <Folder Include="Areas\sdf\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Aperea.MVC.Areas.Account {
+namespace Aperea.MVC.Authentication {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Aperea.MVC.Areas.Account {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Aperea.MVC.Areas.Account.MvcResourceStrings", typeof(MvcResourceStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Aperea.MVC.Authentication.MvcResourceStrings", typeof(MvcResourceStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

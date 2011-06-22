@@ -75,9 +75,9 @@
       <Project>{90093D28-7D38-41D2-8250-DAD973A7788C}</Project>
       <Name>Aperea.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aperea.Membership\Aperea.Membership.csproj">
+    <ProjectReference Include="..\Aperea.Membership\Aperea.Authentication.csproj">
       <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
-      <Name>Aperea.Membership</Name>
+      <Name>Aperea.Authentication</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aperea.MVC\Aperea.MVC.csproj">
       <Project>{BE3C5256-9E34-4AFC-9CF7-357713544943}</Project>
