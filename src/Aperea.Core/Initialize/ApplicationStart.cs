@@ -8,9 +8,7 @@ namespace Aperea.Initialize
         public static void Initialize()
         {
             RegisterStructureMap.Execute();
-            Bootstrapper.Start()
-                .FromDependencyResolver()
-                .Execute();
+            Bootstrapper.Start();
         }
     }
 }

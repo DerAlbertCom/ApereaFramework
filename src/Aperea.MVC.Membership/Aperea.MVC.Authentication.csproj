@@ -66,7 +66,7 @@
     <Compile Include="Annotations\LabelNameAttribute.cs" />
     <Compile Include="Controllers\LogonController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="MembershipAreaRegistration.cs" />
+    <Compile Include="AuthenticationAreaRegistration.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Models\PasswordResetRequestViewModel.cs" />

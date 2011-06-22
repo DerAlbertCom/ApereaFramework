@@ -3,13 +3,12 @@ using Aperea.MVC.PortableAreas;
 
 namespace Aperea.MVC.Authentication
 {
-    public class MembershipAreaRegistration : PortableAreaRegistration
+    public class AuthenticationAreaRegistration : PortableAreaRegistration
     {
         public override string AreaName
         {
             get { return "account"; }
         }
-
 
         protected override void RegisterDefaultRoutes(AreaRegistrationContext context)
         {
@@ -22,7 +21,6 @@ namespace Aperea.MVC.Authentication
                      id = UrlParameter.Optional
                  },
                  null);
-
 
             context.MapRoute(
                 AreaName + "HashKey",

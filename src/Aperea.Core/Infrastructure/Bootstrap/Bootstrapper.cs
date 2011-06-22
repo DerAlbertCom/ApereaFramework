@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
-using StructureMap;
 
 namespace Aperea.Infrastructure.Bootstrap
 {
@@ -15,19 +13,19 @@ namespace Aperea.Infrastructure.Bootstrap
             _bootstrapItems = new List<IBootstrapItem>();
         }
 
-        public static Bootstrapper Start()
+        public static void Start()
         {
-            return new Bootstrapper();
+            new Bootstrapper().FromDependencyResolver().Execute();
         }
 
-        public Bootstrapper FromDependencyResolver()
+        Bootstrapper FromDependencyResolver()
         {
             var instances = ServiceLocator.Current.GetAllInstances<IBootstrapItem>();
-            _bootstrapItems.AddRange(instances);
+            _bootstrapItems.AddRange(instances.OrderBy(b=>b.Order));
             return this;
         }
 
-        public void Execute()
+        void Execute()
         {
             foreach (var bootstrapItem in _bootstrapItems)
             {
