@@ -9,31 +9,30 @@ namespace Aperea.MVC.PortableAreas
     /// <summary>
     /// Stores all the embedded resources for a single assembly/area.
     /// </summary>
-    public class AssemblyResourceStore
+    public sealed class PortableAreaStore
     {
-        Dictionary<string, string> resources;
-        Type typeToLocateAssembly;
-        string namespaceName;
+        Dictionary<string, string> _resources;
+        Type _assemblyWithViewType;
+        string _namespaceName;
 
         public string VirtualPath { get; private set; }
 
-        public AssemblyResourceStore(Type typeToLocateAssembly, string virtualPath, string namespaceName)
+        internal PortableAreaStore(Type typeToLocateAssembly, string virtualPath, string namespaceName)
         {
             Initialize(typeToLocateAssembly, virtualPath, namespaceName);
         }
 
-        void Initialize(Type typeToLocateAssembly, string virtualPath, string @namespace)
+        void Initialize(Type assemblyWithViewType, string virtualPath, string namespaceName)
         {
-            this.typeToLocateAssembly = typeToLocateAssembly;
-            // should we disallow an empty virtual path?
-            this.VirtualPath = virtualPath.ToLower();
-            this.namespaceName = @namespace.ToLower();
+            _assemblyWithViewType = assemblyWithViewType;
+            VirtualPath = virtualPath.ToLower();
+            _namespaceName = namespaceName.ToLower();
 
-            var resourceNames = this.typeToLocateAssembly.Assembly.GetManifestResourceNames();
-            resources = new Dictionary<string, string>(resourceNames.Length);
+            var resourceNames = _assemblyWithViewType.Assembly.GetManifestResourceNames();
+            _resources = new Dictionary<string, string>(resourceNames.Length);
             foreach (var name in resourceNames)
             {
-                resources.Add(name.ToLower(), name);
+                _resources.Add(name.ToLower(), name);
             }
         }
 
@@ -41,27 +40,23 @@ namespace Aperea.MVC.PortableAreas
         {
             var fullResourceName = GetFullyQualifiedTypeFromPath(resourceName);
 
-            string actualResourceName = null;
+            string actualResourceName;
 
-            if (resources.TryGetValue(fullResourceName, out actualResourceName))
+            if (_resources.TryGetValue(fullResourceName, out actualResourceName))
             {
-                Stream stream = this.typeToLocateAssembly.Assembly.GetManifestResourceStream(actualResourceName);
-                return stream;
+                return _assemblyWithViewType.Assembly.GetManifestResourceStream(actualResourceName);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
-        public string GetFullyQualifiedTypeFromPath(string path)
+        string GetFullyQualifiedTypeFromPath(string path)
         {
             if (!path.StartsWith("~/areas/",StringComparison.InvariantCultureIgnoreCase))
                 return string.Empty;
-            path = RemoveFirst(path, "areas/");
+            path = RemoveFirst(path,"areas/");
             path = RemoveFirst(path, VirtualPath);
 
-            var resourceName = path.Replace("~", namespaceName).ToLower();
+            var resourceName = path.Replace("~", _namespaceName).ToLower();
             return resourceName.Replace("/", ".");
         }
 
@@ -78,7 +73,7 @@ namespace Aperea.MVC.PortableAreas
         public bool IsPathResourceStream(string path)
         {
             var fullResourceName = GetFullyQualifiedTypeFromPath(path);
-            return resources.ContainsKey(fullResourceName);
+            return _resources.ContainsKey(fullResourceName);
         }
     }
 }

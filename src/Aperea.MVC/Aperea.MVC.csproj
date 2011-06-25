@@ -73,11 +73,12 @@
     <Compile Include="Initialize\RemoteActionWorkerConvention.cs" />
     <Compile Include="Infrastructure\StructureMapDependencyResolver.cs" />
     <Compile Include="Initialize\ApereaMvcRegistry.cs" />
-    <Compile Include="PortableAreas\AssemblyResourceManager.cs" />
-    <Compile Include="PortableAreas\AssemblyResourceProvider.cs" />
-    <Compile Include="PortableAreas\AssemblyResourceStore.cs" />
-    <Compile Include="PortableAreas\AssemblyResourceVirtualFile.cs" />
+    <Compile Include="PortableAreas\PortableArea.cs" />
+    <Compile Include="PortableAreas\PortableAreaVirtualPathProvider.cs" />
+    <Compile Include="PortableAreas\PortableAreaStore.cs" />
+    <Compile Include="PortableAreas\PortableAreaVirtualFile.cs" />
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
+    <Compile Include="PortableAreas\IPortableArea.cs" />
     <Compile Include="PortableAreas\PortableAreaInitialize.cs" />
     <Compile Include="PortableAreas\PortableAreaRegistration.cs" />
     <Compile Include="PortableAreas\PortableAreaStartupMessage.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Views\ViewEnginesInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ActionFilter\packages.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

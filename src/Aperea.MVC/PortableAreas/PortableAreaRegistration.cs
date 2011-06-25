@@ -10,6 +10,13 @@ namespace Aperea.MVC.PortableAreas
 {
     public abstract class PortableAreaRegistration : AreaRegistration
     {
+        readonly IPortableArea _resourceManager;
+
+        protected PortableAreaRegistration()
+        {
+            _resourceManager = ServiceLocator.Current.GetInstance<IPortableArea>();
+        }
+       
         protected virtual string AreaRoutePrefix
         {
             get { return AreaName; }
@@ -24,7 +31,7 @@ namespace Aperea.MVC.PortableAreas
             RegisterAreaEmbeddedResources();
         }
 
-        public void CreateStaticResourceRoute(AreaRegistrationContext context, string subfolderName)
+        void CreateStaticResourceRoute(AreaRegistrationContext context, string subfolderName)
         {
             context.MapRoute(AreaName + "-" + subfolderName,
                              AreaRoutePrefix + "/" + subfolderName + "/{resourceName}",
@@ -56,8 +63,7 @@ namespace Aperea.MVC.PortableAreas
 
         void RegisterAreaEmbeddedResources()
         {
-            var resourceStore = new AssemblyResourceStore(GetType(),  AreaRoutePrefix + "/", GetNamespace());
-            AssemblyResourceManager.RegisterAreaResources(resourceStore);
+            _resourceManager.RegisterAreaResources(GetType(), AreaRoutePrefix, GetNamespace());
         }
 
         static void EnsureAreasWebConfigExists()

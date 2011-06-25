@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Generic;
 using Aperea.MVC.PortableAreas;
+using Microsoft.Practices.ServiceLocation;
 
 // based on http://mvccontrib.codeplex.com/
 
@@ -16,8 +17,9 @@ namespace Aperea.MVC.Controllers
             }
 
             var areaName = (string) RouteData.Values["area"];
-            var resourceStore = AssemblyResourceManager.GetResourceStoreForArea(areaName);
-            // pre-pend "~" so that it will be replaced with assembly namespace
+            var resourceManager = ServiceLocator.Current.GetInstance<IPortableArea>();
+
+            var resourceStore = resourceManager.GetResourceStoreForArea(areaName);
             var resourceStream = resourceStore.GetResourceStream("~." + resourceName);
 
             if (string.IsNullOrEmpty(resourceName))
@@ -25,8 +27,7 @@ namespace Aperea.MVC.Controllers
                 return new HttpNotFoundResult();
             }
 
-            var contentType = GetContentType(resourceName);
-            return File(resourceStream, contentType);
+            return File(resourceStream, GetContentType(resourceName));
         }
 
         static string GetContentType(string resourceName)

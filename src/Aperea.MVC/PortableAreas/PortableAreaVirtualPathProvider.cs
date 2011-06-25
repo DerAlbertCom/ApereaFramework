@@ -1,30 +1,33 @@
 using System;
-using System.Linq;
 using System.Web.Hosting;
 
 // based on http://mvccontrib.codeplex.com/
 
 namespace Aperea.MVC.PortableAreas
 {
-    public class AssemblyResourceProvider : VirtualPathProvider
+    public class PortableAreaVirtualPathProvider : VirtualPathProvider
     {
+        readonly IPortableArea _portableArea;
+
+        public PortableAreaVirtualPathProvider(IPortableArea portableArea)
+        {
+            _portableArea = portableArea;
+        }
+
         public override bool FileExists(string virtualPath)
         {
             bool exists = base.FileExists(virtualPath);
-            return exists || AssemblyResourceManager.IsEmbeddedViewResourcePath(virtualPath);
+            return exists || _portableArea.IsEmbeddedViewResourcePath(virtualPath);
         }
 
         public override VirtualFile GetFile(string virtualPath)
         {
-            if (AssemblyResourceManager.IsEmbeddedViewResourcePath(virtualPath) && !base.FileExists(virtualPath))
+            if (_portableArea.IsEmbeddedViewResourcePath(virtualPath) && !base.FileExists(virtualPath))
             {
-                var resourceStore = AssemblyResourceManager.GetResourceStoreFromVirtualPath(virtualPath);
-                return new AssemblyResourceVirtualFile(virtualPath, resourceStore);
+                var resourceStore = _portableArea.GetResourceStoreFromVirtualPath(virtualPath);
+                return new PortableAreaVirtualFile(virtualPath, resourceStore);
             }
-            else
-            {
-                return base.GetFile(virtualPath);
-            }
+            return base.GetFile(virtualPath);
         }
 
         public override System.Web.Caching.CacheDependency GetCacheDependency(string virtualPath,
@@ -32,17 +35,11 @@ namespace Aperea.MVC.PortableAreas
                                                                                   virtualPathDependencies,
                                                                               DateTime utcStart)
         {
-            if (AssemblyResourceManager.IsEmbeddedViewResourcePath(virtualPath))
+            if (_portableArea.IsEmbeddedViewResourcePath(virtualPath))
             {
                 return null;
             }
-            else
-            {
-                string[] dependencies =
-                    virtualPathDependencies.OfType<string>().Where(s => !s.ToLower().Contains("/views/inputbuilders")).
-                        ToArray();
-                return base.GetCacheDependency(virtualPath, dependencies, utcStart);
-            }
+            return base.GetCacheDependency(virtualPath, new string[0], utcStart);
         }
 
         public override string GetCacheKey(string virtualPath)
