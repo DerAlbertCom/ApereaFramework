@@ -4,6 +4,7 @@ using System.Security.Principal;
 using Aperea.EntityModels;
 using Aperea.MVC.StateProvider;
 using Aperea.Repositories;
+using Aperea.Services;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.MVC.Security
@@ -45,16 +46,8 @@ namespace Aperea.MVC.Security
 
         string[] GetRolesFromDatabase()
         {
-            var repository = ServiceLocator.Current.GetInstance<IRepository<Login>>();
-            var query = from l in repository.Entities
-                        where l.Loginname == Identity.Name && l.Active
-                        let groups = l.Groups
-                        from g in groups
-                        let roles = g.Roles
-                        from r in roles
-                        select r.RoleName;
-
-            return query.OrderBy(role => role).AsEnumerable().Select(role => role.ToLowerInvariant()).ToArray();
+            var rolesFinder = ServiceLocator.Current.GetInstance<IRolesFinder>();
+            return rolesFinder.GetRolesForIdentity(Identity).ToArray();
         }
 
         public IIdentity Identity { get; private set; }

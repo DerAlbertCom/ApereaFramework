@@ -66,12 +66,14 @@
     <Compile Include="Services\ILoginValidation.cs" />
     <Compile Include="Services\IRegistration.cs" />
     <Compile Include="Services\IRegistrationMail.cs" />
+    <Compile Include="Services\IRolesFinder.cs" />
     <Compile Include="Services\LoginValidation.cs" />
     <Compile Include="Services\Models\RegistrationMailModel.cs" />
     <Compile Include="Services\RegistrationConfirmationResult.cs" />
     <Compile Include="Services\Registration.cs" />
     <Compile Include="Services\RegistrationMail.cs" />
     <Compile Include="Services\RegistrationResult.cs" />
+    <Compile Include="Services\RolesFinder.cs" />
     <Compile Include="Settings\IMembershipSettings.cs" />
     <Compile Include="Settings\MembershipSettings.cs" />
   </ItemGroup>

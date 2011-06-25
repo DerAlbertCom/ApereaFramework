@@ -27,7 +27,7 @@ namespace Aperea.Services
                 return false;
             }
 
-            login.LastLogin = DateTime.UtcNow;
+            login.LoggedIn();
             _repository.SaveAllChanges();
             return true;
         }

@@ -32,11 +32,11 @@ namespace Aperea.MVC.Authentication.Controllers
             {
                 var result = _userRegistration.RegisterNewLogin(model.LoginName, model.EMail, model.Password,
                                                                 model.ConfirmPassword);
+                TempData.SetModel(model);
                 if (result == RegistrationResult.Ok)
                 {
                     return RedirectToAction("RegisterLoginOk");
                 }
-                TempData.SetModel(model);
                 ModelState.AddModelError("", result.Text);
             }
             return View(model);

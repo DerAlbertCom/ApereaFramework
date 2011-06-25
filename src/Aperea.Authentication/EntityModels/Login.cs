@@ -51,7 +51,7 @@ namespace Aperea.EntityModels
         [Required]
         public bool Active { get; private set; }
 
-        public DateTime? LastLogin { get;  set; }
+        public DateTime? LastLogin { get;  private set; }
 
         public void SetPassword(string password, IHashing hashing)
         {
@@ -89,6 +89,11 @@ namespace Aperea.EntityModels
                 return;
             }
             Groups.Add(adminGroup);
+        }
+
+        public void LoggedIn()
+        {
+            LastLogin = DateTime.UtcNow;
         }
     }
 }

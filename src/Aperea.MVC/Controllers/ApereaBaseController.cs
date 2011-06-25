@@ -7,7 +7,6 @@ namespace Aperea.MVC.Controllers
     [DatabaseContext]
     public abstract class ApereaBaseController : Controller
     {
-
         protected ActionResult RedirectToHomepage()
         {
             return Redirect("~/");
