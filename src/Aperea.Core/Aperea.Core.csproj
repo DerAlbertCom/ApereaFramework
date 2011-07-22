@@ -84,7 +84,7 @@
     <Compile Include="IModuleInfo.cs" />
     <Compile Include="Infrastructure\Bootstrap\Bootstrapper.cs" />
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
-    <Compile Include="Infrastructure\Data\ApereaContractResolver.cs" />
+    <Compile Include="Infrastructure\Data\PrivateSetterContractResolver.cs" />
     <Compile Include="Infrastructure\Data\DocumentSessionFactory.cs" />
     <Compile Include="Infrastructure\Data\IDocumentSessionFactory.cs" />
     <Compile Include="Initialize\ApplicationStart.cs" />

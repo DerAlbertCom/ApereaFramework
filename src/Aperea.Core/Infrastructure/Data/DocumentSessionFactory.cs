@@ -9,17 +9,13 @@ namespace Aperea.Infrastructure.Data
 
         public DocumentSessionFactory()
         {
-            _documentStore = new DocumentStore()
-                             {
-                                 Url = "http://localhost:8080"
-                             };
-
-            _documentStore.Conventions.JsonContractResolver = new ApereaContractResolver(true);
-
+            _documentStore = new DocumentStore();
+            _documentStore.ConnectionStringName = "RavenDb";
+            _documentStore.Conventions.JsonContractResolver = new PrivateSetterContractResolver(true);
             _documentStore.Initialize();
         }
 
-        public IDocumentSession CreateDbContext()
+        public IDocumentSession CreateDocumentSession()
         {
             return _documentStore.OpenSession("Foobar");
         }

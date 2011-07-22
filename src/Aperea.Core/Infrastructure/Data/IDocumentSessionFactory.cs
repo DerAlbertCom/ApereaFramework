@@ -6,6 +6,6 @@ namespace Aperea.Infrastructure.Data
 {
     public interface IDocumentSessionFactory
     {
-        IDocumentSession CreateDbContext();
+        IDocumentSession CreateDocumentSession();
     }
 }

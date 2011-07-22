@@ -12,6 +12,6 @@ namespace Aperea.Specs.Data
             var a = Subject.DbContext;
         };
 
-        It should_call_the_dbcontextfactory = ()=> The<IDocumentSessionFactory>().WasToldTo(cf => cf.CreateDbContext());
+        It should_call_the_dbcontextfactory = ()=> The<IDocumentSessionFactory>().WasToldTo(cf => cf.CreateDocumentSession());
     }
 }

@@ -4,9 +4,9 @@ using Newtonsoft.Json.Serialization;
 
 namespace Aperea.Infrastructure.Data
 {
-    public class ApereaContractResolver : DefaultContractResolver
+    public class PrivateSetterContractResolver : DefaultContractResolver
     {
-        public ApereaContractResolver(bool shareCache):base(shareCache)
+        public PrivateSetterContractResolver(bool shareCache):base(shareCache)
         {
             DefaultMembersSearchFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic;
         }
