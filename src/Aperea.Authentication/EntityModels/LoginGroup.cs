@@ -17,7 +17,7 @@ namespace Aperea.EntityModels
             GroupName = groupName;
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         [StringLength(256)]
         public string GroupName { get; set; }

@@ -13,5 +13,9 @@ namespace Aperea.Data
                 databaseSeeder.Seed();
             }
         }
+
+        static DatabaseSeeder()
+        {
+        }
     }
 }

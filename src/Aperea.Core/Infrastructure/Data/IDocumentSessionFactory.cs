@@ -4,7 +4,7 @@ using Raven.Client.Document;
 
 namespace Aperea.Infrastructure.Data
 {
-    public interface IDbContextFactory
+    public interface IDocumentSessionFactory
     {
         IDocumentSession CreateDbContext();
     }

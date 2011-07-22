@@ -7,7 +7,7 @@ namespace Aperea.Infrastructure.Data
     {
         readonly Lazy<IDocumentSession> _context;
 
-        public DatabaseContext(IDbContextFactory contextFactory)
+        public DatabaseContext(IDocumentSessionFactory contextFactory)
         {
             _context = new Lazy<IDocumentSession>(contextFactory.CreateDbContext);
         }

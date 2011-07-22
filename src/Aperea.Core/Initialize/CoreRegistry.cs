@@ -22,6 +22,8 @@ namespace Aperea.Initialize
                 c.WithDefaultConventions();
                 For<IDatabaseContext>()
                     .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.Hybrid));
+
+                For<IDocumentSessionFactory>().LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.Singleton));
             });
         }
     }

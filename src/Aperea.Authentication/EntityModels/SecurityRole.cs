@@ -16,7 +16,7 @@ namespace Aperea.EntityModels
             RoleName = roleName;
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         [StringLength(256)]
         public string RoleName { get; private set; }

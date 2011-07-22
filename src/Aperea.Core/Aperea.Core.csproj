@@ -84,9 +84,12 @@
     <Compile Include="IModuleInfo.cs" />
     <Compile Include="Infrastructure\Bootstrap\Bootstrapper.cs" />
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
-    <Compile Include="Infrastructure\Data\IDbContextFactory.cs" />
+    <Compile Include="Infrastructure\Data\ApereaContractResolver.cs" />
+    <Compile Include="Infrastructure\Data\DocumentSessionFactory.cs" />
+    <Compile Include="Infrastructure\Data\IDocumentSessionFactory.cs" />
     <Compile Include="Initialize\ApplicationStart.cs" />
     <Compile Include="Initialize\CoreRegistry.cs" />
+    <Compile Include="Initialize\DatabaseInitialiser.cs" />
     <Compile Include="Messaging\IHandler.cs" />
     <Compile Include="Messaging\IMessageBus.cs" />
     <Compile Include="Messaging\MessageBus.cs" />

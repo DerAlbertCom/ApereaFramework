@@ -25,7 +25,7 @@ namespace Aperea.EntityModels
             Active = false;
         }
 
-        public int Id { get; private set; }
+        public string Id { get; private set; }
 
         [Required]
         public DateTime Created { get; private set; }

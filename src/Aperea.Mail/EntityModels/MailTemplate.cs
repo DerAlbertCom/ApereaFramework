@@ -4,7 +4,7 @@ namespace Aperea.EntityModels
 {
     public class MailTemplate
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [StringLength(255)]
