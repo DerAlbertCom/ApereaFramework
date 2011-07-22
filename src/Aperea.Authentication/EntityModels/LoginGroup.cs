@@ -10,7 +10,7 @@ namespace Aperea.EntityModels
         {
             Roles = new HashSet<SecurityRole>();
         }
-
+        
         public LoginGroup(string groupName)
         {
             Roles = new HashSet<SecurityRole>();
@@ -28,8 +28,9 @@ namespace Aperea.EntityModels
             {
                 return;
             }
-            Roles.Add(role);
+           Roles.Add(role);
         }
+
         public virtual ICollection<SecurityRole> Roles { get; set; }
 
         public void RemoveRole(SecurityRole role)

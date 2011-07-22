@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Generic;
 using Aperea.MVC.PortableAreas;
-using Microsoft.Practices.ServiceLocation;
 
 // based on http://mvccontrib.codeplex.com/
 
@@ -9,6 +8,13 @@ namespace Aperea.MVC.Controllers
 {
     public class EmbeddedResourceController : Controller
     {
+        readonly IPortableArea _portableArea;
+
+        public EmbeddedResourceController(IPortableArea portableArea)
+        {
+            _portableArea = portableArea;
+        }
+
         public ActionResult Index(string resourceName, string resourcePath)
         {
             if (!string.IsNullOrEmpty(resourcePath))
@@ -17,9 +23,8 @@ namespace Aperea.MVC.Controllers
             }
 
             var areaName = (string) RouteData.Values["area"];
-            var resourceManager = ServiceLocator.Current.GetInstance<IPortableArea>();
 
-            var resourceStore = resourceManager.GetResourceStoreForArea(areaName);
+            var resourceStore = _portableArea.GetResourceStoreForArea(areaName);
             var resourceStream = resourceStore.GetResourceStream("~." + resourceName);
 
             if (string.IsNullOrEmpty(resourceName))

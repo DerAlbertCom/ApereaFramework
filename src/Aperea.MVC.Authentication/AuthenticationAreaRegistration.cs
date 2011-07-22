@@ -13,7 +13,7 @@ namespace Aperea.MVC.Authentication
         protected override void RegisterDefaultRoutes(AreaRegistrationContext context)
         {
             base.RegisterDefaultRoutes(context);
-            context.MapRoute("Account" + "-Default"
+            context.MapRoute(AreaName + "-Default"
                  , "{culture}/"+AreaRoutePrefix+"/{controller}/{action}/{id}",
                  new
                  {

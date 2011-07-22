@@ -39,28 +39,49 @@ namespace Aperea.Data
         {
             if (version < 1)
             {
-                var userRole = _roleFactory.GetRole(MembershipRoles.Authorized);
-                var adminRole = _roleFactory.GetRole(MembershipRoles.Administrator);
-                var userGroup = _groupFactory.GetGroup(MembershipGroups.Users);
-                var adminGroup = _groupFactory.GetGroup(MembershipGroups.Administrators);
-                userGroup.AddRole(userRole);
-                adminGroup.AddRole(userRole);
-                adminGroup.AddRole(adminRole);
-                if (!string.IsNullOrEmpty(_settings.AdministratorLogin))
-                {
-                    if (!_repository.Entities.Any(l => l.Loginname == _settings.AdministratorLogin))
-                    {
-                        var login = new Login(_settings.AdministratorLogin, _settings.AdministratorEMail);
-                        login.SetPassword(_settings.AdministratorPassword, _hashing);
-                        login.Confirm();
-                        login.AddGroup(adminGroup);
-                        login.AddGroup(userGroup);
-                        _repository.Add(login);
-                    }
-                }
-                _repository.SaveAllChanges();                
+                CreateVersion1();
             }
             return CurrentVersion;
+        }
+
+        void CreateVersion1()
+        {
+            var userGroup = CreateUserGroup();
+            var adminGroup = CreateAdminGroup();
+
+            if (!string.IsNullOrEmpty(_settings.AdministratorLogin))
+            {
+                if (!_repository.Entities.Any(l => l.Loginname == _settings.AdministratorLogin))
+                {
+                    var login = new Login(_settings.AdministratorLogin, _settings.AdministratorEMail);
+                    login.SetPassword(_settings.AdministratorPassword, _hashing);
+                    login.Confirm();
+                    login.AddGroup(adminGroup);
+                    login.AddGroup(userGroup);
+                    _repository.Add(login);
+                }
+            }
+            _repository.SaveAllChanges();
+        }
+
+        LoginGroup CreateUserGroup()
+        {
+            var userGroup = _groupFactory.GetGroup(AuthenticationGroups.Users);
+            userGroup.AddRole(_roleFactory.GetRole(AuthenticationRoles.Authorized));
+            _repository.SaveAllChanges();
+            return userGroup;
+        }
+
+        LoginGroup CreateAdminGroup()
+        {
+            var adminGroup = _groupFactory.GetGroup(AuthenticationGroups.Administrators);
+            adminGroup.AddRole(_roleFactory.GetRole(AuthenticationRoles.Authorized));
+            adminGroup.AddRole(_roleFactory.GetRole(AuthenticationRoles.Administrator));
+            adminGroup.AddRole(_roleFactory.GetRole(AuthenticationRoles.EditGroups));
+            adminGroup.AddRole(_roleFactory.GetRole(AuthenticationRoles.EditLogins));
+            adminGroup.AddRole(_roleFactory.GetRole(AuthenticationRoles.ShowLogins));
+            _repository.SaveAllChanges();
+            return adminGroup;
         }
     }
 }

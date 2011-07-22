@@ -4,23 +4,28 @@ using System.Web.Security;
 
 namespace Aperea.MVC.Security
 {
-    public class ApereaFormsAuthentication
+    public static class ApereaFormsAuthentication
     {
-        public const int TicketVersion = 4711;
+        const int TicketVersion = 4711;
+
         public static string FormsCookieName
         {
             get { return FormsAuthentication.FormsCookieName + "_Aperea"; }
         }
-        public static void SignOn(string username,  bool rememberMe)
+
+        public static void SignOn(string loginName, bool rememberMe)
         {
-            var authTicket = new FormsAuthenticationTicket(TicketVersion, username, DateTime.Now,
+            var authTicket = new FormsAuthenticationTicket(TicketVersion, loginName, DateTime.Now,
                                                            DateTime.Now.Add(FormsAuthentication.Timeout),
                                                            rememberMe,
                                                            string.Empty);
 
             string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
 
-            var authCookie = new HttpCookie(FormsCookieName, encryptedTicket);
+            var authCookie = new HttpCookie(FormsCookieName, encryptedTicket)
+                             {
+                                 Secure = FormsAuthentication.RequireSSL
+                             };
             HttpContext.Current.Response.Cookies.Add(authCookie);
         }
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Principal;
+using System.Web.Security;
 using Aperea.EntityModels;
 using Aperea.MVC.StateProvider;
-using Aperea.Repositories;
 using Aperea.Services;
 using Microsoft.Practices.ServiceLocation;
 
@@ -13,16 +13,11 @@ namespace Aperea.MVC.Security
     {
         readonly IStateStorage _state = new HttpContextStateStorage();
 
-        public ApereaPrincipal()
-        {
-            Identity = new ApereaIdentity();
-        }
-
         string[] _roles = new string[0];
 
-        public ApereaPrincipal(IIdentity identity)
+        public ApereaPrincipal(FormsAuthenticationTicket authenticationTicket)
         {
-            Identity = identity;
+            Identity = new ApereaIdentity(authenticationTicket);
         }
 
         public ApereaPrincipal(Login login)

@@ -57,7 +57,7 @@ namespace Aperea.Services
                 }
                 login = new Login(loginname, email);
                 login.SetPassword(password, _hashing);
-                login.AddGroup(_groupFactory.GetGroup(MembershipGroups.Users));
+                login.AddGroup(_groupFactory.GetGroup(AuthenticationGroups.Users));
                 _repository.Add(login);
                 _repository.SaveAllChanges();
                 remoteAction = _remoteActionChamber.CreateAction(ConfirmLoginAction, loginname);
@@ -68,10 +68,12 @@ namespace Aperea.Services
 
         string Normalize(string text)
         {
+            const string twoSpaces = "  ";
+            const string oneSpace = " ";
             text = text.ToLowerInvariant();
-            while (text.Contains("  "))
+            while (text.Contains(twoSpaces))
             {
-                text = text.Replace("  ", " ");
+                text = text.Replace(twoSpaces, oneSpace);
             }
             return text;
         }

@@ -31,7 +31,7 @@ namespace Aperea.MVC.PortableAreas
             RegisterAreaEmbeddedResources();
         }
 
-        void CreateStaticResourceRoute(AreaRegistrationContext context, string subfolderName)
+        public void CreateStaticResourceRoute(AreaRegistrationContext context, string subfolderName)
         {
             context.MapRoute(AreaName + "-" + subfolderName,
                              AreaRoutePrefix + "/" + subfolderName + "/{resourceName}",

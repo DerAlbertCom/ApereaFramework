@@ -10,16 +10,15 @@ namespace Aperea.MVC.Security
     {
         const string AuthenticationName = "ApereaFramework";
 
-        public ApereaIdentity()
+        ApereaIdentity()
         {
             Name = "";
             IsAuthenticated = false;
             AuthenticationType = AuthenticationName;
         }
 
-        public ApereaIdentity(FormsAuthenticationTicket ticket)
+        public ApereaIdentity(FormsAuthenticationTicket ticket):this()
         {
-            AuthenticationType = AuthenticationName;
             IsAuthenticated = IsValidLogin(ticket.Name);
 
             if (IsAuthenticated)
@@ -28,17 +27,16 @@ namespace Aperea.MVC.Security
             }
         }
 
+        public ApereaIdentity(Login login):this()
+        {
+            Name = login.Loginname;
+            IsAuthenticated = login.Active;
+        }
+        
         bool IsValidLogin(string loginName)
         {
             var validation = ServiceLocator.Current.GetInstance<ILoginValidation>();
             return validation.IsValidLogin(loginName);
-        }
-
-        public ApereaIdentity(Login login)
-        {
-            Name = login.Loginname;
-            IsAuthenticated = true;
-            AuthenticationType = AuthenticationName;
         }
 
         public string Name { get; private set; }

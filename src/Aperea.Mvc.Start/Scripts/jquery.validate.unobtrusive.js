@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery-1.6.1.js" />
+﻿/// <reference path="jquery-1.6.2.js" />
 /// <reference path="jquery.validate.js" />
 
 /*!

@@ -1,6 +1,6 @@
 namespace Aperea.Security
 {
-    public static class MembershipGroups
+    public static class AuthenticationGroups
     {
         public const string Administrators = "Administrators";
         public const string Users = "Users";

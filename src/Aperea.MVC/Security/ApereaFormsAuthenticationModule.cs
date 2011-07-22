@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
@@ -19,7 +20,7 @@ namespace Aperea.MVC.Security
         }
 
 
-        private void OnEndRequest(object sender, EventArgs eventArgs)
+        void OnEndRequest(object sender, EventArgs eventArgs)
         {
             HttpContext context = ((HttpApplication) sender).Context;
             if (context.Response.StatusCode == 401)
@@ -39,17 +40,17 @@ namespace Aperea.MVC.Security
             }
         }
 
-        private T GetInstance<T>()
+        T GetInstance<T>()
         {
             return ServiceLocator.Current.GetInstance<T>();
         }
 
-        private HttpContextBase Context
+        HttpContextBase Context
         {
             get { return GetInstance<HttpContextBase>(); }
         }
 
-        private void OnAuthenticateRequest(object sender, EventArgs eventArgs)
+        void OnAuthenticateRequest(object sender, EventArgs eventArgs)
         {
             HttpCookie authCookie = Context.Request.Cookies[ApereaFormsAuthentication.FormsCookieName];
 
@@ -61,21 +62,23 @@ namespace Aperea.MVC.Security
             SetPrincipal(authCookie);
         }
 
-        private void SetPrincipal(HttpCookie authCookie)
+        void SetPrincipal(HttpCookie authCookie)
         {
-            FormsAuthenticationTicket authTicket = null;
+            FormsAuthenticationTicket authTicket;
             try
             {
                 authTicket = FormsAuthentication.Decrypt(authCookie.Value);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return;
+                ApereaFormsAuthentication.SignOut();
+                throw new SecurityException("Invalid authentication cookie", e);
             }
+
             if (authTicket == null)
                 return;
 
-            Context.User = new ApereaPrincipal(new ApereaIdentity(authTicket));
+            Context.User = new ApereaPrincipal(authTicket);
             Thread.CurrentPrincipal = Context.User;
         }
     }

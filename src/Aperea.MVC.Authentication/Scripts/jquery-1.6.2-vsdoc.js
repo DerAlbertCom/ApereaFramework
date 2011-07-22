@@ -4,11 +4,11 @@
 * intended to be used only for design-time IntelliSense.  Please use the
 * standard jQuery library for all production use.
 *
-* Comment version: 1.6.1
+* Comment version: 1.6.2
 */
 
 /*!
-* jQuery JavaScript Library v1.6.1
+* jQuery JavaScript Library v1.6.2
 * http://jquery.com/
 *
 * Distributed in whole under the terms of the MIT
@@ -843,20 +843,23 @@ jQuery.attr = function( elem, name, value, pass ) {
 			notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
 
 		// Normalize the name if needed
-		name = notxml && jQuery.attrFix[ name ] || name;
+		if ( notxml ) {
+			name = jQuery.attrFix[ name ] || name;
 
-		hooks = jQuery.attrHooks[ name ];
+			hooks = jQuery.attrHooks[ name ];
 
-		if ( !hooks ) {
-			// Use boolHook for boolean attributes
-			if ( rboolean.test( name ) &&
-				(typeof value === "boolean" || value === undefined || value.toLowerCase() === name.toLowerCase()) ) {
+			if ( !hooks ) {
+				// Use boolHook for boolean attributes
+				if ( rboolean.test( name ) ) {
 
-				hooks = boolHook;
+					hooks = boolHook;
 
-			// Use formHook for forms and if the name contains certain characters
-			} else if ( formHook && (jQuery.nodeName( elem, "form" ) || rinvalidChar.test( name )) ) {
-				hooks = formHook;
+				// Use formHook for forms and if the name contains certain characters
+				} else if ( formHook && name !== "className" &&
+					(jQuery.nodeName( elem, "form" ) || rinvalidChar.test( name )) ) {
+
+					hooks = formHook;
+				}
 			}
 		}
 
@@ -874,8 +877,8 @@ jQuery.attr = function( elem, name, value, pass ) {
 				return value;
 			}
 
-		} else if ( hooks && "get" in hooks && notxml ) {
-			return hooks.get( elem, name );
+		} else if ( hooks && "get" in hooks && notxml && (ret = hooks.get( elem, name )) !== null ) {
+			return ret;
 
 		} else {
 
@@ -973,8 +976,21 @@ jQuery.browser = { "msie": true,
 "version": '9.0' };
 jQuery.buildFragment = function( args, nodes, scripts ) {
 
-	var fragment, cacheable, cacheresults,
-		doc = (nodes && nodes[0] ? nodes[0].ownerDocument || nodes[0] : document);
+	var fragment, cacheable, cacheresults, doc;
+
+  // nodes may contain either an explicit document object,
+  // a jQuery collection or context object.
+  // If nodes[0] contains a valid object to assign to doc
+  if ( nodes && nodes[0] ) {
+    doc = nodes[0].ownerDocument || nodes[0];
+  }
+
+  // Ensure that an attr object doesn't incorrectly stand in as a document object
+	// Chrome and Firefox seem to allow this to occur and will throw exception
+	// Fixes #8950
+	if ( !doc.createDocumentFragment ) {
+		doc = document;
+	}
 
 	// Only cache "small" (1/2 KB) HTML strings that are associated with the main document
 	// Cloning options loses the selected state, so don't cache them
@@ -1208,6 +1224,8 @@ jQuery.clone = function( elem, dataAndEvents, deepDataAndEvents ) {
 			}
 		}
 
+		srcElements = destElements = null;
+
 		// Return the cloned set
 		return clone;
 	};
@@ -1251,13 +1269,14 @@ jQuery.css = function( elem, name, extra ) {
 jQuery.cssHooks = { "opacity": {},
 "height": {},
 "width": {} };
-jQuery.cssNumber = { "zIndex": true,
+jQuery.cssNumber = { "fillOpacity": true,
 "fontWeight": true,
-"opacity": true,
-"zoom": true,
 "lineHeight": true,
+"opacity": true,
+"orphans": true,
 "widows": true,
-"orphans": true };
+"zIndex": true,
+"zoom": true };
 jQuery.cssProps = { "float": 'cssFloat' };
 jQuery.curCSS = function( elem, name, extra ) {
 
@@ -1380,7 +1399,10 @@ jQuery.data = function( elem, name, data, pvt /* Internal Use Only */ ) {
 			return thisCache[ internalKey ] && thisCache[ internalKey ].events;
 		}
 
-		return getByName ? thisCache[ jQuery.camelCase( name ) ] : thisCache;
+		return getByName ? 
+			// Check for both converted-to-camel and non-converted data property names
+			thisCache[ jQuery.camelCase( name ) ] || thisCache[ name ] :
+			thisCache;
 	};
 jQuery.dequeue = function( elem, type ) {
 /// <summary>
@@ -1693,7 +1715,7 @@ jQuery.find = function( query, context, extra, seed ) {
 			return oldSizzle(query, context, extra, seed);
 		};
 jQuery.fn = { "selector": '',
-"jquery": '1.6.1',
+"jquery": '1.6.2',
 "length": 0 };
 jQuery.fragments = {};
 jQuery.fx = function( elem, options, prop ) {
@@ -2256,10 +2278,11 @@ jQuery.prop = function( elem, name, value ) {
 		var ret, hooks,
 			notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
 
-		// Try to normalize/fix the name
-		name = notxml && jQuery.propFix[ name ] || name;
-		
-		hooks = jQuery.propHooks[ name ];
+		if ( notxml ) {
+			// Fix name and attach hooks
+			name = jQuery.propFix[ name ] || name;
+			hooks = jQuery.propHooks[ name ];
+		}
 
 		if ( value !== undefined ) {
 			if ( hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ) {
@@ -2536,14 +2559,14 @@ jQuery.speed = function( speed, easing, fn ) {
 		// Queueing
 		opt.old = opt.complete;
 		opt.complete = function( noUnmark ) {
+			if ( jQuery.isFunction( opt.old ) ) {
+				opt.old.call( this );
+			}
+
 			if ( opt.queue !== false ) {
 				jQuery.dequeue( this );
 			} else if ( noUnmark !== false ) {
 				jQuery._unmark( this );
-			}
-
-			if ( jQuery.isFunction( opt.old ) ) {
-				opt.old.call( this );
 			}
 		};
 
@@ -2574,6 +2597,8 @@ jQuery.style = function( elem, name, value, extra ) {
 			// convert relative number strings (+= or -=) to relative numbers. #7345
 			if ( type === "string" && rrelNum.test( value ) ) {
 				value = +value.replace( rrelNumFilter, "" ) + parseFloat( jQuery.css( elem, name ) );
+				// Fixes bug #9237
+				type = "number";
 			}
 
 			// If a number was passed in, add 'px' to the (except for certain CSS properties)
@@ -2902,7 +2927,8 @@ jQuery.prototype.add = function( selector, context ) {
 ///     &#10;1 - add(selector) 
 ///     &#10;2 - add(elements) 
 ///     &#10;3 - add(html) 
-///     &#10;4 - add(selector, context)
+///     &#10;4 - add(jQuery object) 
+///     &#10;5 - add(selector, context)
 /// </summary>
 /// <param name="selector" type="String">
 ///     A string representing a selector expression to find additional elements to add to the set of matched elements.
@@ -2932,30 +2958,31 @@ jQuery.prototype.addClass = function( value ) {
 /// </param>
 /// <returns type="jQuery" />
 
+		var classNames, i, l, elem,
+			setClass, c, cl;
+
 		if ( jQuery.isFunction( value ) ) {
-			return this.each(function(i) {
-				var self = jQuery(this);
-				self.addClass( value.call(this, i, self.attr("class") || "") );
+			return this.each(function( j ) {
+				jQuery( this ).addClass( value.call(this, j, this.className) );
 			});
 		}
 
 		if ( value && typeof value === "string" ) {
-			var classNames = (value || "").split( rspace );
+			classNames = value.split( rspace );
 
-			for ( var i = 0, l = this.length; i < l; i++ ) {
-				var elem = this[i];
+			for ( i = 0, l = this.length; i < l; i++ ) {
+				elem = this[ i ];
 
 				if ( elem.nodeType === 1 ) {
-					if ( !elem.className ) {
+					if ( !elem.className && classNames.length === 1 ) {
 						elem.className = value;
 
 					} else {
-						var className = " " + elem.className + " ",
-							setClass = elem.className;
+						setClass = " " + elem.className + " ";
 
-						for ( var c = 0, cl = classNames.length; c < cl; c++ ) {
-							if ( className.indexOf( " " + classNames[c] + " " ) < 0 ) {
-								setClass += " " + classNames[c];
+						for ( c = 0, cl = classNames.length; c < cl; c++ ) {
+							if ( !~setClass.indexOf( " " + classNames[ c ] + " " ) ) {
+								setClass += classNames[ c ] + " ";
 							}
 						}
 						elem.className = jQuery.trim( setClass );
@@ -4666,8 +4693,9 @@ jQuery.prototype.innerHeight = function() {
 /// </summary>
 /// <returns type="Number" />
 
-		return this[0] ?
-			parseFloat( jQuery.css( this[0], type, "padding" ) ) :
+		var elem = this[0];
+		return elem && elem.style ?
+			parseFloat( jQuery.css( elem, type, "padding" ) ) :
 			null;
 	};
 jQuery.prototype.innerWidth = function() {
@@ -4676,8 +4704,9 @@ jQuery.prototype.innerWidth = function() {
 /// </summary>
 /// <returns type="Number" />
 
-		return this[0] ?
-			parseFloat( jQuery.css( this[0], type, "padding" ) ) :
+		var elem = this[0];
+		return elem && elem.style ?
+			parseFloat( jQuery.css( elem, type, "padding" ) ) :
 			null;
 	};
 jQuery.prototype.insertAfter = function( selector ) {
@@ -5256,10 +5285,15 @@ jQuery.prototype.nextAll = function( until, selector ) {
 	};
 jQuery.prototype.nextUntil = function( until, selector ) {
 /// <summary>
-///     Get all following siblings of each element up to but not including the element matched by the selector.
+///     Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.
+///     &#10;1 - nextUntil(selector, filter) 
+///     &#10;2 - nextUntil(element, filter)
 /// </summary>
 /// <param name="until" type="String">
 ///     A string containing a selector expression to indicate where to stop matching following sibling elements.
+/// </param>
+/// <param name="selector" type="String">
+///     A string containing a selector expression to match elements against.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -5426,8 +5460,9 @@ jQuery.prototype.outerHeight = function( margin ) {
 /// </param>
 /// <returns type="Number" />
 
-		return this[0] ?
-			parseFloat( jQuery.css( this[0], type, margin ? "margin" : "border" ) ) :
+		var elem = this[0];
+		return elem && elem.style ?
+			parseFloat( jQuery.css( elem, type, margin ? "margin" : "border" ) ) :
 			null;
 	};
 jQuery.prototype.outerWidth = function( margin ) {
@@ -5439,8 +5474,9 @@ jQuery.prototype.outerWidth = function( margin ) {
 /// </param>
 /// <returns type="Number" />
 
-		return this[0] ?
-			parseFloat( jQuery.css( this[0], type, margin ? "margin" : "border" ) ) :
+		var elem = this[0];
+		return elem && elem.style ?
+			parseFloat( jQuery.css( elem, type, margin ? "margin" : "border" ) ) :
 			null;
 	};
 jQuery.prototype.parent = function( until, selector ) {
@@ -5509,10 +5545,15 @@ jQuery.prototype.parents = function( until, selector ) {
 	};
 jQuery.prototype.parentsUntil = function( until, selector ) {
 /// <summary>
-///     Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector.
+///     Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.
+///     &#10;1 - parentsUntil(selector, filter) 
+///     &#10;2 - parentsUntil(element, filter)
 /// </summary>
 /// <param name="until" type="String">
 ///     A string containing a selector expression to indicate where to stop matching ancestor elements.
+/// </param>
+/// <param name="selector" type="String">
+///     A string containing a selector expression to match elements against.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -5687,10 +5728,15 @@ jQuery.prototype.prevAll = function( until, selector ) {
 	};
 jQuery.prototype.prevUntil = function( until, selector ) {
 /// <summary>
-///     Get all preceding siblings of each element up to but not including the element matched by the selector.
+///     Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.
+///     &#10;1 - prevUntil(selector, filter) 
+///     &#10;2 - prevUntil(element, filter)
 /// </summary>
 /// <param name="until" type="String">
 ///     A string containing a selector expression to indicate where to stop matching preceding sibling elements.
+/// </param>
+/// <param name="selector" type="String">
+///     A string containing a selector expression to match elements against.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -5916,24 +5962,25 @@ jQuery.prototype.removeClass = function( value ) {
 /// </param>
 /// <returns type="jQuery" />
 
-		if ( jQuery.isFunction(value) ) {
-			return this.each(function(i) {
-				var self = jQuery(this);
-				self.removeClass( value.call(this, i, self.attr("class")) );
+		var classNames, i, l, elem, className, c, cl;
+
+		if ( jQuery.isFunction( value ) ) {
+			return this.each(function( j ) {
+				jQuery( this ).removeClass( value.call(this, j, this.className) );
 			});
 		}
 
 		if ( (value && typeof value === "string") || value === undefined ) {
-			var classNames = (value || "").split( rspace );
+			classNames = (value || "").split( rspace );
 
-			for ( var i = 0, l = this.length; i < l; i++ ) {
-				var elem = this[i];
+			for ( i = 0, l = this.length; i < l; i++ ) {
+				elem = this[ i ];
 
 				if ( elem.nodeType === 1 && elem.className ) {
 					if ( value ) {
-						var className = (" " + elem.className + " ").replace(rclass, " ");
-						for ( var c = 0, cl = classNames.length; c < cl; c++ ) {
-							className = className.replace(" " + classNames[c] + " ", " ");
+						className = (" " + elem.className + " ").replace( rclass, " " );
+						for ( c = 0, cl = classNames.length; c < cl; c++ ) {
+							className = className.replace(" " + classNames[ c ] + " ", " ");
 						}
 						elem.className = jQuery.trim( className );
 
@@ -5965,9 +6012,6 @@ jQuery.prototype.removeProp = function( name ) {
 /// </summary>
 /// <param name="name" type="String">
 ///     The name of the property to set.
-/// </param>
-/// <param name="" type="Boolean">
-///     A value to set for the property.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -6563,13 +6607,13 @@ jQuery.prototype.toggleClass = function( value, stateVal ) {
 ///     Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
 ///     &#10;1 - toggleClass(className) 
 ///     &#10;2 - toggleClass(className, switch) 
-///     &#10;3 - toggleClass(function(index, class), switch)
+///     &#10;3 - toggleClass(function(index, class, switch), switch)
 /// </summary>
 /// <param name="value" type="String">
 ///     One or more class names (separated by spaces) to be toggled for each element in the matched set.
 /// </param>
 /// <param name="stateVal" type="Boolean">
-///     A boolean value to determine whether the class should be added or removed.
+///     A Boolean (not just truthy/falsy) value to determine whether the class should be added or removed.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -6577,9 +6621,8 @@ jQuery.prototype.toggleClass = function( value, stateVal ) {
 			isBool = typeof stateVal === "boolean";
 
 		if ( jQuery.isFunction( value ) ) {
-			return this.each(function(i) {
-				var self = jQuery(this);
-				self.toggleClass( value.call(this, i, self.attr("class"), stateVal), stateVal );
+			return this.each(function( i ) {
+				jQuery( this ).toggleClass( value.call(this, i, this.className, stateVal), stateVal );
 			});
 		}
 
@@ -6618,8 +6661,8 @@ jQuery.prototype.trigger = function( type, data ) {
 /// <param name="type" type="String">
 ///     A string containing a JavaScript event type, such as click or submit.
 /// </param>
-/// <param name="data" type="Array">
-///     An array of additional parameters to pass along to the event handler.
+/// <param name="data" type="Object">
+///     Additional parameters to pass along to the event handler.
 /// </param>
 /// <returns type="jQuery" />
 
@@ -6758,7 +6801,13 @@ jQuery.prototype.val = function( value ) {
 					return ret;
 				}
 
-				return (elem.value || "").replace(rreturn, "");
+				ret = elem.value;
+
+				return typeof ret === "string" ? 
+					// handle most common string cases
+					ret.replace(rreturn, "") : 
+					// handle cases where value is null/undef or number
+					ret == null ? "" : ret;
 			}
 
 			return undefined;
