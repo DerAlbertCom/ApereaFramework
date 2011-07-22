@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Data.Entity;
+using Raven.Client;
 
 namespace Aperea.Infrastructure.Data
 {
     public class DatabaseContext : IDatabaseContext
     {
-        readonly Lazy<DbContext> _context;
+        readonly Lazy<IDocumentSession> _context;
 
         public DatabaseContext(IDbContextFactory contextFactory)
         {
-            _context = new Lazy<DbContext>(contextFactory.CreateDbContext);
+            _context = new Lazy<IDocumentSession>(contextFactory.CreateDbContext);
         }
 
-        public DbContext DbContext
+        public IDocumentSession DbContext
         {
             get { return _context.Value; }
         }

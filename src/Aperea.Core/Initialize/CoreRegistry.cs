@@ -17,7 +17,6 @@ namespace Aperea.Initialize
                 c.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
                 c.AddAllTypesOf<IDatabaseSeeder>();
                 c.AddAllTypesOf<IModuleInfo>();
-                c.AddAllTypesOf<IDatabaseModelBuilder>();
                 c.AddAllTypesOf(typeof (IRepository<>));
 
                 c.WithDefaultConventions();

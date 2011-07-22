@@ -1,10 +1,10 @@
 using System;
-using System.Data.Entity;
+using Raven.Client;
 
 namespace Aperea.Infrastructure.Data
 {
     public interface IDatabaseContext : IDisposable
     {
-        DbContext DbContext { get; }
+        IDocumentSession DbContext { get; }
     }
 }

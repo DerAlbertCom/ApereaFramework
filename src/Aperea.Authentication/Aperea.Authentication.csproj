@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -45,7 +42,6 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>Properties\FrameworkVersion.cs</Link>
     </Compile>
-    <Compile Include="Data\MembershipModelBuilder.cs" />
     <Compile Include="Data\MembershipSeeder.cs" />
     <Compile Include="EntityModels\Login.cs" />
     <Compile Include="EntityModels\LoginGroup.cs" />
@@ -92,9 +88,6 @@
       <Project>{E6146512-6608-49E8-974C-D1414A23AA7A}</Project>
       <Name>Aperea.Mail</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

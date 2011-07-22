@@ -15,7 +15,6 @@ namespace Aperea.EntityModels
         public string Subject { get; set; }
 
         [Required]
-        [MaxLength]
         public string Body { get; set; }
 
         [Required]
