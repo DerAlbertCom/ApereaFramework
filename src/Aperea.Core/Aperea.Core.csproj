@@ -31,11 +31,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    <Reference Include="AsyncCtpLibrary">
+      <HintPath>..\packages\RavenDB.1.0.0.397\lib\net40\AsyncCtpLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="MissingBitsFromClientProfile">
+      <HintPath>..\packages\RavenDB.1.0.0.397\lib\net40\MissingBitsFromClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.1.0.0.397\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Debug">
+      <HintPath>..\packages\RavenDB.1.0.0.397\lib\net40\Raven.Client.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB.1.0.0.397\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Json">
+      <HintPath>..\packages\RavenDB.1.0.0.397\lib\net40\Raven.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
@@ -56,11 +74,8 @@
     <Compile Include="Context\CultureContext.cs" />
     <Compile Include="Context\ICultureContext.cs" />
     <Compile Include="CoreModuleInfo.cs" />
-    <Compile Include="Data\ApereaDbContext.cs" />
-    <Compile Include="Data\CoreModelBuilder.cs" />
     <Compile Include="Data\CoreSeeder.cs" />
     <Compile Include="Data\DatabaseSeeder.cs" />
-    <Compile Include="Data\IDatabaseModelBuilder.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
     <Compile Include="EntityModels\Module.cs" />
     <Compile Include="EntityModels\SystemLanguage.cs" />
@@ -69,10 +84,12 @@
     <Compile Include="IModuleInfo.cs" />
     <Compile Include="Infrastructure\Bootstrap\Bootstrapper.cs" />
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />
-    <Compile Include="Infrastructure\Data\CreateDatabaseIfNotExistsWithoutModelCheck.cs" />
-    <Compile Include="Infrastructure\Data\IDbContextFactory.cs" />
+    <Compile Include="Infrastructure\Data\PrivateSetterContractResolver.cs" />
+    <Compile Include="Infrastructure\Data\DocumentSessionFactory.cs" />
+    <Compile Include="Infrastructure\Data\IDocumentSessionFactory.cs" />
     <Compile Include="Initialize\ApplicationStart.cs" />
     <Compile Include="Initialize\CoreRegistry.cs" />
+    <Compile Include="Initialize\DatabaseInitialiser.cs" />
     <Compile Include="Messaging\IHandler.cs" />
     <Compile Include="Messaging\IMessageBus.cs" />
     <Compile Include="Messaging\MessageBus.cs" />

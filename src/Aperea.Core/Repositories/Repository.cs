@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Aperea.Infrastructure.Data;
+using Raven.Client.Linq;
 
 namespace Aperea.Repositories
 {
@@ -15,7 +11,6 @@ namespace Aperea.Repositories
     {
         readonly IDatabaseContext _databaseContext;
 
-        DbSet<T> _objectSet;
 
         public Repository(IDatabaseContext databaseContext)
         {
@@ -24,29 +19,17 @@ namespace Aperea.Repositories
 
         public IQueryable<T> Include<TProperty>(Expression<Func<T, TProperty>> path)
         {
-            return Set.Include(path);
+            return Set;
         }
 
         public IQueryable<T> Include(params string[] paths)
         {
-            DbQuery<T> query = Set;
-            foreach (var path in paths)
-            {
-                query = query.Include(path);
-            }
-            return query;
+            return Set;
         }
 
-        internal DbSet<T> Set
+        internal IRavenQueryable<T> Set
         {
-            get
-            {
-                if (_objectSet == null)
-                {
-                    _objectSet = _databaseContext.DbContext.Set<T>();
-                }
-                return _objectSet;
-            }
+            get { return _databaseContext.DbContext.Query<T>(); }
         }
 
         public IQueryable<T> Entities
@@ -56,37 +39,17 @@ namespace Aperea.Repositories
 
         public void Add(T entity)
         {
-            Set.Add(entity);
+            _databaseContext.DbContext.Store(entity);
         }
 
         public void Remove(T entity)
         {
-            Set.Remove(entity);
+            _databaseContext.DbContext.Delete(entity);
         }
 
         public void SaveAllChanges()
         {
-            try
-            {
-                _databaseContext.DbContext.ChangeTracker.DetectChanges();
-                _databaseContext.DbContext.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-                var sb = new StringBuilder();
-                sb.AppendLine();
-                foreach (var error in e.EntityValidationErrors)
-                {
-                    sb.AppendLine("Entity: " + error.Entry.Entity.GetType());
-                    foreach (var validationError in error.ValidationErrors)
-                    {
-                        sb.AppendFormat("  {1} {0}", validationError.ErrorMessage, validationError.PropertyName);
-                        sb.AppendLine();
-                    }
-                    sb.AppendLine();
-                }
-                throw new InvalidDataException(sb.ToString(), e);
-            }
+            _databaseContext.DbContext.SaveChanges();
         }
     }
 }

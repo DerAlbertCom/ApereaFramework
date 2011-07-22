@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace Aperea.EntityModels
 {
@@ -16,7 +17,7 @@ namespace Aperea.EntityModels
             Culture = culture;
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         string _culture;
 
@@ -32,6 +33,7 @@ namespace Aperea.EntityModels
             }
         }
 
+        [JsonIgnore]
         public string DisplayName
         {
             get
