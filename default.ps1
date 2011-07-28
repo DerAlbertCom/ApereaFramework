@@ -54,7 +54,7 @@ Task SetPackageVersion {
     Set-PackageVersion "$nuspec_dir\Aperea.Authentication.nuspec" $version @{"Aperea.Mail"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.MVC.nuspec" $version @{"Aperea.Core"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.MVC.Authentication.nuspec" $version @{"Aperea.Authentication"=$depVersion;"Aperea.MVC"=$depVersion}
-    Set-PackageVersion "$nuspec_dir\Aperea.Mvc.Start.nuspec" $version @{"Aperea.Membership"="$version";"Aperea.MVC"="$version"}
+    Set-PackageVersion "$nuspec_dir\Aperea.Mvc.Start.nuspec" $version @{"Aperea.MVC.Authentication"="$version"}
 }
 
 Task NuGet -Depends ConvertStart, Build, SetPackageVersion  {

@@ -1,7 +1,7 @@
 ﻿
 
 function GetProjectFiles($projectDir) {
-	get-childitem $projectDir -Recurse -include *.resx,*.aspx,*.cshtml,*.cs,*.transform,*.txt -exclude AssemblyInfo.cs,Global.asax.cs,*.Designer.cs
+	get-childitem $projectDir -Recurse -include *.resx,*.cshtml,*.cs,*.transform,*.txt -exclude AssemblyInfo.cs,Global.asax.cs,*.Designer.cs
 }
 
 function GetRootNamespace($projectFile) {

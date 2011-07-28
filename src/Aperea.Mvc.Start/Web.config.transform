@@ -12,7 +12,7 @@
         <add key="IoC.IncludeAssemblies" value="$rootnamespace$;Aperea"/>
     </appSettings>
     <connectionStrings>
-        <add name="DbEntities" providerName="System.Data.SqlServerCe.4.0" connectionString="Data Source=|DataDirectory|DbEntities.sdf" />
+        <add name="RavenDB" connectionString="Url=http://localhost:8080" />
     </connectionStrings>
     <system.web>
         <pages>

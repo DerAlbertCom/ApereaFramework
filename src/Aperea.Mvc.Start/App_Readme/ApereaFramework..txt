@@ -1,11 +1,18 @@
 ﻿
 
 1. Change your Global.asax.cs Application_Start to
-
+    public class MvcApplication : System.Web.HttpApplication
+    {
         protected void Application_Start()
         {
             ApplicationStart.Initialize();
         }
+
+        protected void Application_End()
+        {
+            ApplicationStart.End();
+        }
+    }
 		 
 2. remove the "normal" MVC Initialization (you find the new intialization in the ApereaStart.Initialize)
 

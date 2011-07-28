@@ -2,15 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Mail</id>
-    <version>0.5.0.51</version>
+    <version>0.6.1.58</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Package description</description>
-    <tags>Mail, Template, RazorEngine, EntityFramework</tags>
+    <tags>Mail, Template, RazorEngine</tags>
     <dependencies>
-      <dependency id="Aperea.Core" version="[0.5.0.51]" />
+      <dependency id="Aperea.Core" version="[0.6.1.58]" />
       <dependency id="RazorEngine" version="[2.1,2.2)" />
     </dependencies>
     <frameworkAssemblies>
