@@ -100,6 +100,7 @@
     <Compile Include="StateProvider\StateStorageBase.cs" />
     <Compile Include="UrlBuilders\ActionUrlBuilder.cs" />
     <Compile Include="UrlBuilders\IActionUrlBuilder.cs" />
+    <Compile Include="UrlBuilders\RemoteActionUrlBuilder.cs" />
     <Compile Include="Views\AdaptiveViewEngine.cs" />
     <Compile Include="Views\AdaptiveViewEngineHelpers.cs" />
     <Compile Include="Views\AdaptiveViewEnginePathHelpers.cs" />
@@ -119,6 +120,10 @@
     <ProjectReference Include="..\Aperea.Authentication\Aperea.Authentication.csproj">
       <Project>{F40775FF-130B-4F76-BE4A-704173CBA04F}</Project>
       <Name>Aperea.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aperea.Mail\Aperea.Mail.csproj">
+      <Project>{E6146512-6608-49E8-974C-D1414A23AA7A}</Project>
+      <Name>Aperea.Mail</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

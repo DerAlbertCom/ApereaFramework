@@ -1,11 +1,10 @@
-﻿using Aperea.EntityModels;
+﻿using System;
+using Aperea.EntityModels;
 using Aperea.MVC.Controllers;
 using Aperea.MVC.RemoteActions;
-using Aperea.MVC.UrlBuilders;
 using Aperea.UrlBuilder;
-using ApereaStart.Controllers;
 
-namespace ApereaStart.UrlBuilders
+namespace Aperea.MVC.UrlBuilders
 {
     public class RemoteActionUrlBuilder : IRemoteActionUrlBuilder
     {
