@@ -1,23 +1,50 @@
-﻿using Raven.Client;
+﻿using System;
+using Aperea.Settings;
+using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Extensions;
 
 namespace Aperea.Infrastructure.Data
 {
     public class DocumentSessionFactory : IDocumentSessionFactory
     {
-        readonly DocumentStore _documentStore;
+        readonly IDatabaseSettings _settings;
+        readonly Lazy<DocumentStore> _lazyStore;
 
-        public DocumentSessionFactory()
+        public DocumentSessionFactory(IDatabaseSettings settings)
         {
-            _documentStore = new DocumentStore();
-            _documentStore.ConnectionStringName = "RavenDb";
-            _documentStore.Conventions.JsonContractResolver = new PrivateSetterContractResolver(true);
-            _documentStore.Initialize();
+            _settings = settings;
+            _lazyStore = new Lazy<DocumentStore>(CreateDocumentStore);
+        }
+
+        DocumentStore CreateDocumentStore()
+        {
+            var store = new DocumentStore
+                        {
+                            ConnectionStringName = _settings.ConnectionStringName,
+                            Conventions = {JsonContractResolver = new PrivateSetterContractResolver(true)}
+                        };
+            store.Initialize();
+            store.DatabaseCommands.EnsureDatabaseExists(_settings.DatabaseName);
+            return store;
         }
 
         public IDocumentSession CreateDocumentSession()
         {
-            return _documentStore.OpenSession("Foobar");
+            return _lazyStore.Value.OpenSession(_settings.DatabaseName);
+        }
+            
+        public IDocumentStore DocumentStore
+        {
+            get { return _lazyStore.Value; }
+        }
+
+        public void Dispose()
+        {
+            if (_lazyStore.IsValueCreated)
+            {
+                _lazyStore.Value.Dispose();
+            }
         }
     }
 }

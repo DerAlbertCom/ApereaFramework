@@ -68,8 +68,8 @@ namespace Aperea.Specs.Repositories
             var property = addEntity.GetType().GetProperty("Id");
             if (property == null)
                 return;
-            var id = (int) property.GetValue(addEntity, null);
-            if (id != 0)
+            var id = (string) property.GetValue(addEntity, null);
+            if (!string.IsNullOrEmpty(id))
             {
                 throw new InvalidDataException(string.Format("The entity {0} can only added once to the repository",
                                                              addEntity));

@@ -19,5 +19,9 @@ namespace ApereaStart.Initialize
         {
             filters.Add(new HandleErrorAttribute());
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

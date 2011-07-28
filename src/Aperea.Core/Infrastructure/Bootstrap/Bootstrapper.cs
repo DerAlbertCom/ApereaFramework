@@ -15,22 +15,30 @@ namespace Aperea.Infrastructure.Bootstrap
 
         public static void Start()
         {
-            new Bootstrapper().FromDependencyResolver().Execute();
-        }
-
-        Bootstrapper FromDependencyResolver()
-        {
-            var instances = ServiceLocator.Current.GetAllInstances<IBootstrapItem>();
-            _bootstrapItems.AddRange(instances.OrderBy(b=>b.Order));
-            return this;
+            new Bootstrapper().Execute();
         }
 
         void Execute()
         {
-            foreach (var bootstrapItem in _bootstrapItems)
+            var instances = GetAllInstances().OrderBy(b => b.Order);
+            foreach (var bootstrapItem in instances)
             {
                 bootstrapItem.Execute();
             }
+        }
+
+        public static void End()
+        {
+            var instances = GetAllInstances().OrderByDescending(b => b.Order);
+            foreach (var bootstrapItem in instances)
+            {
+                bootstrapItem.Dispose();
+            }
+        }
+
+        static IEnumerable<IBootstrapItem> GetAllInstances()
+        {
+            return ServiceLocator.Current.GetAllInstances<IBootstrapItem>();
         }
     }
 }

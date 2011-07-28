@@ -18,5 +18,9 @@ namespace Aperea.MVC.Views
         {
             get { return 0; }
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

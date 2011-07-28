@@ -10,5 +10,10 @@ namespace Aperea.Initialize
             RegisterStructureMap.Execute();
             Bootstrapper.Start();
         }
+
+        public static void End()
+        {
+            Bootstrapper.End();
+        }
     }
 }

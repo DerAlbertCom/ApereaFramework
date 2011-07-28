@@ -25,5 +25,9 @@ namespace Aperea.MVC.PortableAreas
         {
             get { return 0; }
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

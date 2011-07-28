@@ -1,11 +1,11 @@
-using System.Data.Entity;
+using System;
 using Raven.Client;
-using Raven.Client.Document;
 
 namespace Aperea.Infrastructure.Data
 {
-    public interface IDocumentSessionFactory
+    public interface IDocumentSessionFactory : IDisposable
     {
         IDocumentSession CreateDocumentSession();
+        IDocumentStore DocumentStore { get; }
     }
 }

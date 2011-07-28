@@ -68,7 +68,7 @@ namespace Aperea.EntityModels
             return PasswordHash == hashing.GetHash(password, GetLoginSalt());
         }
 
-        public virtual ICollection<LoginGroup> Groups { get; set; }
+        public virtual ICollection<LoginGroup> Groups { get; private set; }
 
         public void Confirm()
         {

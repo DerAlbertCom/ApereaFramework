@@ -55,5 +55,9 @@ namespace ApereaStart.Initialize
                 } // Parameter defaults
                 );
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

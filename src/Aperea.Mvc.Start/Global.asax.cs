@@ -1,6 +1,4 @@
 ﻿using Aperea.Initialize;
-using Aperea.MVC.Initialize;
-using Glimpse.Core;
 
 namespace ApereaStart
 {
@@ -12,6 +10,11 @@ namespace ApereaStart
         protected void Application_Start()
         {
             ApplicationStart.Initialize();
+        }
+
+        protected void Application_End()
+        {
+            ApplicationStart.End();
         }
     }
 }
