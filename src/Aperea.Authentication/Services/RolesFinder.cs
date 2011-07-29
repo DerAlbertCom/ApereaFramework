@@ -17,10 +17,9 @@ namespace Aperea.Services
 
         public IEnumerable<string> GetRolesForIdentity(IIdentity identity)
         {
-            var query = from l in _repository.Entities
-                        where l.Loginname == identity.Name && l.Active
-                        let groups = l.Groups
-                        from g in groups
+            var login = _repository.Entities.Where(l => l.Loginname == identity.Name && l.Active).Single();
+
+            var query = from g in login.Groups
                         let roles = g.Roles
                         from r in roles
                         select r.RoleName;
