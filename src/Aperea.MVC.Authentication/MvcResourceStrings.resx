@@ -147,4 +147,7 @@
   <data name="Text_PasswordResetRequest_TypeYourEMail" xml:space="preserve">
     <value>Please type in your E-Mail address with which you have registered before.</value>
   </data>
+    <data name="Error_UserName_Or_Password_is_not_correct">
+        <value xml:space="preserve">The user name or password provided is incorrect.</value>
+    </data>
 </root>

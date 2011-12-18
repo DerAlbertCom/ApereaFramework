@@ -20,4 +20,5 @@ nupkg/*
 src/packages/**/*
 .wave-vs.net.backup
 *.local.xml
+*.local
 *mm_cache.bin

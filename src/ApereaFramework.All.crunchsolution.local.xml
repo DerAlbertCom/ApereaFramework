@@ -1,5 +1,5 @@
 <SolutionConfiguration>
   <SolutionConfigured>true</SolutionConfigured>
-  <AutoEnableOnStartup>False</AutoEnableOnStartup>
+  <AutoEnableOnStartup>True</AutoEnableOnStartup>
   <AllowParallelTestExecution>false</AllowParallelTestExecution>
 </SolutionConfiguration>

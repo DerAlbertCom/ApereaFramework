@@ -42,10 +42,7 @@ namespace Aperea.MVC.Authentication.Controllers
                     }
                     return RedirectToHomepage();
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
+                ModelState.AddModelError("", MvcResourceStrings.Error_UserName_Or_Password_is_not_correct);
             }
 
             // If we got this far, something failed, redisplay form
