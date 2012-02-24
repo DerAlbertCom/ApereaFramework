@@ -15,12 +15,15 @@ Task Clean {
     Write-Host "Clean all Builds" -ForegroundColor Green
 	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Clean /v:quiet /p:Configuration=Release } 
 	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Clean /v:quiet /p:Configuration=Debug } 
+    Exec { msbuild "$src_dir\Aperea.Bootstrap.sln" /t:Clean /v:quiet /p:Configuration=Release } 
+    Exec { msbuild "$src_dir\Aperea.Bootstrap.sln" /t:Clean /v:quiet /p:Configuration=Debug } 
 }
 
 
 Task Build -Depends  Clean {
     Write-Host "Building ApereaFramework.All.sln" -ForegroundColor Green	
 	Install-Packages $src_dir "$src_dir\packages"
+    Exec { msbuild "$src_dir\Aperea.Bootstrap.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
 	Exec { msbuild "$src_dir\ApereaFramework.All.sln" /t:Build /v:quiet /p:Configuration=Release /p:OutDir="$out_dir\" } 
 }
 
@@ -48,6 +51,9 @@ Task SetPackageVersion {
     Write-Host "Updating NuGet-Packages Version to $version" -ForegroundColor Green
 
     $depVersion = "[$version]"
+
+    Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.nuspec" $version
+    Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
 	
     Set-PackageVersion "$nuspec_dir\Aperea.Core.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Mail.nuspec" $version @{"Aperea.Core"=$depVersion}
@@ -59,7 +65,9 @@ Task SetPackageVersion {
 
 Task NuGet -Depends ConvertStart, Build, SetPackageVersion  {
     Write-Host "Creating NuGet-Packages" -ForegroundColor Green   
-	md $nupgk_dir -force
+	md $nupgk_dir -force   
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
