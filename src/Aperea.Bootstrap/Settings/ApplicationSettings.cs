@@ -16,7 +16,19 @@ namespace Aperea.Settings
             string value = ConfigurationManager.AppSettings[key];
             if (string.IsNullOrEmpty(value))
                 return defaultFunc();
+            return ChangeType<T>(value);
+        }
+
+        static T ChangeType<T>(string value)
+        {
+            if (typeof(T).IsEnum)
+                return ConvertToEnum<T>(value);
             return (T) Convert.ChangeType(value, typeof (T), CultureInfo.InvariantCulture);
+        }
+
+        static T ConvertToEnum<T>(string value)
+        {
+            return (T) Enum.Parse(typeof (T), value);
         }
     }
 }

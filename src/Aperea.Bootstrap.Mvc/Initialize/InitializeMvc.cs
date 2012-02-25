@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
+using Aperea.ActionFilter;
 using Aperea.Infrastructure.Bootstrap;
 
 namespace Aperea.Initialize
@@ -11,12 +12,12 @@ namespace Aperea.Initialize
             AreaRegistration.RegisterAllAreas();
             BundleTable.Bundles.RegisterTemplateBundles();
             RegisterGlobalFilters(GlobalFilters.Filters);
-
         }
 
         void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            throw new System.NotImplementedException();
+            filters.Add(new HandleErrorAttribute());
+            filters.Add(new ValidateAntiForgeryTokenFilter());
         }
     }
 }

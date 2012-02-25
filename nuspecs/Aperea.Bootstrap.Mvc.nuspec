@@ -2,15 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Bootstrap.Mvc</id>
-    <version>0.7.0.63</version>
+    <version>0.7.3.63</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Package description</description>
-    <tags>StructureMap, CommonServiceLocator, ApereaFramework, AutoMapper</tags>
+    <description>Aperea.Bootstrap.MVC is a small opinionated bootstrapper for MVC 4 Applications, it Aperea.Bootstrap, AutoMapper and StructureMap.</description>
+    <tags>StructureMap, CommonServiceLocator, ApereaFramework, AutoMapper,ASP.NET MVC,mVC</tags>
     <dependencies>
-      <dependency id="Aperea.Bootstrap" version="[0.7.0.63]" />
+      <dependency id="Aperea.Bootstrap" version="[0.7.3.63]" />
       <dependency id="AspNetMvc" version="[4.0,5.0)" />
       <dependency id="AspNetRazor.Core" version="[2.0,3.0)" />
       <dependency id="AspNetWebPages.Core" version="[2.0,3.0)" />
@@ -30,6 +30,6 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\out\Aperea.Bootstrap.Mvc.dll" target="lib" />
+    <file src="..\out\Aperea.Bootstrap.Mvc.dll" target="lib\net40" />
   </files>
 </package>

@@ -91,6 +91,8 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>Properties\FrameworkVersion.cs</Link>
     </Compile>
+    <Compile Include="ActionFilter\RequireSslAttribute.cs" />
+    <Compile Include="ActionFilter\ValidateAntiForgeryTokenFilter.cs" />
     <Compile Include="Extensions\BundleExtensions.cs" />
     <Compile Include="Infrastructure\IoC\Registries\ControllerRegistryConvention.cs" />
     <Compile Include="Infrastructure\IoC\Registries\RegistryForAspNetMvc.cs" />

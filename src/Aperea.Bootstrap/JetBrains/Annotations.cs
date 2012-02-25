@@ -17,7 +17,7 @@
 using System;
 
 // ReSharper disable CheckNamespace
-namespace UserGroup
+namespace JetBrains.Annotations
 // ReSharper restore CheckNamespace
 {
     /// <summary>

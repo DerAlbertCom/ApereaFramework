@@ -54,6 +54,7 @@ Task SetPackageVersion {
 
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.Identity.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
 	
     Set-PackageVersion "$nuspec_dir\Aperea.Core.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Mail.nuspec" $version @{"Aperea.Core"=$depVersion}
@@ -68,14 +69,23 @@ Task NuGet -Depends ConvertStart, Build, SetPackageVersion  {
 	md $nupgk_dir -force   
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.MVC.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.MVC.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.Start.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Identity.nuspec" /OutputDirectory "$nupgk_dir\" }    
+#    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Core.nuspec" /OutputDirectory "$nupgk_dir\" }    
+#    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mail.nuspec" /OutputDirectory "$nupgk_dir\" }    
+#    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
+#    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.MVC.nuspec" /OutputDirectory "$nupgk_dir\" }    
+#    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.MVC.Authentication.nuspec" /OutputDirectory "$nupgk_dir\" }    
+#    Exec { .\tools\nuget.exe pack "$nuspec_dir\Aperea.Mvc.Start.nuspec" /OutputDirectory "$nupgk_dir\" }    
 }
 
+Task NuGetPush -Depends Nuget  {
+    $version = Get-AssemblyInfoVersion $version_file
+	
+    Write-Host "Creating NuGet-Packages" -ForegroundColor Green   
+    Exec { .\tools\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
+    Exec { .\tools\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
+    Exec { .\tools\nuget.exe push "$nupgk_dir\Aperea.Identity.$version.nupkg" }    
+}
 Task Release -Depends BumpRevision, NuGet  {
 }
 

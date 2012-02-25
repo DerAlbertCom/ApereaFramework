@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap", "Aperea.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap.Mvc", "Aperea.Bootstrap.Mvc\Aperea.Bootstrap.Mvc.csproj", "{CFA42276-9AC3-4442-9968-EAE058DC85CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Identity", "Aperea.Identity\Aperea.Identity.csproj", "{64D17521-04FC-41DD-8BEB-C428DEE281C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{CFA42276-9AC3-4442-9968-EAE058DC85CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA42276-9AC3-4442-9968-EAE058DC85CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA42276-9AC3-4442-9968-EAE058DC85CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
