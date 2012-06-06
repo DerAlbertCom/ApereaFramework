@@ -29,12 +29,6 @@ namespace Aperea.ActionFilter
             return filterContext.HttpContext.Request.GetHttpMethodOverride().ToUpperInvariant();
         }
 
-        public string Salt
-        {
-            get { return validateAntiForgery.Salt; }
-            set { validateAntiForgery.Salt = value; }
-        }
-
         public int Order
         {
             get { return validateAntiForgery.Order; }
