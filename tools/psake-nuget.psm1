@@ -1,7 +1,7 @@
 ﻿
 
 function GetProjectFiles($projectDir) {
-	get-childitem $projectDir -Recurse -include *.resx,*.aspx,*.cshtml,*.cs,*.transform,*.txt -exclude AssemblyInfo.cs,Global.asax.cs,*.Designer.cs
+	get-childitem $projectDir -Recurse -include *.resx,*.cshtml,*.cs,*.transform,*.txt -exclude AssemblyInfo.cs,Global.asax.cs,*.Designer.cs
 }
 
 function GetRootNamespace($projectFile) {
@@ -27,7 +27,7 @@ function Install-Packages {
 
 	$packages = Get-ChildItem $configFilter
 	foreach ($package in $packages) {
-	   .\tools\nuget install $package.Fullname  /OutputDirectory $packagesFolder
+	   .\src\.nuget\nuget.exe install $package.Fullname /OutputDirectory $packagesFolder
 	}
 }
 
@@ -68,6 +68,18 @@ function ConvertMvcProject {
 				(Get-Content $file.Fullname) -replace "$rootNamespace","`$rootnamespace`$" | Out-File $destName
 			}
 		}
+		
+		$objDir = Join-Path $outDir "obj"
+		if (Test-Path $objDir)
+		{
+			Remove-Item $objDir -Recurse -Force
+		}
+		
+		$objDir = Join-Path $outDir "bin"
+		if (Test-Path $objDir)
+		{
+			Remove-Item $objDir -Recurse -Force
+		}	
 	}
 }
 
