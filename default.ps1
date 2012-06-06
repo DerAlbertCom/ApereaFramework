@@ -73,13 +73,17 @@ Task CreateNuGet -Depends Build, SetPackageVersion  {
 Task Release -Depends CreateNuGet  {
 }
 
-Task NuGetPush -Depends Release, BumpRevision  {
+Task PushIt -Depends Release  {
     $version = Get-AssemblyInfoVersion $version_file
-    
-    Write-Host "Creating NuGet-Packages" -ForegroundColor Green   
+
+    Write-Host "Pushing NuGet-Packages" -ForegroundColor Green   
     Exec { nuget push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
     Exec { nuget push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
-    Exec { nuget push "$nupgk_dir\Aperea.Identity.$version.nupkg" }    
+    Exec { nuget push "$nupgk_dir\Aperea.Identity.$version.nupkg" }  
+}
+
+Task NuGetPush -Depends PushIt, BumpRevision  {
+    $version = Get-AssemblyInfoVersion $version_file    
 }
 
 
