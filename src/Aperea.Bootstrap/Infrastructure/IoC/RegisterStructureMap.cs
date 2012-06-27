@@ -12,7 +12,9 @@ namespace Aperea.Infrastructure.IoC
 
         public static void Execute()
         {
-            Container = new Container();
+            if (Container!=null)
+                return;
+            Container = ObjectFactory.Container;
             SetServiceLocator(Container);
             Container.Configure(c =>
                 {
