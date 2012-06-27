@@ -37,22 +37,55 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Reference Assemblies\Microsoft\Windows Identity Foundation\v3.5\Microsoft.IdentityModel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\FrameworkVersion.cs">
+      <Link>Properties\FrameworkVersion.cs</Link>
+    </Compile>
+    <Compile Include="Configuration\IRelyingPartyClientConfiguration.cs" />
+    <Compile Include="Configuration\IRelyingPartyClientConfigurator.cs" />
+    <Compile Include="Configuration\IRelyingPartyServerConfiguration.cs" />
+    <Compile Include="Configuration\IRelyingPartyServerConfigurator.cs" />
+    <Compile Include="Configuration\Issuer.cs" />
+    <Compile Include="Configuration\IWebServiceClientConfiguration.cs" />
+    <Compile Include="Configuration\IWebServiceClientConfigurator.cs" />
+    <Compile Include="Configuration\IWebServiceClientFactory.cs" />
+    <Compile Include="Configuration\IWebServiceServerConfiguration.cs" />
+    <Compile Include="Configuration\IWebServiceServerConfigurator.cs" />
+    <Compile Include="Configuration\RelyingPartyClientConfiguration.cs" />
+    <Compile Include="Configuration\RelyingPartyServerConfiguration.cs" />
+    <Compile Include="Configuration\TrustedIssuer.cs" />
+    <Compile Include="Configuration\WebServiceClientFactory.cs" />
+    <Compile Include="Configuration\WebServiceServerConfiguration.cs" />
+    <Compile Include="Configuration\WebWebServiceClientConfiguration.cs" />
     <Compile Include="IRelyingPartyConfiguration.cs" />
     <Compile Include="IRelyingPartyMetadataGenerator.cs" />
+    <Compile Include="Module\FederationAuthenticationModule.cs" />
     <Compile Include="RelyingPartyMetadataGenerator.cs" />
     <Compile Include="IIdentityProviderConfiguration.cs" />
     <Compile Include="IIdentityProviderMetadataGenerator.cs" />
     <Compile Include="IdentityProviderMetadataGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ConfigurationExtensions.cs" />
+    <Compile Include="Services\ServiceLocatorBehavior.cs" />
+    <Compile Include="Services\ServiceLocatorInstanceProvider.cs" />
+    <Compile Include="Services\WsFederationConfiguration.cs" />
+    <Compile Include="Services\WsFederationConfigurationBehavior.cs" />
+    <Compile Include="Services\WsFederationServiceHostFactory.cs" />
+    <Compile Include="Services\WsIssuerNameRegistry.cs" />
     <Compile Include="Settings\CertificateStore.cs" />
     <Compile Include="Settings\ICertificateSettings.cs" />
     <Compile Include="Settings\IEncryptionSettings.cs" />
@@ -64,6 +97,9 @@
       <Project>{C47866C6-D305-48D7-98AE-C540380F722F}</Project>
       <Name>Aperea.Bootstrap</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

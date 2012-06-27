@@ -49,9 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\FrameworkVersion.cs">
-      <Link>Properties\FrameworkVersion.cs</Link>
-    </Compile>
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Infrastructure\Bootstrap\Bootstrapper.cs" />
     <Compile Include="Infrastructure\Bootstrap\IBootstrapItem.cs" />

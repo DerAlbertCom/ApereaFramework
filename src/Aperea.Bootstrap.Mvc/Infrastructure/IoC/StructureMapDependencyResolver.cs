@@ -8,16 +8,16 @@ namespace Aperea.Infrastructure.IoC
 {
     public class StructureMapDependencyResolver : IDependencyResolver
     {
-        readonly IContainer _container;
+        readonly IContainer container;
 
         public StructureMapDependencyResolver(IContainer container)
         {
-            _container = container;
+            this.container = container;
         }
 
         public object GetService(Type serviceType)
         {
-            return _container.TryGetInstance(serviceType) ?? AddConcreteServiceTypeToContainer(serviceType);
+            return container.TryGetInstance(serviceType) ?? AddConcreteServiceTypeToContainer(serviceType);
         }
 
         object AddConcreteServiceTypeToContainer(Type serviceType)
@@ -26,13 +26,13 @@ namespace Aperea.Infrastructure.IoC
             {
                 return null;
             }
-            _container.Configure(x => x.For(serviceType).Use(serviceType));
-            return _container.TryGetInstance(serviceType);
+            container.Configure(x => x.For(serviceType).Use(serviceType));
+            return container.TryGetInstance(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _container.GetAllInstances(serviceType).Cast<object>();
+            return container.GetAllInstances(serviceType).Cast<object>();
         }
     }
 }
