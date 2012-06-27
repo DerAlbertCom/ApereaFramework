@@ -90,10 +90,10 @@
     <Compile Include="Infrastructure\IoC\Registries\RegistryForAspNetMvc.cs" />
     <Compile Include="Infrastructure\IoC\Registries\RegistryForAutoMapper.cs" />
     <Compile Include="Infrastructure\IoC\StructureMapDependencyResolver.cs" />
-    <Compile Include="Initialize\InitializeAutoMapper.cs" />
-    <Compile Include="Initialize\InitializeMvc.cs" />
-    <Compile Include="Mappings\AutoMapLinqProjection.cs" />
-    <Compile Include="Mappings\GenericMapperExtensions.cs" />
+    <Compile Include="Infrastructure\Initialize\InitializeAutoMapper.cs" />
+    <Compile Include="Infrastructure\Initialize\InitializeMvc.cs" />
+    <Compile Include="Infrastructure\Mappings\AutoMapLinqProjection.cs" />
+    <Compile Include="Infrastructure\Mappings\GenericMapperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

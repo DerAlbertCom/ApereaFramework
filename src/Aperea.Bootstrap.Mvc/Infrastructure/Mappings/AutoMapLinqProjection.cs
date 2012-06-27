@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using Aperea.Extensions;
 
-namespace Aperea.Mappings
+namespace Aperea.Infrastructure.Mappings
 {
     public class AutoMapLinqProjection
     {

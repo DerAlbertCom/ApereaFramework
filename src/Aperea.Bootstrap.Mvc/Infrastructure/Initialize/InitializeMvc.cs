@@ -1,8 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Aperea.ActionFilter;
 using Aperea.Infrastructure.Bootstrap;
 
-namespace Aperea.Initialize
+namespace Aperea.Infrastructure.Initialize
 {
     public class InitializeMvc : BootstrapItem
     {

@@ -4,7 +4,7 @@ using Aperea.Infrastructure.Bootstrap;
 using AutoMapper;
 using Microsoft.Practices.ServiceLocation;
 
-namespace Aperea.Initialize
+namespace Aperea.Infrastructure.Initialize
 {
     public class InitializeAutoMapper : BootstrapItem
     {

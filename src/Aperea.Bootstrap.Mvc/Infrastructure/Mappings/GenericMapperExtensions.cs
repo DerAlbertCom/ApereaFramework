@@ -4,7 +4,7 @@ using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
-namespace Aperea.Mappings
+namespace Aperea.Infrastructure.Mappings
 {
     public static class GenericMapperExtensions
     {
@@ -18,9 +18,19 @@ namespace Aperea.Mappings
             return AutoMapper.QueryableExtensions.Extensions.Project(source);
         }
 
-        public static IEnumerable<TResult> ToList<TResult>(this IProjectionExpression projectionExpression)
+        public static IEnumerable<TResult> ToEnumerable<TResult>(this IProjectionExpression projectionExpression)
         {
             return projectionExpression.To<TResult>().ToList();
+        }
+
+        public static IList<TResult> ToList<TResult>(this IProjectionExpression projectionExpression)
+        {
+            return projectionExpression.To<TResult>().ToList();
+        }
+
+        public static TResult[] ToArray<TResult>(this IProjectionExpression projectionExpression)
+        {
+            return projectionExpression.To<TResult>().ToArray();
         }
 
         public static TResult ToSingle<TResult>(this IProjectionExpression projectionExpression)
