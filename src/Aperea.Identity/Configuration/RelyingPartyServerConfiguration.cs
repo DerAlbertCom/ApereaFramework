@@ -58,7 +58,6 @@ namespace Aperea.Identity.Configuration
 
         ServiceHostFactoryBase serviceHostFactory;
 
-        Type serviceType;
 
         readonly ConcurrentDictionary<Type, WebServiceServerConfiguration> configurations =
             new ConcurrentDictionary<Type, WebServiceServerConfiguration>();
