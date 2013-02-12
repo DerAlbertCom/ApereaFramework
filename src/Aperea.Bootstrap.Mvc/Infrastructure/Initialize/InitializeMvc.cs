@@ -17,6 +17,7 @@ namespace Aperea.Infrastructure.Initialize
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new ValidateAntiForgeryTokenFilter());
+            filters.Add(new ReleaseAndDisposeAllHttpScopedObjectsFilter());
         }
     }
 }

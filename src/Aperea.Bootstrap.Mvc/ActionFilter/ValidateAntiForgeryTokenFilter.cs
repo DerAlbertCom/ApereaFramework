@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Web.Mvc;
+using Aperea.Attributes;
 
 namespace Aperea.ActionFilter
 {
@@ -8,7 +10,7 @@ namespace Aperea.ActionFilter
     {
         readonly ValidateAntiForgeryTokenAttribute validateAntiForgery = new ValidateAntiForgeryTokenAttribute();
 
-        static readonly Collection<string> validatingMethods = new Collection<string> {"POST", "DELETE", "PUT"};
+        static readonly Collection<string> _validatingMethods = new Collection<string> {"POST", "DELETE", "PUT"};
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -18,7 +20,12 @@ namespace Aperea.ActionFilter
                 return;
             }
 
-            if (validatingMethods.Contains(method))
+            if (filterContext.ActionDescriptor.GetCustomAttributes(typeof (DontValidateAntiforgeryTokenAttribute), true).Any())
+            {
+                return;
+            }
+
+            if (_validatingMethods.Contains(method))
             {
                 validateAntiForgery.OnAuthorization(filterContext);
             }
