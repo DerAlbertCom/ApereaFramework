@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IdentityModel.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Activation;
 using System.Web.Routing;
 using Aperea.Identity.Services;
-using Microsoft.IdentityModel.Protocols.WSIdentity;
-using Microsoft.IdentityModel.Protocols.WSTrust;
 
 namespace Aperea.Identity.Configuration
 {
@@ -27,7 +27,7 @@ namespace Aperea.Identity.Configuration
 
         RelyingPartyServerConfiguration()
         {
-            serviceHostFactory = new WSTrustServiceHostFactory();
+            serviceHostFactory = new WsFederationServiceHostFactory();
         }
 
         readonly List<Uri> audienceUris = new List<Uri>();
@@ -128,6 +128,11 @@ namespace Aperea.Identity.Configuration
         }
 
 
+        IEnumerable<DisplayClaim> IRelyingPartyServerConfiguration.GetClaims()
+        {
+            return GetClaims();
+        }
+
         public X509Certificate2 ServiceCertificate { get; private set; }
 
         public IRelyingPartyServerConfigurator Certificate(X509Certificate2 certificate)
@@ -139,12 +144,17 @@ namespace Aperea.Identity.Configuration
         }
 
 
-        readonly DisplayClaimCollection claimCollection = new DisplayClaimCollection();
+        readonly List<DisplayClaim> claimCollection = new List<DisplayClaim>();
 
         public IRelyingPartyServerConfigurator Claim(string type, bool optional)
         {
             claimCollection.Add(new DisplayClaim(type, null, null, null, optional));
             return this;
+        }
+
+        public void Claims(IEnumerable<DisplayClaim> displayClaims)
+        {
+            throw new NotImplementedException();
         }
 
         void IRelyingPartyServerConfigurator.Claims(IEnumerable<DisplayClaim> displayClaims)

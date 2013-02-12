@@ -1,19 +1,19 @@
 using System;
+using System.IdentityModel.Configuration;
 using Aperea.Identity.Configuration;
-using Microsoft.IdentityModel.Configuration;
 
 namespace Aperea.Identity.Services
 {
     public class WsFederationConfiguration : SecurityTokenServiceConfiguration
     {
-        readonly IRelyingPartyServerConfiguration configuration;
+        readonly IRelyingPartyServerConfiguration _configuration;
 
         public WsFederationConfiguration()
         {
-            configuration = RelyingPartyServerConfiguration.Current;
-            this.InitializeServiceConfiguration(configuration);
-
-            SaveBootstrapTokens = true;
+            _configuration = RelyingPartyServerConfiguration.Current;
+//            this.InitializeServiceConfiguration(_configuration);
+            SaveBootstrapContext = true;
+//            SaveBootstrapTokens = true;
         }
     }
 }

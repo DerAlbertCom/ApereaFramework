@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Metadata;
 using System.Security.Cryptography.X509Certificates;
-using Microsoft.IdentityModel.Protocols.WSIdentity;
 
 namespace Aperea.Identity.Configuration
 {

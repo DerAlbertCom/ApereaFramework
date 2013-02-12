@@ -1,13 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.IdentityModel.Metadata;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using Aperea.Identity.Settings;
-using Microsoft.IdentityModel.Protocols.WSFederation.Metadata;
-using Microsoft.IdentityModel.Protocols.WSIdentity;
-using Microsoft.IdentityModel.SecurityTokenService;
 
 namespace Aperea.Identity
 {
@@ -87,7 +85,7 @@ namespace Aperea.Identity
             foreach (string item in configuration.GetSecurityTokenServiceEndpoints())
             {
                 var endpoint = new EndpointAddress(item);
-                tokenService.SecurityTokenServiceEndpoints.Add(endpoint);
+//                tokenService.SecurityTokenServiceEndpoints.Add(endpoint);
             }
         }
 
@@ -96,7 +94,7 @@ namespace Aperea.Identity
             foreach (string item in configuration.GetPassiveRequestorEndpoints())
             {
                 var endpoint = new EndpointAddress(item);
-                tokenService.TargetScopes.Add(endpoint);
+//                tokenService.TargetScopes.Add(endpoint);
             }
         }
 
@@ -105,7 +103,7 @@ namespace Aperea.Identity
             foreach (string item in configuration.GetPassiveRequestorEndpoints())
             {
                 var endpoint = new EndpointAddress(item);
-                tokenService.PassiveRequestorEndpoints.Add(endpoint);
+//                tokenService.PassiveRequestorEndpoints.Add(endpoint);
             }
         }
     }

@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Aperea.Identity.Services
 {
@@ -11,7 +10,7 @@ namespace Aperea.Identity.Services
     {
         public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
         {
-            FederatedServiceCredentials.ConfigureServiceHost(serviceHostBase, new WsFederationConfiguration());
+//            FederatedServiceCredentials.ConfigureServiceHost(serviceHostBase, new WsFederationConfiguration());
         }
 
         public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)

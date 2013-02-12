@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using Aperea.Identity.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Aperea.Identity.Services
 {

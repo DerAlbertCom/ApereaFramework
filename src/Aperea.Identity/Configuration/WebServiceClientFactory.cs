@@ -3,8 +3,6 @@ using System.Collections.Concurrent;
 using System.IdentityModel.Tokens;
 using System.ServiceModel;
 using System.ServiceModel.Security;
-using Microsoft.IdentityModel.Protocols.WSTrust;
-using Microsoft.IdentityModel.Protocols.WSTrust.Bindings;
 
 namespace Aperea.Identity.Configuration
 {
@@ -32,22 +30,22 @@ namespace Aperea.Identity.Configuration
 
         public void CreateUserToken<T>(string username, string password)
         {
-            var binding = new UserNameWSTrustBinding(SecurityMode.TransportWithMessageCredential);
-            var factory = new WSTrustChannelFactory(binding, configuration.GetStsEndpoint());
-            factory.Credentials.UserName.UserName = username;
-            factory.Credentials.UserName.Password = password;
-            factory.TrustVersion = TrustVersion.WSTrust13;
-            var channel = factory.CreateChannel();
-            var requestSecurityToken = new RequestSecurityToken
-                                           {
-                                               RequestType = WSTrust13Constants.RequestTypes.Issue,
-                                               AppliesTo = configuration.GetEndpointFor<T>(),
-                                               KeyType = WSTrust13Constants.KeyTypes.Symmetric,
-                                               RequestDisplayToken = true
-                                           };
+            //var binding = new UserNameWSTrustBinding(SecurityMode.TransportWithMessageCredential);
+            //var factory = new WSTrustChannelFactory(binding, configuration.GetStsEndpoint());
+            //factory.Credentials.UserName.UserName = username;
+            //factory.Credentials.UserName.Password = password;
+            //factory.TrustVersion = TrustVersion.WSTrust13;
+            //var channel = factory.CreateChannel();
+            //var requestSecurityToken = new RequestSecurityToken
+            //                               {
+            //                                   RequestType = WSTrust13Constants.RequestTypes.Issue,
+            //                                   AppliesTo = configuration.GetEndpointFor<T>(),
+            //                                   KeyType = WSTrust13Constants.KeyTypes.Symmetric,
+            //                                   RequestDisplayToken = true
+            //                               };
 
-            securityTokens.AddOrUpdate(typeof (T), t => channel.Issue(requestSecurityToken),
-                                       (t, st) => channel.Issue(requestSecurityToken));
+            //securityTokens.AddOrUpdate(typeof (T), t => channel.Issue(requestSecurityToken),
+            //                           (t, st) => channel.Issue(requestSecurityToken));
         }
 
         public T CreateChannel<T>()
@@ -56,7 +54,7 @@ namespace Aperea.Identity.Configuration
             binding.Security.Message.EstablishSecurityContext = false;
             var factory = new ChannelFactory<T>(binding, configuration.GetEndpointFor<T>());
             factory.Credentials.SupportInteractive = false;
-            factory.ConfigureChannelFactory();
+//            factory.ConfigureChannelFactory();
 
             return factory.CreateChannelWithIssuedToken(securityTokens[typeof (T)]);
         }

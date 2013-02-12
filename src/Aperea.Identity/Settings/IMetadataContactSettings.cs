@@ -1,6 +1,6 @@
 using System;
 using System.Globalization;
-using Microsoft.IdentityModel.Protocols.WSFederation.Metadata;
+using System.IdentityModel.Metadata;
 
 namespace Aperea.Identity.Settings
 {

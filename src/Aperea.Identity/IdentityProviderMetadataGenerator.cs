@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.IdentityModel.Metadata;
+using System.IdentityModel.Protocols.WSTrust;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
@@ -8,18 +10,15 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Xml;
 using Aperea.Identity.Settings;
-using Microsoft.IdentityModel.Protocols.WSFederation.Metadata;
-using Microsoft.IdentityModel.Protocols.WSIdentity;
-using Microsoft.IdentityModel.SecurityTokenService;
 
 namespace Aperea.Identity
 {
     public class IdentityProviderMetadataGenerator : IIdentityProviderMetadataGenerator
     {
-        readonly IMetadataContactSettings contactSettings;
-        readonly ISigningSettings signingSettings;
-        readonly IEncryptionSettings encryptionSettings;
-        readonly IIdentityProviderConfiguration configuration;
+        readonly IMetadataContactSettings _contactSettings;
+        readonly ISigningSettings _signingSettings;
+        readonly IEncryptionSettings _encryptionSettings;
+        readonly IIdentityProviderConfiguration _configuration;
 
 
         public IdentityProviderMetadataGenerator(IMetadataContactSettings contactSettings,
@@ -27,10 +26,10 @@ namespace Aperea.Identity
                                                  IEncryptionSettings encryptionSettings,
                                                  IIdentityProviderConfiguration configuration)
         {
-            this.contactSettings = contactSettings;
-            this.signingSettings = signingSettings;
-            this.encryptionSettings = encryptionSettings;
-            this.configuration = configuration;
+            _contactSettings = contactSettings;
+            _signingSettings = signingSettings;
+            _encryptionSettings = encryptionSettings;
+            _configuration = configuration;
         }
 
         public string GenerateAsString()
@@ -49,16 +48,16 @@ namespace Aperea.Identity
 
         string GenerateCore()
         {
-            var entity = new EntityDescriptor(new EntityId(configuration.IssuerUri));
-            if (signingSettings.Sign)
+            var entity = new EntityDescriptor(new EntityId(_configuration.IssuerUri));
+            if (_signingSettings.Sign)
             {
-                entity.SigningCredentials = new X509SigningCredentials(signingSettings.Certificate);
+                entity.SigningCredentials = new X509SigningCredentials(_signingSettings.Certificate);
             }
 
-            if (contactSettings.Contact != null)
+            if (_contactSettings.Contact != null)
             {
-                entity.Contacts.Add(contactSettings.Contact);
-                entity.Organization = contactSettings.Organization;
+                entity.Contacts.Add(_contactSettings.Contact);
+                entity.Organization = _contactSettings.Organization;
             }
 
             entity.RoleDescriptors.Add(GetTokenServiceDescriptor());
@@ -75,11 +74,11 @@ namespace Aperea.Identity
 
         SecurityTokenServiceDescriptor GetTokenServiceDescriptor()
         {
-            var tokenService = new SecurityTokenServiceDescriptor {ServiceDescription = configuration.ServiceName};
-            tokenService.Keys.Add(GetSingingKeyDescriptor(signingSettings.Certificate));
+            var tokenService = new SecurityTokenServiceDescriptor {ServiceDescription = _configuration.ServiceName};
+            tokenService.Keys.Add(GetSingingKeyDescriptor(_signingSettings.Certificate));
             tokenService.ProtocolsSupported.Add(new Uri("http://docs.oasis-open.org/wsfed/federation/200706"));
             tokenService.TokenTypesOffered.Add(new Uri("urn:oasis:names:tc:SAML:1.0:assertion"));
-            foreach (DisplayClaim claim in configuration.Claims)
+            foreach (DisplayClaim claim in _configuration.Claims)
             {
                 tokenService.ClaimTypesOffered.Add(claim);
             }
@@ -93,9 +92,9 @@ namespace Aperea.Identity
 
         void AddPassiveEndpoints(SecurityTokenServiceDescriptor tokenService, bool addPassiveEndpointsAsActive)
         {
-            foreach (string item in configuration.PassiveEndpoints)
+            foreach (string item in _configuration.PassiveEndpoints)
             {
-                var endpoint = new EndpointAddress(item);
+                var endpoint = new EndpointReference("");
                 tokenService.PassiveRequestorEndpoints.Add(endpoint);
                 if (addPassiveEndpointsAsActive)
                 {
@@ -106,7 +105,7 @@ namespace Aperea.Identity
 
         void AddActiceEndpoints(SecurityTokenServiceDescriptor tokenService)
         {
-            foreach (string uri in configuration.ActiveEndpoints)
+            foreach (string uri in _configuration.ActiveEndpoints)
             {
                 var set = new MetadataSet();
                 var metadata = new MetadataReference(new EndpointAddress(string.Format("{0}/mex", uri)),
@@ -123,7 +122,11 @@ namespace Aperea.Identity
                 var reader = new XmlTextReader(input);
 
                 XmlDictionaryReader metadataReader = XmlDictionaryReader.CreateDictionaryReader(reader);
-                var address = new EndpointAddress(new Uri(uri), null, null, metadataReader, null);
+                var address = new EndpointReference(uri)
+                                  {
+//                                      Details = metadataReader.
+                                  };
+  //                  , null, null, metadataReader, null);
                 tokenService.SecurityTokenServiceEndpoints.Add(address);
             }
         }

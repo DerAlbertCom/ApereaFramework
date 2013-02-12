@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Microsoft.IdentityModel.Protocols.WSIdentity;
+using System.IdentityModel.Metadata;
 
 namespace Aperea.Identity
 {
