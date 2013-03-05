@@ -87,7 +87,7 @@ Task PushIt -Depends Release  {
     Exec { nuget.exe push "$nupgk_dir\Aperea.Data.EntityFramework.$version.nupkg" }  
 }
 
-Task NuGetPush -Depends PushIt, BumpRevision  {
+Task NuGetPush -Depends  PushIt, BumpRevision  {
     $version = Get-AssemblyInfoVersion $version_file    
 }
 
