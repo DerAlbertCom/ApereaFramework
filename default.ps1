@@ -85,6 +85,7 @@ Task PushIt -Depends Release  {
     Write-Host "Pushing NuGet-Packages" -ForegroundColor Green   
     Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
     Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
+    Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.WebApi.$version.nupkg" }    
     Exec { nuget.exe push "$nupgk_dir\Aperea.Identity.$version.nupkg" }  
     Exec { nuget.exe push "$nupgk_dir\Aperea.Data.EntityFramework.$version.nupkg" }  
 }

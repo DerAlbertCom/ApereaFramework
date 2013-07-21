@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Identity</id>
-    <version>0.7.3.73</version>
+    <version>0.7.3.74</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
@@ -11,7 +11,7 @@
     </description>
     <tags>WIF, ApereaFramework</tags>
     <dependencies>
-      <dependency id="Aperea.Bootstrap" version="[0.7.3.73]" />
+      <dependency id="Aperea.Bootstrap" version="[0.7.3.74]" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Windows.IdentityModel" />
