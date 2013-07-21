@@ -8,11 +8,11 @@ namespace Aperea.Infrastructure.IoC
     {
         public RegistryForAutoMapper()
         {
-            Scan(c =>
-                {
-                    c.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
-                    c.AddAllTypesOf<Profile>();
-                });
+            Scan(s =>
+            {
+                s.AssembliesForApplication();
+                s.AddAllTypesOf<Profile>();
+            });
 
             For<IMappingEngine>().Use(c => Mapper.Engine);
         }

@@ -59,6 +59,7 @@ Task SetPackageVersion {
 
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.WebApi.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Identity.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Data.EntityFramework.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
 }
@@ -69,6 +70,7 @@ Task CreateNuGet -Depends Build, SetPackageVersion  {
 
     Exec { nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.WebApi.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { nuget.exe pack "$nuspec_dir\Aperea.Identity.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { nuget.exe pack "$nuspec_dir\Aperea.Data.EntityFramework.nuspec" /OutputDirectory "$nupgk_dir\" }    
 }
