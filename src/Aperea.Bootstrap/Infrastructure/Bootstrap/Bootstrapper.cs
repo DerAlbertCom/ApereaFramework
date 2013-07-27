@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aperea.Infrastructure.IoC;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.Infrastructure.Bootstrap
@@ -9,6 +10,7 @@ namespace Aperea.Infrastructure.Bootstrap
     {
         public static void Start()
         {
+            RegisterStructureMap.Execute();
             new Bootstrapper().Execute();
         }
 
