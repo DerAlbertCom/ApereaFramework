@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
 using Aperea.Settings;
+using StructureMap.Graph;
 
 namespace Aperea.Infrastructure.IoC
 {
@@ -35,12 +36,17 @@ namespace Aperea.Infrastructure.IoC
             return starts;
         }
 
-        public static bool Filter(Assembly assemblyFilter)
+        static bool Filter(Assembly assemblyFilter)
         {
             if (AssemblyStarts.Count == 0)
                 return true;
             var assemblyStart = assemblyFilter.GetName().Name.Split('.')[0];
             return AssemblyStarts.Contains(assemblyStart);
+        }
+
+        public static void AssembliesForApplication(this IAssemblyScanner scanner)
+        {
+            scanner.AssembliesFromApplicationBaseDirectory(Filter);    
         }
     }
 }

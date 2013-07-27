@@ -12,34 +12,36 @@ namespace Aperea.Infrastructure.IoC
 
         public static void Execute()
         {
-            Container = new Container();
+            if (Container != null)
+                return;
+            Container = ObjectFactory.Container;
             SetServiceLocator(Container);
             Container.Configure(c =>
+            {
+                c.Scan(s =>
                 {
-                    c.Scan(x =>
-                        {
-                            x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
-                            x.TheCallingAssembly();
-                            x.AddAllTypesOf<IBootstrapItem>();
-                            x.WithDefaultConventions();
-                            x.LookForRegistries();
-                        });
-
-                    c.For(typeof (Lazy<>))
-                        .Use(typeof (Lazy<>))
-                        .WithProperty("isThreadSafe").EqualTo(true);
-
-                    c.SetAllProperties(x =>
-                                       x.TypeMatches(
-                                           type => Container.Model.HasImplementationsFor(type)));
-
-                    c.For<IServiceLocator>()
-                        .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.Singleton))
-                        .Use(ServiceLocator.Current);
+                    s.AssembliesForApplication();
+                    s.TheCallingAssembly();
+                    s.AddAllTypesOf<IBootstrapItem>();
+                    s.WithDefaultConventions();
+                    s.LookForRegistries();
                 });
+
+                c.For(typeof (Lazy<>))
+                    .Use(typeof (Lazy<>))
+                    .WithProperty("isThreadSafe").EqualTo(true);
+
+                c.SetAllProperties(x =>
+                    x.TypeMatches(
+                        type => Container.Model.HasImplementationsFor(type)));
+
+                c.For<IServiceLocator>()
+                    .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.Singleton))
+                    .Use(ServiceLocator.Current);
+            });
         }
 
-        static void SetServiceLocator(IContainer container)
+        private static void SetServiceLocator(IContainer container)
         {
             var locator = new StructureMapServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => locator);
