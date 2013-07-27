@@ -12,18 +12,18 @@ namespace Aperea.Infrastructure.IoC
         public RegistryForAspNetMvc()
         {
             Scan(x =>
-                {
-                    x.AssembliesFromApplicationBaseDirectory(StructureMapAssemblyFilter.Filter);
-                    x.TheCallingAssembly();
-                    x.AddAllTypesOf<ModelValidatorProvider>();
-                    x.AddAllTypesOf<ModelMetadataProvider>();
-                    x.AddAllTypesOf<ValueProviderFactory>();
-                    x.AddAllTypesOf<IModelBinderProvider>();
-                    x.AddAllTypesOf<IControllerActivator>();
-                    x.AddAllTypesOf<IViewPageActivator>();
-                    x.AddAllTypesOf<IFilterProvider>();
-                    x.With(new ControllerRegistryConvention());
-                });
+            {
+                x.AssembliesForApplication();
+                x.TheCallingAssembly();
+                x.AddAllTypesOf<ModelValidatorProvider>();
+                x.AddAllTypesOf<ModelMetadataProvider>();
+                x.AddAllTypesOf<ValueProviderFactory>();
+                x.AddAllTypesOf<IModelBinderProvider>();
+                x.AddAllTypesOf<IControllerActivator>();
+                x.AddAllTypesOf<IViewPageActivator>();
+                x.AddAllTypesOf<IFilterProvider>();
+                x.With(new ControllerRegistryConvention());
+            });
 
             For<HttpContextBase>()
                 .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.PerRequest))

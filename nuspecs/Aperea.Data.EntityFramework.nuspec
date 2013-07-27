@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Data.EntityFramework</id>
-    <version>1.0.0.69</version>
+    <version>0.7.3.74</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
@@ -10,7 +10,7 @@
     <description>Aperea.Data.EntityFramework is a small opinionated bootstrapper for Using EntityFramework</description>
     <tags>ApereaFramework, AutoMapper,ASP.NET MVC,MVC,EntityFramework</tags>
     <dependencies>
-      <dependency id="Aperea.Bootstrap" version="[1.0.0.69]" />
+      <dependency id="Aperea.Bootstrap" version="[0.7.3.74]" />
       <dependency id="EntityFramework" version="[5.0,6.0)" />
     </dependencies>
     <frameworkAssemblies>
