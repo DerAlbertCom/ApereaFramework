@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.IdentityModel.Protocols.WSTrust;
 using System.ServiceModel;
 
 namespace Aperea.Identity.Configuration
@@ -25,29 +26,34 @@ namespace Aperea.Identity.Configuration
 
         EndpointAddress IRelyingPartyClientConfiguration.GetStsEndpoint()
         {
-            return new EndpointAddress(stsEndpoint);
+            return new EndpointAddress(_stsEndpoint);
         }
 
-        EndpointAddress IRelyingPartyClientConfiguration.GetEndpointFor<T>()
+        public EndpointAddress GetEndpointFor<T>()
         {
-            return serviceConfigurations[typeof (T)].GetEndpoint();
+            return _serviceConfigurations[typeof(T)].GetEndpoint();
         }
 
-        readonly ConcurrentDictionary<Type, WebWebServiceClientConfiguration> serviceConfigurations =
+        public EndpointReference GetEndpointReferenceFor<T>()
+        {
+            return new EndpointReference(GetEndpointFor<T>().Uri.ToString());
+        }
+
+        readonly ConcurrentDictionary<Type, WebWebServiceClientConfiguration> _serviceConfigurations =
             new ConcurrentDictionary<Type, WebWebServiceClientConfiguration>();
 
-        string stsEndpoint;
+        string _stsEndpoint;
 
         public IRelyingPartyClientConfigurator ConfigureService<T>(Action<IWebServiceClientConfigurator> serviceConfiguration)
         {
-            var configuraiton = serviceConfigurations.GetOrAdd(typeof (T), c => new WebWebServiceClientConfiguration());
-            serviceConfiguration(configuraiton);
+            var configuration = _serviceConfigurations.GetOrAdd(typeof (T), c => new WebWebServiceClientConfiguration());
+            serviceConfiguration(configuration);
             return this;
         }
 
-        public IRelyingPartyClientConfigurator StsEndpoint(string endpointAddresse)
+        public IRelyingPartyClientConfigurator StsEndpoint(string endpointAddress)
         {
-            stsEndpoint = endpointAddresse;
+            _stsEndpoint = endpointAddress;
             return this;
         }
 

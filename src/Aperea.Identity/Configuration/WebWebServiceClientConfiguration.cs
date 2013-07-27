@@ -12,11 +12,11 @@ namespace Aperea.Identity.Configuration
             return new EndpointAddress(endpoint);
         }
 
-        public IWebServiceClientConfigurator Endpoint(string endpointAddresse)
+        public IWebServiceClientConfigurator Endpoint(string endpointAddress)
         {
-            if (endpointAddresse == null)
-                throw new ArgumentNullException("endpointAddresse");
-            endpoint = endpointAddresse;
+            if (endpointAddress == null)
+                throw new ArgumentNullException("endpointAddress");
+            endpoint = endpointAddress;
             return this;
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel;
@@ -8,6 +7,7 @@ using System.ServiceModel.Dispatcher;
 
 namespace Aperea.Identity.Services
 {
+    [UsedImplicitly]
     public class ServiceLocatorBehavior : IServiceBehavior
     {
         public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)

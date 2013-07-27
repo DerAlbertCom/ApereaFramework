@@ -122,12 +122,8 @@ namespace Aperea.Identity
                 var reader = new XmlTextReader(input);
 
                 XmlDictionaryReader metadataReader = XmlDictionaryReader.CreateDictionaryReader(reader);
-                var address = new EndpointReference(uri)
-                                  {
-//                                      Details = metadataReader.
-                                  };
-  //                  , null, null, metadataReader, null);
-                tokenService.SecurityTokenServiceEndpoints.Add(address);
+               var address = new EndpointAddress(new Uri(uri), null, null, metadataReader, null);
+                tokenService.SecurityTokenServiceEndpoints.Add(address.ToEndpointReference());
             }
         }
     }

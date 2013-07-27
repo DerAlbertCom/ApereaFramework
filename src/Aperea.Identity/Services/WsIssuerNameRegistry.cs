@@ -7,21 +7,21 @@ namespace Aperea.Identity.Services
 {
     public class WsIssuerNameRegistry : IssuerNameRegistry
     {
-        readonly Dictionary<string, string> trustedIssuers = new Dictionary<string, string>();
+        readonly Dictionary<string, string> _trustedIssuers = new Dictionary<string, string>();
 
-        readonly IRelyingPartyServerConfiguration configuration;
+        readonly IRelyingPartyServerConfiguration _configuration;
 
         public WsIssuerNameRegistry():this(RelyingPartyServerConfiguration.Current)
         {
-            foreach (var trustedIssuer in configuration.TrustedIssuers)
+            foreach (var trustedIssuer in _configuration.TrustedIssuers)
             {
-                trustedIssuers.Add(trustedIssuer.Thumbprint.ToLowerInvariant(),trustedIssuer.Name);
+                _trustedIssuers.Add(trustedIssuer.Thumbprint.ToLowerInvariant(),trustedIssuer.Name);
             }
         }
 
         WsIssuerNameRegistry(IRelyingPartyServerConfiguration currentConfiguration)
         {
-            configuration = currentConfiguration;
+            _configuration = currentConfiguration;
         }
 
         public override string GetIssuerName(SecurityToken securityToken)
@@ -39,8 +39,8 @@ namespace Aperea.Identity.Services
                 return null;
 
             thumbprint = thumbprint .ToLowerInvariant();
-            if (trustedIssuers.ContainsKey(thumbprint))
-                return trustedIssuers[thumbprint];
+            if (_trustedIssuers.ContainsKey(thumbprint))
+                return _trustedIssuers[thumbprint];
 
             return null;
         }

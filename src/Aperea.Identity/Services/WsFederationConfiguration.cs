@@ -6,13 +6,12 @@ namespace Aperea.Identity.Services
 {
     public class WsFederationConfiguration : SecurityTokenServiceConfiguration
     {
-        readonly IRelyingPartyServerConfiguration _configuration;
-
         public WsFederationConfiguration()
         {
-            _configuration = RelyingPartyServerConfiguration.Current;
-//            this.InitializeServiceConfiguration(_configuration);
+            IRelyingPartyServerConfiguration configuration = RelyingPartyServerConfiguration.Current;
+            this.InitializeServiceConfiguration(configuration);
             SaveBootstrapContext = true;
+            // .NET 4.5?
 //            SaveBootstrapTokens = true;
         }
     }

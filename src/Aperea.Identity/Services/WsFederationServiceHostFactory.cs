@@ -10,16 +10,16 @@ namespace Aperea.Identity.Services
 {
     public class WsFederationServiceHostFactory : ServiceHostFactory
     {
-        readonly IRelyingPartyServerConfiguration configuration;
+        readonly IRelyingPartyServerConfiguration _configuration;
 
         public WsFederationServiceHostFactory()
         {
-            configuration = RelyingPartyServerConfiguration.Current;
+            _configuration = RelyingPartyServerConfiguration.Current;
         }
 
         public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses)
         {
-            Type serviceType = Type.GetType(constructorString);
+            var serviceType = Type.GetType(constructorString);
             var host = new ServiceHost(serviceType, OnlyHttpsAddresses(baseAddresses));
             ConfigureServiceHost(host);
             return host;
@@ -39,7 +39,7 @@ namespace Aperea.Identity.Services
 
         void ConfigureServiceHost(ServiceHost host)
         {
-//          host.AddDefaultEndpoints();
+//        host.AddDefaultEndpoints();
             AddDefaultEndpoints(host);
             BindEndpointsToWs2007Federation(host);
             AddBehaviors(host);
@@ -78,7 +78,7 @@ namespace Aperea.Identity.Services
 
             useRequestHeader.DefaultPortsByScheme.Clear();
 
-            var query = from u in configuration.AudienceUris
+            var query = from u in _configuration.AudienceUris
                         select new
                                    {
                                        u.Scheme,
@@ -121,8 +121,8 @@ namespace Aperea.Identity.Services
             var binding = new WS2007FederationHttpBinding(WSFederationHttpSecurityMode.TransportWithMessageCredential);
             binding.Security.Message.EstablishSecurityContext = false;
             binding.Security.Message.IssuerMetadataAddress =
-                new EndpointAddress(configuration.WebServiceIssuer.Uri.OriginalString + "/mex");
-            binding.Security.Message.IssuerAddress = new EndpointAddress(configuration.WebServiceIssuer.Uri);
+                new EndpointAddress(_configuration.WebServiceIssuer.Uri.OriginalString + "/mex");
+            binding.Security.Message.IssuerAddress = new EndpointAddress(_configuration.WebServiceIssuer.Uri);
             return binding;
         }
     }

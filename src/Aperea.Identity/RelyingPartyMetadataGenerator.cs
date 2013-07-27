@@ -1,24 +1,25 @@
 ﻿using System;
+using System.IdentityModel.Protocols.WSTrust;
 using System.IO;
 using System.IdentityModel.Metadata;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
-using System.ServiceModel;
 using System.Text;
 using Aperea.Identity.Settings;
 
 namespace Aperea.Identity
 {
+    [UsedImplicitly]
     public class RelyingPartyMetadataGenerator : IRelyingPartyMetadataGenerator
     {
-        readonly IMetadataContactSettings contactSettings;
-        readonly IRelyingPartyConfiguration configuration;
+        private readonly IMetadataContactSettings _contactSettings;
+        private readonly IRelyingPartyConfiguration _configuration;
 
         public RelyingPartyMetadataGenerator(IMetadataContactSettings contactSettings,
-                                             IRelyingPartyConfiguration configuration)
+            IRelyingPartyConfiguration configuration)
         {
-            this.contactSettings = contactSettings;
-            this.configuration = configuration;
+            _contactSettings = contactSettings;
+            _configuration = configuration;
         }
 
         public string GenerateAsString()
@@ -26,7 +27,7 @@ namespace Aperea.Identity
             return GenerateCore();
         }
 
-        string CreateFederationMetadataAsString(EntityDescriptor entity)
+        private string CreateFederationMetadataAsString(EntityDescriptor entity)
         {
             var serializer = new MetadataSerializer();
             var stream = new MemoryStream();
@@ -35,42 +36,44 @@ namespace Aperea.Identity
             return Encoding.UTF8.GetString(stream.ToArray());
         }
 
-        string GenerateCore()
+        private string GenerateCore()
         {
-            var entity = new EntityDescriptor(new EntityId(configuration.IssuerUri));
-            if (configuration.Sign)
+            var entity = new EntityDescriptor(new EntityId(_configuration.IssuerUri));
+            if (_configuration.Sign)
             {
-                entity.SigningCredentials = new X509SigningCredentials(configuration.SigningCertificate);
+                entity.SigningCredentials = new X509SigningCredentials(_configuration.SigningCertificate);
             }
 
-            if (contactSettings.Contact != null)
+            if (_contactSettings.Contact != null)
             {
-                entity.Contacts.Add(contactSettings.Contact);
-                entity.Organization = contactSettings.Organization;
+                entity.Contacts.Add(_contactSettings.Contact);
+                entity.Organization = _contactSettings.Organization;
             }
 
             entity.RoleDescriptors.Add(GetTokenServiceDescriptor());
             return CreateFederationMetadataAsString(entity);
         }
 
-        KeyDescriptor GetSingingKeyDescriptor(X509Certificate2 cert)
+        private KeyDescriptor GetSingingKeyDescriptor(X509Certificate2 cert)
         {
             var clause = (new X509SecurityToken(cert)).CreateKeyIdentifierClause<X509RawDataKeyIdentifierClause>();
-            var descriptor = new KeyDescriptor(new SecurityKeyIdentifier(new SecurityKeyIdentifierClause[] {clause}));
-            descriptor.Use = KeyType.Encryption;
+            var descriptor = new KeyDescriptor(new SecurityKeyIdentifier(new SecurityKeyIdentifierClause[] {clause}))
+            {
+                Use = KeyType.Encryption
+            };
             return descriptor;
         }
 
-        SecurityTokenServiceDescriptor GetTokenServiceDescriptor()
+        private SecurityTokenServiceDescriptor GetTokenServiceDescriptor()
         {
             var tokenService = new SecurityTokenServiceDescriptor();
 
-            if (configuration.Encrypt)
+            if (_configuration.Encrypt)
             {
-                tokenService.Keys.Add(GetSingingKeyDescriptor(configuration.EncryptionCertificate));
+                tokenService.Keys.Add(GetSingingKeyDescriptor(_configuration.EncryptionCertificate));
             }
             tokenService.ProtocolsSupported.Add(new Uri("http://docs.oasis-open.org/wsfed/federation/200706"));
-            foreach (DisplayClaim claim in configuration.GetClaimTypsRequested())
+            foreach (DisplayClaim claim in _configuration.GetClaimTypsRequested())
             {
                 tokenService.ClaimTypesRequested.Add(claim);
             }
@@ -80,30 +83,27 @@ namespace Aperea.Identity
             return tokenService;
         }
 
-        void AddSecurityTokenEndpoints(SecurityTokenServiceDescriptor tokenService)
+        private void AddSecurityTokenEndpoints(SecurityTokenServiceDescriptor tokenService)
         {
-            foreach (string item in configuration.GetSecurityTokenServiceEndpoints())
+            foreach (string item in _configuration.GetSecurityTokenServiceEndpoints())
             {
-                var endpoint = new EndpointAddress(item);
-//                tokenService.SecurityTokenServiceEndpoints.Add(endpoint);
+                tokenService.SecurityTokenServiceEndpoints.Add(new EndpointReference(item));
             }
         }
 
-        void AddTargetScopes(SecurityTokenServiceDescriptor tokenService)
+        private void AddTargetScopes(SecurityTokenServiceDescriptor tokenService)
         {
-            foreach (string item in configuration.GetPassiveRequestorEndpoints())
+            foreach (string item in _configuration.GetPassiveRequestorEndpoints())
             {
-                var endpoint = new EndpointAddress(item);
-//                tokenService.TargetScopes.Add(endpoint);
+                tokenService.TargetScopes.Add(new EndpointReference(item));
             }
         }
 
-        void AddPassiveEndpoints(SecurityTokenServiceDescriptor tokenService)
+        private void AddPassiveEndpoints(SecurityTokenServiceDescriptor tokenService)
         {
-            foreach (string item in configuration.GetPassiveRequestorEndpoints())
+            foreach (string item in _configuration.GetPassiveRequestorEndpoints())
             {
-                var endpoint = new EndpointAddress(item);
-//                tokenService.PassiveRequestorEndpoints.Add(endpoint);
+                tokenService.PassiveRequestorEndpoints.Add(new EndpointReference(item));
             }
         }
     }

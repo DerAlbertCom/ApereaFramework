@@ -6,18 +6,18 @@ namespace Aperea.Identity.Settings
 {
     internal class CertificateStore
     {
-        readonly ICertificateSettings settings;
-        readonly Lazy<X509Certificate2> certificate;
+        readonly ICertificateSettings _settings;
+        readonly Lazy<X509Certificate2> _certificate;
 
         public CertificateStore(ICertificateSettings settings, string certificateName)
         {
-            this.settings = settings;
-            certificate = new Lazy<X509Certificate2>(() => GetCertificate(certificateName));
+            _settings = settings;
+            _certificate = new Lazy<X509Certificate2>(() => GetCertificate(certificateName));
         }
 
         public X509Certificate2 Certificate
         {
-            get { return certificate.Value; }
+            get { return _certificate.Value; }
         }
 
         X509Certificate2 GetCertificate(string certName)
@@ -25,7 +25,7 @@ namespace Aperea.Identity.Settings
             if (string.IsNullOrWhiteSpace(certName))
                 return null;
 
-            return GetCertificate(settings.StoreName, settings.StoreLocation, certName);
+            return GetCertificate(_settings.StoreName, _settings.StoreLocation, certName);
         }
 
         static X509Certificate2 GetCertificate(StoreName name, StoreLocation location, string subjectName)

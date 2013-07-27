@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IdentityModel.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Activation;
@@ -27,10 +26,10 @@ namespace Aperea.Identity.Configuration
 
         RelyingPartyServerConfiguration()
         {
-            serviceHostFactory = new WsFederationServiceHostFactory();
+            _serviceHostFactory = new WsFederationServiceHostFactory();
         }
 
-        readonly List<Uri> audienceUris = new List<Uri>();
+        readonly List<Uri> _audienceUris = new List<Uri>();
 
         public IRelyingPartyServerConfigurator SetBaseUri(string url)
         {
@@ -45,7 +44,7 @@ namespace Aperea.Identity.Configuration
         {
             if (url == null)
                 throw new ArgumentNullException("url");
-            audienceUris.Add(new Uri(url));
+            _audienceUris.Add(new Uri(url));
             return this;
         }
 
@@ -53,13 +52,13 @@ namespace Aperea.Identity.Configuration
 
         public IEnumerable<Uri> AudienceUris
         {
-            get { return audienceUris; }
+            get { return _audienceUris; }
         }
 
-        ServiceHostFactoryBase serviceHostFactory;
+        ServiceHostFactoryBase _serviceHostFactory;
 
 
-        readonly ConcurrentDictionary<Type, WebServiceServerConfiguration> configurations =
+        readonly ConcurrentDictionary<Type, WebServiceServerConfiguration> _configurations =
             new ConcurrentDictionary<Type, WebServiceServerConfiguration>();
 
         public static void Configure(Action<IRelyingPartyServerConfigurator> configuration)
@@ -70,7 +69,7 @@ namespace Aperea.Identity.Configuration
         public IRelyingPartyServerConfigurator ConfigureService<T>(string routePrefix,
                                                           Action<IWebServiceServerConfigurator> configurator)
         {
-            var configuration = configurations.GetOrAdd(typeof(T), t => new WebServiceServerConfiguration(t));
+            var configuration = _configurations.GetOrAdd(typeof(T), t => new WebServiceServerConfiguration(t));
             if (configurator != null)
                 configurator(configuration);
 
@@ -78,7 +77,7 @@ namespace Aperea.Identity.Configuration
 
             RouteTable.Routes.Add(new ServiceRoute(
                                       routePrefix: routePrefix,
-                                      serviceHostFactory: serviceHostFactory,
+                                      serviceHostFactory: _serviceHostFactory,
                                       serviceType: configuration.ServiceType)
                 );
             return this;
@@ -92,23 +91,23 @@ namespace Aperea.Identity.Configuration
         public IRelyingPartyServerConfigurator ServiceHostFactory(
             WsFederationServiceHostFactory wsFederationServiceHostFactory)
         {
-            serviceHostFactory = wsFederationServiceHostFactory;
+            _serviceHostFactory = wsFederationServiceHostFactory;
             return this;
         }
 
 
-        readonly List<TrustedIssuer> trustedIssuers = new List<TrustedIssuer>();
+        readonly List<TrustedIssuer> _trustedIssuers = new List<TrustedIssuer>();
 
         public IRelyingPartyServerConfigurator TrustedIssuer(string thumbprint, string name)
         {
-            trustedIssuers.Add(new TrustedIssuer(thumbprint, name));
+            _trustedIssuers.Add(new TrustedIssuer(thumbprint, name));
             return this;
         }
 
 
         public IEnumerable<TrustedIssuer> TrustedIssuers
         {
-            get { return trustedIssuers; }
+            get { return _trustedIssuers; }
         }
         
         public Issuer WebServiceIssuer { get; private set; }
@@ -144,27 +143,23 @@ namespace Aperea.Identity.Configuration
         }
 
 
-        readonly List<DisplayClaim> claimCollection = new List<DisplayClaim>();
+        readonly List<DisplayClaim> _claimCollection = new List<DisplayClaim>();
 
         public IRelyingPartyServerConfigurator Claim(string type, bool optional)
         {
-            claimCollection.Add(new DisplayClaim(type, null, null, null, optional));
+            _claimCollection.Add(new DisplayClaim(type, null, null, null, optional));
             return this;
         }
 
-        public void Claims(IEnumerable<DisplayClaim> displayClaims)
-        {
-            throw new NotImplementedException();
-        }
 
         void IRelyingPartyServerConfigurator.Claims(IEnumerable<DisplayClaim> displayClaims)
         {
-            claimCollection.AddRange(displayClaims);
+            _claimCollection.AddRange(displayClaims);
         }
 
         public IEnumerable<DisplayClaim> GetClaims()
         {
-            return claimCollection;
+            return _claimCollection;
         }
     }
 }

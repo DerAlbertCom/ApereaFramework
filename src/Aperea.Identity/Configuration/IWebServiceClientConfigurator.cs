@@ -4,6 +4,6 @@ namespace Aperea.Identity.Configuration
 {
     public interface IWebServiceClientConfigurator
     {
-        IWebServiceClientConfigurator Endpoint(string endpointAddresse);
+        IWebServiceClientConfigurator Endpoint(string endpointAddress);
     }
 }

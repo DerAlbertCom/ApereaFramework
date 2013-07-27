@@ -1,6 +1,4 @@
-﻿using System;
-using System.IdentityModel.Services;
-using System.ServiceModel;
+﻿using System.IdentityModel.Services;
 using Aperea.Identity.Configuration;
 
 namespace Aperea.Identity.Module
@@ -18,7 +16,7 @@ namespace Aperea.Identity.Module
                 Realm = configuration.WebIssuer.Realm;
             }
             RequireHttps = true;
-//            ServiceConfiguration.InitializeServiceConfiguration(configuration);
+            FederationConfiguration.IdentityConfiguration.InitializeServiceConfiguration(configuration);
         }
     }
 }

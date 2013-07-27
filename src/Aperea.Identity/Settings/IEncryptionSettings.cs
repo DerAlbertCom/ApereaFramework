@@ -8,24 +8,4 @@ namespace Aperea.Identity.Settings
         X509Certificate2 Certificate { get; }
         bool Encrypt { get; }
     }
-
-    public class EncryptionSettings : IEncryptionSettings
-    {
-        readonly CertificateStore certificateStore;
-
-        public EncryptionSettings(ICertificateSettings settings)
-        {
-            certificateStore = new CertificateStore(settings, settings.EncryptingCertificateName);
-        }
-
-        public X509Certificate2 Certificate
-        {
-            get { return certificateStore.Certificate; }
-        }
-
-        public bool Encrypt
-        {
-            get { return Certificate != null; }
-        }
-    }
 }

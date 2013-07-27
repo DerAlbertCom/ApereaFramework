@@ -8,23 +8,23 @@ namespace Aperea.Identity.Services
 {
     public class ServiceLocatorInstanceProvider : IInstanceProvider
     {
-        readonly IServiceLocator locator;
-        readonly Type serviceType;
+        readonly IServiceLocator _locator;
+        readonly Type _serviceType;
 
         public ServiceLocatorInstanceProvider(Type serviceType)
         {
-            locator = ServiceLocator.Current;
-            this.serviceType = serviceType;
+            _locator = ServiceLocator.Current;
+            _serviceType = serviceType;
         }
 
         public object GetInstance(InstanceContext instanceContext)
         {
-            return GetInstance(instanceContext, null);
+            return GetInstance(instanceContext,  null);
         }
 
-        public object GetInstance(InstanceContext instanceContext, Message message)
+        public object GetInstance(InstanceContext instanceContext,   Message message)
         {
-            return locator.GetInstance(serviceType);
+            return _locator.GetInstance(_serviceType);
         }
 
         public void ReleaseInstance(InstanceContext instanceContext, object instance)
