@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens;
 using System.ServiceModel;
 using System.ServiceModel.Security;
 using System.IdentityModel.Protocols.WSTrust;
+using Thinktecture.IdentityModel.Constants;
 using Thinktecture.IdentityModel.WSTrust;
 
 namespace Aperea.Identity.Configuration
@@ -43,8 +44,7 @@ namespace Aperea.Identity.Configuration
                                            {
                                                RequestType = RequestTypes.Issue,
                                                AppliesTo = configuration.GetEndpointReferenceFor<T>(),
-                                               KeyType = KeyTypes.Symmetric,
-                                               
+                                               KeyType = KeyTypes.Symmetric
 // TODO: Check what is this in WIF 4.5?
 //                                               RequestDisplayToken = true
                                            };
@@ -59,7 +59,6 @@ namespace Aperea.Identity.Configuration
             binding.Security.Message.EstablishSecurityContext = false;
             var factory = new ChannelFactory<T>(binding, configuration.GetEndpointFor<T>());
             factory.Credentials.SupportInteractive = false;
-
 // TODO .NET 4.5?
 //            factory.ConfigureChannelFactory();
             return factory.CreateChannelWithIssuedToken(securityTokens[typeof (T)]);
