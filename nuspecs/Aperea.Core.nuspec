@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Aperea.Core</id>
+    <version>0.7.3.74</version>
+    <authors>Albert Weinert</authors>
+    <owners>Albert Weinert</owners>
+    <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Aperea.Core is a small assembly which contains some often used 
+    </description>
+    <tags>ApereaFramework, Command-Pattern</tags>
+    <dependencies>
+      <dependency id="Aperea.Bootstrap" version="[0.7.3.74]" />
+    </dependencies>
+    <frameworkAssemblies>
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="..\out\Aperea.Core.dll" target="lib\net45" />
+  </files>
+</package>

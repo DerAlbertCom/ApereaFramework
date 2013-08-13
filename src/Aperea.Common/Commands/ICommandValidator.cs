@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Aperea.Common
+namespace Aperea.Commands
 {
     public interface ICommandValidator
     {

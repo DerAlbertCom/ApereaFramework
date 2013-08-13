@@ -1,4 +1,4 @@
-﻿namespace Aperea.Common
+﻿namespace Aperea.Commands
 {
     public interface ICommand
     {

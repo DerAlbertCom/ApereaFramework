@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Aperea.Common
+namespace Aperea.Commands
 {
     public class CommandValidationException : ValidationException
     {

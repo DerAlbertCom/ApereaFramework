@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Practices.ServiceLocation;
 
-namespace Aperea.Common
+namespace Aperea.Commands
 {
     [UsedImplicitly]
     public sealed class CommandExecutor : ICommandExecutor

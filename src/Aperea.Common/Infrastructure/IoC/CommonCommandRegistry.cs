@@ -1,7 +1,7 @@
-﻿using Aperea.Infrastructure.IoC;
+﻿using Aperea.Commands;
 using StructureMap.Configuration.DSL;
 
-namespace Aperea.Common.Infrastructure.IoC
+namespace Aperea.Infrastructure.IoC
 {
     public class CommonCommandRegistry : Registry
     {

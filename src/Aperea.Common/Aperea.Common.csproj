@@ -7,7 +7,7 @@
     <ProjectGuid>{7F427295-0130-4B0F-B142-D0D2E3B69FA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aperea.Common</RootNamespace>
+    <RootNamespace>Aperea</RootNamespace>
     <AssemblyName>Aperea.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -49,28 +49,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandWithResult.cs">
+    <Compile Include="Commands\CommandWithResult.cs">
       <DependentUpon>ICommand.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommandDispatcher.cs" />
-    <Compile Include="CommandExecutor.cs" />
-    <Compile Include="CommandHandler.cs">
+    <Compile Include="Commands\CommandDispatcher.cs" />
+    <Compile Include="Commands\CommandExecutor.cs" />
+    <Compile Include="Commands\CommandHandler.cs">
       <DependentUpon>ICommandHandler.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommandValidationException.cs" />
-    <Compile Include="CommandValidatorBase.cs">
+    <Compile Include="Commands\CommandValidationException.cs" />
+    <Compile Include="Commands\CommandValidatorBase.cs">
       <DependentUpon>ICommandValidator.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="ICommandDispatcher.cs">
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\ICommandDispatcher.cs">
       <DependentUpon>CommandDispatcher.cs</DependentUpon>
     </Compile>
-    <Compile Include="ICommandExecutor.cs">
+    <Compile Include="Commands\ICommandExecutor.cs">
       <DependentUpon>CommandExecutor.cs</DependentUpon>
     </Compile>
-    <Compile Include="ICommandHandler.cs" />
-    <Compile Include="ICommandValidator.cs" />
+    <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Commands\ICommandValidator.cs" />
     <Compile Include="Infrastructure\IoC\CommonCommandRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

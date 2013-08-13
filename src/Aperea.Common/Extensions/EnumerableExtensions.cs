@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aperea.Common
+namespace Aperea
 {
     public static class EnumerableExtensions
     {

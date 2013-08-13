@@ -63,8 +63,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandDispatcherSpecs.cs" />
-    <Compile Include="CommandExecutorSpecs.cs" />
+    <Compile Include="Commands\BarCommand.cs" />
+    <Compile Include="Commands\BarCommandHandler1.cs" />
+    <Compile Include="Commands\BarCommandHandler2.cs" />
+    <Compile Include="Commands\BehaviorCommandDispatcher.cs" />
+    <Compile Include="Commands\CommandDispatcherSpecs.cs" />
+    <Compile Include="Commands\CommandExecutorSpecs.cs" />
+    <Compile Include="Commands\FooCommand.cs" />
+    <Compile Include="Commands\FooCommandHandler1.cs" />
+    <Compile Include="Commands\FooCommandHandler2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Aperea.Common
+namespace Aperea.Commands
 {
     public interface ICommandDispatcher
     {

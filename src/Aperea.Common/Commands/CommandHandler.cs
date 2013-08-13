@@ -1,4 +1,4 @@
-﻿namespace Aperea.Common
+﻿namespace Aperea.Commands
 {
     public abstract class CommandHandler<T, TResult> : ICommandHandler<T,TResult> where T : ICommand<TResult>
     {

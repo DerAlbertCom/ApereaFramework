@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 
-namespace Aperea.Common
+namespace Aperea.Commands
 {
     public class CommandDispatcher : ICommandDispatcher
     {
