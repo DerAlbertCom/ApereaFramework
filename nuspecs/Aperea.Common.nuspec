@@ -7,7 +7,7 @@
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Aperea.Core is a small assembly which contains some often used 
+    <description>Aperea.Common is a small assembly which contains some often used 
     </description>
     <tags>ApereaFramework, Command-Pattern</tags>
     <dependencies>
@@ -17,6 +17,6 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\out\Aperea.Core.dll" target="lib\net45" />
+    <file src="..\out\Aperea.Common.dll" target="lib\net45" />
   </files>
 </package>
