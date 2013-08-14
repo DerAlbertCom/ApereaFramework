@@ -55,7 +55,7 @@ Task SetPackageVersion {
 	
     Write-Host "Updating NuGet-Packages Version to $version" -ForegroundColor Green
 
-    $depVersion = "[$version]"
+    $depVersion = "[$version]"push
 
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
@@ -88,6 +88,7 @@ Task PushIt -Depends Release  {
     Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
     Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
     Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.WebApi.$version.nupkg" }    
+    Exec { nuget.exe push "$nupgk_dir\Aperea.Identity.$version.nupkg" }  
     Exec { nuget.exe push "$nupgk_dir\Aperea.Common.$version.nupkg" }  
     Exec { nuget.exe push "$nupgk_dir\Aperea.Data.EntityFramework.$version.nupkg" }  
 }
