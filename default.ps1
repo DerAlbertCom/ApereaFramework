@@ -55,7 +55,7 @@ Task SetPackageVersion {
 	
     Write-Host "Updating NuGet-Packages Version to $version" -ForegroundColor Green
 
-    $depVersion = "[$version]"push
+    $depVersion = "[$version]"
 
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
