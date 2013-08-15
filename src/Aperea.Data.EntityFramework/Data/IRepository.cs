@@ -10,7 +10,7 @@ namespace Aperea.Data
         IQueryable<T> Entities { get; }
         void Add(T entity);
         void Remove(T entity);
-        void SaveChanges();
+        void SaveAllChanges();
         IQueryable<T> Include(params string[] paths);
         IQueryable<T> Include<TProperty>(params Expression<Func<T, TProperty>>[] expressions);
         void Update(T person);

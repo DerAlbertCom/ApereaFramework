@@ -14,14 +14,14 @@ namespace Aperea.Commands
         private static readonly Lazy<ICommandExecutor> TheExecutor =
             new Lazy<ICommandExecutor>(() => ServiceLocator.Current.GetInstance<ICommandExecutor>());
 
-        public static void Execute(params ICommand[] commands)
+        public static void Execute(ICommand command)
         {
-            TheExecutor.Value.ExecuteCommands(commands);
+            TheExecutor.Value.ExecuteCommands(new []{command});
         }
 
-        public static IEnumerable<ValidationResult> Validate(params ICommand[] commands)
+        public static IEnumerable<ValidationResult> Validate( ICommand command)
         {
-            return TheExecutor.Value.ValidateCommands(commands);
+            return TheExecutor.Value.ValidateCommands(new[] { command });
         }
 
         private class Executor

@@ -62,6 +62,19 @@
     <Compile Include="Commands\CommandValidatorBase.cs">
       <DependentUpon>ICommandValidator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\IQueryCommand.cs" />
+    <Compile Include="Commands\IQueryDispatcher.cs">
+      <DependentUpon>QueryDispatcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\IQueryExecutor.cs">
+      <DependentUpon>QueryExecutor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\IQueryHandler.cs">
+      <DependentUpon>QueryHandler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\QueryDispatcher.cs" />
+    <Compile Include="Commands\QueryExecutor.cs" />
+    <Compile Include="Commands\QueryHandler.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandDispatcher.cs">
