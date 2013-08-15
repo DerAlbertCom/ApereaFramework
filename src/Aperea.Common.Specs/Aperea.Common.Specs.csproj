@@ -38,11 +38,13 @@
     <Reference Include="Machine.Fakes.Adapters.Moq">
       <HintPath>..\packages\Machine.Fakes.Moq.1.7.0\lib\net40\Machine.Fakes.Adapters.Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications">
-      <HintPath>..\packages\Machine.Specifications.0.5.14\lib\net40\Machine.Specifications.dll</HintPath>
+    <Reference Include="Machine.Specifications, Version=0.5.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Machine.Specifications.0.5.15\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications.Clr4">
-      <HintPath>..\packages\Machine.Specifications.0.5.14\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    <Reference Include="Machine.Specifications.Clr4, Version=0.5.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Machine.Specifications.0.5.15\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,15 +68,24 @@
     <Compile Include="Commands\BarCommand.cs" />
     <Compile Include="Commands\BarCommandHandler1.cs" />
     <Compile Include="Commands\BarCommandHandler2.cs" />
-    <Compile Include="Commands\BehaviorCommandDispatcher.cs" />
+    <Compile Include="Commands\BarQuery.cs" />
+    <Compile Include="Commands\BehaviorDispatchers.cs" />
     <Compile Include="Commands\CommandDispatcherSpecs.cs" />
     <Compile Include="Commands\CommandExecutorSpecs.cs" />
     <Compile Include="Commands\FooCommand.cs" />
     <Compile Include="Commands\FooCommandHandler1.cs" />
     <Compile Include="Commands\FooCommandHandler2.cs" />
+    <Compile Include="Commands\FooQuery.cs" />
+    <Compile Include="Commands\FooQueryHandler.cs" />
+    <Compile Include="Commands\QueryDispatcherSpecs.cs" />
+    <Compile Include="Commands\QueryExecuterSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aperea.Bootstrap\Aperea.Bootstrap.csproj">
+      <Project>{c47866c6-d305-48d7-98ae-c540380f722f}</Project>
+      <Name>Aperea.Bootstrap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aperea.Common\Aperea.Common.csproj">
       <Project>{7f427295-0130-4b0f-b142-d0d2e3b69fa3}</Project>
       <Name>Aperea.Common</Name>

@@ -8,23 +8,23 @@ namespace Aperea.Infrastructure.IoC
 {
     public class StructureMapServiceLocator : ServiceLocatorImplBase
     {
-        readonly IContainer _container;
+        readonly IContainer container;
 
         public StructureMapServiceLocator(IContainer container)
         {
-            _container = container;
+            this.container = container;
         }
 
         protected override object DoGetInstance(Type serviceType, string key)
         {
             if (key == null)
-                return _container.GetInstance(serviceType);
-            return _container.GetInstance(serviceType, key);
+                return container.GetInstance(serviceType);
+            return container.GetInstance(serviceType, key);
         }
 
         protected override IEnumerable<object> DoGetAllInstances(Type serviceType)
         {
-            return _container.GetAllInstances(serviceType).Cast<object>();
+            return container.GetAllInstances(serviceType).Cast<object>();
         }
     }
 }

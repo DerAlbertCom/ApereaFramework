@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Aperea.Core</id>
-    <version>0.7.3.74</version>
+    <id>Aperea.Common</id>
+    <version>0.7.3.76</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
@@ -11,7 +11,7 @@
     </description>
     <tags>ApereaFramework, Command-Pattern</tags>
     <dependencies>
-      <dependency id="Aperea.Bootstrap" version="[0.7.3.74]" />
+      <dependency id="Aperea.Bootstrap" version="[0.7.3.76]" />
     </dependencies>
     <frameworkAssemblies>
     </frameworkAssemblies>

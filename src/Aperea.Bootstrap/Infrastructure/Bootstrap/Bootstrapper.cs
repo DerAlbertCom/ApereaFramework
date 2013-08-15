@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Aperea.Infrastructure.IoC;
@@ -6,6 +5,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.Infrastructure.Bootstrap
 {
+    [UsedImplicitly]
     public class Bootstrapper
     {
         public static void Start()

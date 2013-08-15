@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Aperea.Infrastructure.Bootstrap;
 using AutoMapper;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Aperea.Infrastructure.Initialize
 {
+    [UsedImplicitly]
     public class InitializeAutoMapper : BootstrapItem
     {
         readonly IEnumerable<Profile> mappingProfiles;

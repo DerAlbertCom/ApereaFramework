@@ -11,15 +11,20 @@ namespace Aperea.Infrastructure.IoC
             {
                 s.AssembliesForApplication();
                 s.ConnectImplementationsToTypesClosing(typeof (ICommandHandler<>));
-                s.ConnectImplementationsToTypesClosing(typeof(ICommandValidator<>));
+                s.ConnectImplementationsToTypesClosing(typeof (ICommandValidator<>));
+                s.ConnectImplementationsToTypesClosing(typeof (IQueryHandler<,>));
             });
             For<ICommandDispatcher>().Singleton().Use<CommandDispatcher>();
 
             Configure(graph =>
             {
-                if (!graph.ContainsFamily(typeof(ICommandExecutor)))
+                if (!graph.ContainsFamily(typeof (ICommandExecutor)))
                 {
                     For<ICommandExecutor>().Singleton().Use<CommandExecutor>();
+                }
+                if (!graph.ContainsFamily(typeof (IQueryExecutor)))
+                {
+                    For<IQueryExecutor>().Singleton().Use<QueryExecutor>();
                 }
             });
         }

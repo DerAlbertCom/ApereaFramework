@@ -8,20 +8,20 @@ using StructureMap;
 
 namespace Aperea.Common.Specs.Commands
 {
-    public class BehaviorCommandDispatcher
+    public class BehaviorDispatchers
     {
         OnEstablish context = accessor =>
         {
             var container = ObjectFactory.Container;
             container.Configure(c => c.AddRegistry<CommonCommandRegistry>());
 
-            accessor.The<IServiceLocator>()
-                .WhenToldTo(l => l.GetAllInstances(Param.IsAny<Type>()))
-                .Return<Type>(type => container.GetAllInstances(type).Cast<object>());
+            accessor.Configure<IServiceLocator>(new StructureMapServiceLocator(container));
+
             accessor.Configure<ICommandDispatcher>(new CommandDispatcher(accessor.The<IServiceLocator>()));
+            accessor.Configure<IQueryDispatcher>(new QueryDispatcher(accessor.The<IServiceLocator>()));
         };
 
-        OnCleanup Cleanup = subject =>
+        OnCleanup cleanup = subject =>
         {
             ObjectFactory.ResetDefaults();
             ObjectFactory.Initialize(expression => { });

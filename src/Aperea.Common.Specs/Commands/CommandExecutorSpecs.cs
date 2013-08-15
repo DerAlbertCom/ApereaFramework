@@ -11,7 +11,7 @@ namespace Aperea.Common.Specs.Commands
 
         Establish context = () =>
         {
-            With<BehaviorCommandDispatcher>();
+            With<BehaviorDispatchers>();
             command = new FooCommand();
         };
 
@@ -27,7 +27,7 @@ namespace Aperea.Common.Specs.Commands
 
         Establish context = () =>
         {
-            With<BehaviorCommandDispatcher>();
+            With<BehaviorDispatchers>();
             command = new BarCommand();
         };
 

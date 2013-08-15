@@ -17,7 +17,7 @@ namespace Aperea.Data
         public Repository(IDatabaseContext context)
         {
             this.context = context;
-            database = new Lazy<DbSet<T>>(() => context.DbContext.Set<T>(), isThreadSafe: false);
+            database = new Lazy<DbSet<T>>(() => context.DbContext.Set<T>(), isThreadSafe: true);
         }
 
         public IQueryable<T> Entities
@@ -60,7 +60,7 @@ namespace Aperea.Data
             return query;
         }
 
-        public void SaveChanges()
+        public void SaveAllChanges()
         {
             context.DbContext.SaveChanges();
         }

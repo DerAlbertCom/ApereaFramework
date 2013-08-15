@@ -62,9 +62,20 @@
     <Compile Include="Data\Configuration\IEntityConfiguration.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\DbContextFactory.cs" />
-    <Compile Include="Data\IDatabaseContext.cs" />
-    <Compile Include="Data\IDbContextFactory.cs" />
-    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\IDatabaseContext.cs">
+      <DependentUpon>DatabaseContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\IDbContextFactory.cs">
+      <DependentUpon>DbContextFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\IQuery.cs">
+      <DependentUpon>Query.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\IRepository.cs">
+      <DependentUpon>Repository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Query.cs" />
+    <Compile Include="Infrastructure\IoC\DatabaseRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Repository.cs" />
   </ItemGroup>
