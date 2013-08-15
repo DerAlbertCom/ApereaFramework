@@ -1,47 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
 namespace Aperea.Infrastructure.Mappings
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public static class GenericMapperExtensions
     {
-        public static TResult MapTo<TResult>(this object value)
+        public static TDestination MapTo<TDestination>(this object source) where TDestination : class
         {
-            return Mapper.Map<TResult>(value);
+            return Mapper.Map<TDestination>(source);
         }
 
-        public static IProjectionExpression Project<TSource>(this IQueryable<TSource> source)
+        public static void MapTo<TSource, TDestination>(this TSource source, TDestination destination) where TDestination : class
+        {
+            Mapper.Map(source, destination);
+        }
+
+        public static IEnumerable<TDestination> MapTo<TDestination>(this IEnumerable<object> source) where TDestination : class
+        {
+            return Mapper.Map<IEnumerable<TDestination>>(source);
+        }
+
+        public static IProjectionExpression Project<TDestination>(this IQueryable<TDestination> source) where TDestination : class
         {
             return AutoMapper.QueryableExtensions.Extensions.Project(source);
         }
 
-        public static IEnumerable<TResult> ToEnumerable<TResult>(this IProjectionExpression projectionExpression)
+        public static IEnumerable<TDestination> ToEnumerable<TDestination>(this IProjectionExpression projectionExpression) where TDestination : class
         {
-            return projectionExpression.To<TResult>().ToList();
+            return projectionExpression.To<TDestination>().ToList();
         }
 
-        public static IList<TResult> ToList<TResult>(this IProjectionExpression projectionExpression)
+        public static IList<TDestination> ToList<TDestination>(this IProjectionExpression projectionExpression) where TDestination : class
         {
-            return projectionExpression.To<TResult>().ToList();
+            return projectionExpression.To<TDestination>().ToList();
         }
 
-        public static TResult[] ToArray<TResult>(this IProjectionExpression projectionExpression)
+        public static TDestination[] ToArray<TDestination>(this IProjectionExpression projectionExpression) where TDestination : class
         {
-            return projectionExpression.To<TResult>().ToArray();
+            return projectionExpression.To<TDestination>().ToArray();
         }
 
-        public static TResult ToSingle<TResult>(this IProjectionExpression projectionExpression)
+        public static TDestination ToSingle<TDestination>(this IProjectionExpression projectionExpression) where TDestination : class
         {
-            return projectionExpression.To<TResult>().Single();
+            return projectionExpression.To<TDestination>().Single();
         }
 
-
-        public static TResult ToSingleOrDefault<TResult>(this IProjectionExpression projectionExpression)
+        public static TDestination ToSingleOrDefault<TDestination>(this IProjectionExpression projectionExpression) where TDestination : class
         {
-            return projectionExpression.To<TResult>().SingleOrDefault();
+            return projectionExpression.To<TDestination>().SingleOrDefault();
         }
     }
 }

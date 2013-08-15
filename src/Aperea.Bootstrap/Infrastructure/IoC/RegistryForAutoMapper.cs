@@ -1,9 +1,9 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using StructureMap.Configuration.DSL;
 
 namespace Aperea.Infrastructure.IoC
 {
+    [UsedImplicitly]
     public class RegistryForAutoMapper : Registry
     {
         public RegistryForAutoMapper()
@@ -13,7 +13,6 @@ namespace Aperea.Infrastructure.IoC
                 s.AssembliesForApplication();
                 s.AddAllTypesOf<Profile>();
             });
-
             For<IMappingEngine>().Use(c => Mapper.Engine);
         }
     }

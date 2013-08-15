@@ -5,18 +5,19 @@ using Aperea.Extensions;
 
 namespace Aperea.Infrastructure.Mappings
 {
-    public class AutoMapLinqProjection
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+    public class AutoMapperLinqProjection
     {
         readonly Type destinationType;
         readonly Type sourceType;
 
-        public AutoMapLinqProjection(Type destinationType, Type sourceType)
+        public AutoMapperLinqProjection(Type destinationType, Type sourceType)
         {
             this.destinationType = destinationType;
             this.sourceType = sourceType;
         }
 
-        public Type GetSourceType(object model)
+        private Type GetSourceType(object model)
         {
             if (sourceType != null)
                 return sourceType;
@@ -32,7 +33,7 @@ namespace Aperea.Infrastructure.Mappings
         {
             // sourceModel.Project().To<DestinationModel>();
 
-            Type extentionsType = typeof (AutoMapper.QueryableExtensions.Extensions);
+            var extentionsType = typeof (AutoMapper.QueryableExtensions.Extensions);
 
             // var projectExpression = Extension.Project<SourceType()
             var projectionMethod = extentionsType.GetGenericMethod("Project", new[] {GetSourceType(model)});
