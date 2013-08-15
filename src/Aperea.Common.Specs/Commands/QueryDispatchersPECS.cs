@@ -9,7 +9,7 @@ namespace Aperea.Common.Specs.Commands
     [Subject(typeof (QueryDispatcher))]
     public class When_getting_the_handlers_for_fooQuery : WithSubject<QueryDispatcher>
     {
-        Because of = () => Subject.GetHandler(new FooQuery());
+        Because of = () => Subject.GetHandler(new FooQuery("hello"));
 
         It should_call_the_serviceLocator_for_iCommandHandler_of_fooCommand = ()
             => The<IServiceLocator>().WasToldTo(s => s.GetInstance(typeof (IQueryHandler<FooQuery, string>)));

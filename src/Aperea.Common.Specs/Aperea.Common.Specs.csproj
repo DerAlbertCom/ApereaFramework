@@ -69,17 +69,23 @@
     <Compile Include="Commands\BarCommandHandler1.cs" />
     <Compile Include="Commands\BarCommandHandler2.cs" />
     <Compile Include="Commands\BarQuery.cs" />
-    <Compile Include="Commands\BehaviorCommandDispatcher.cs" />
+    <Compile Include="Commands\BehaviorDispatchers.cs" />
     <Compile Include="Commands\CommandDispatcherSpecs.cs" />
     <Compile Include="Commands\CommandExecutorSpecs.cs" />
     <Compile Include="Commands\FooCommand.cs" />
     <Compile Include="Commands\FooCommandHandler1.cs" />
     <Compile Include="Commands\FooCommandHandler2.cs" />
     <Compile Include="Commands\FooQuery.cs" />
+    <Compile Include="Commands\FooQueryHandler.cs" />
     <Compile Include="Commands\QueryDispatcherSpecs.cs" />
+    <Compile Include="Commands\QueryExecuterSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aperea.Bootstrap\Aperea.Bootstrap.csproj">
+      <Project>{c47866c6-d305-48d7-98ae-c540380f722f}</Project>
+      <Name>Aperea.Bootstrap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aperea.Common\Aperea.Common.csproj">
       <Project>{7f427295-0130-4b0f-b142-d0d2e3b69fa3}</Project>
       <Name>Aperea.Common</Name>

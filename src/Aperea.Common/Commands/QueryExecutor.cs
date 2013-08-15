@@ -23,7 +23,10 @@ namespace Aperea.Commands
 
         public TResult ExecuteQuery<TResult>(IQueryCommand<TResult> command)
         {
-            throw new NotImplementedException();
+            var handler = dispatcher.GetHandler(command);
+            if (handler == null) 
+                throw new ArgumentNullException("handler");
+            return (TResult) handler.Query(command);
         }
     }
 }
