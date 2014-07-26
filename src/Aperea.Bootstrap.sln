@@ -1,19 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20623.1 VSUPREVIEW
+VisualStudioVersion = 12.0.30626.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{91E7B7D2-44E6-4E34-8215-AA5DA12DAC18}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap", "Aperea.Bootstrap\Aperea.Bootstrap.csproj", "{C47866C6-D305-48D7-98AE-C540380F722F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap.Mvc", "Aperea.Bootstrap.Mvc\Aperea.Bootstrap.Mvc.csproj", "{CFA42276-9AC3-4442-9968-EAE058DC85CE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Identity", "Aperea.Identity\Aperea.Identity.csproj", "{64D17521-04FC-41DD-8BEB-C428DEE281C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Data.EntityFramework", "Aperea.Data.EntityFramework\Aperea.Data.EntityFramework.csproj", "{8602A7CA-6C0B-4261-B6DA-155C4E22E796}"
 EndProject
@@ -25,8 +17,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap.WebApi", "Aperea.Bootstrap.WebApi\Aperea.Bootstrap.WebApi.csproj", "{5E73E9C3-D6D5-4D45-AEA1-C048A900F881}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap.Specs", "Aperea.Bootstrap.Specs\Aperea.Bootstrap.Specs.csproj", "{CDA5D84A-BF1F-4201-B546-0ADAA8B2BC5B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Security", "Aperea.Security\Aperea.Security.csproj", "{41C09EF1-9679-43FE-99EF-41E76F8C79EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Common", "Aperea.Common\Aperea.Common.csproj", "{7F427295-0130-4B0F-B142-D0D2E3B69FA3}"
 EndProject
@@ -46,10 +36,6 @@ Global
 		{CFA42276-9AC3-4442-9968-EAE058DC85CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA42276-9AC3-4442-9968-EAE058DC85CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA42276-9AC3-4442-9968-EAE058DC85CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64D17521-04FC-41DD-8BEB-C428DEE281C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8602A7CA-6C0B-4261-B6DA-155C4E22E796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8602A7CA-6C0B-4261-B6DA-155C4E22E796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8602A7CA-6C0B-4261-B6DA-155C4E22E796}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,10 +48,6 @@ Global
 		{CDA5D84A-BF1F-4201-B546-0ADAA8B2BC5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA5D84A-BF1F-4201-B546-0ADAA8B2BC5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA5D84A-BF1F-4201-B546-0ADAA8B2BC5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41C09EF1-9679-43FE-99EF-41E76F8C79EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41C09EF1-9679-43FE-99EF-41E76F8C79EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41C09EF1-9679-43FE-99EF-41E76F8C79EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41C09EF1-9679-43FE-99EF-41E76F8C79EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F427295-0130-4B0F-B142-D0D2E3B69FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F427295-0130-4B0F-B142-D0D2E3B69FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F427295-0130-4B0F-B142-D0D2E3B69FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU

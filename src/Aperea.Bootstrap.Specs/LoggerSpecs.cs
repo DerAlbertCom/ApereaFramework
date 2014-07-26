@@ -1,4 +1,5 @@
 ﻿using Aperea.Infrastructure.IoC;
+using FluentAssertions;
 using Machine.Specifications;
 using StructureMap;
 
@@ -40,7 +41,7 @@ namespace Aperea.Bootstrap.Specs
         private Because of = () => { result = container.GetInstance<IFooBar>(); };
 
         private It should_the_loggingType_should_be_the_type_of_the_new_instance =
-            () => result.Logger.LoggerName.ShouldEqual(result.GetType().FullName);
+            () => result.Logger.LoggerName.Should().Be(result.GetType().FullName);
 
         private static Container container;
         private static IFooBar result;

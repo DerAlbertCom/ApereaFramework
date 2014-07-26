@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
+using Aperea.Infrastructure.IoC;
 using StructureMap;
+using StructureMap.Web.Pipeline;
 
 namespace Aperea.ActionFilter
 {
@@ -13,7 +15,7 @@ namespace Aperea.ActionFilter
 
         public void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
+            HttpContextLifecycle.DisposeAndClearAll();
         }
     }
 }

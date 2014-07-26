@@ -2,6 +2,7 @@ using System;
 using Aperea.Infrastructure.Bootstrap;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
+using StructureMap.Graph;
 using StructureMap.Pipeline;
 
 namespace Aperea.Infrastructure.IoC
@@ -14,7 +15,7 @@ namespace Aperea.Infrastructure.IoC
         {
             if (Container != null)
                 return;
-            Container = ObjectFactory.Container;
+            Container = new Container();
             SetServiceLocator(Container);
             Container.Configure(c =>
             {
@@ -28,15 +29,9 @@ namespace Aperea.Infrastructure.IoC
                 });
 
                 c.For(typeof (Lazy<>))
-                    .Use(typeof (Lazy<>))
-                    .WithProperty("isThreadSafe").EqualTo(true);
+                    .Use(typeof (Lazy<>));
 
-                c.SetAllProperties(x =>
-                    x.TypeMatches(
-                        type => Container.Model.HasImplementationsFor(type)));
-
-                c.For<IServiceLocator>()
-                    .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.Singleton))
+                c.For<IServiceLocator>().Singleton()
                     .Use(ServiceLocator.Current);
             });
         }

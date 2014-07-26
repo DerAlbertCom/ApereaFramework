@@ -10,10 +10,10 @@
     <description>Aperea.Bootstrap is a small opinionated bootstrapper for Applications, it uses StructureMap und the CommonServiceLocator for IoC</description>
     <tags>StructureMap, CommonServiceLocator,ApereaFramework</tags>
     <dependencies>
-      <dependency id="structuremap" version="[2.6.4.1,2.7)" />
-      <dependency id="CommonServiceLocator" version="[1.0]" />
-      <dependency id="AutoMapper" version="[2.2.1,3.0)" />
-      <dependency id="Log4Net" version="[2.0]" />
+      <dependency id="structuremap" version="[3.0.5,3.1)" />
+      <dependency id="CommonServiceLocator" version="[1.3,2.0]" />
+      <dependency id="AutoMapper" version="[3.2.1,4.0)" />
+      <dependency id="Log4Net" version="[2.0.3,2.1)" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />

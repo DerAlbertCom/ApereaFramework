@@ -15,18 +15,21 @@ namespace Aperea.Infrastructure.IoC
                 s.ConnectImplementationsToTypesClosing(typeof (IQueryHandler<,>));
             });
             For<ICommandDispatcher>().Singleton().Use<CommandDispatcher>();
-
+            bool addCommandExecuter = false;
+            bool addQueryExecuter = false;
             Configure(graph =>
             {
-                if (!graph.ContainsFamily(typeof (ICommandExecutor)))
-                {
-                    For<ICommandExecutor>().Singleton().Use<CommandExecutor>();
-                }
-                if (!graph.ContainsFamily(typeof (IQueryExecutor)))
-                {
-                    For<IQueryExecutor>().Singleton().Use<QueryExecutor>();
-                }
+                addCommandExecuter = !graph.HasFamily(typeof (ICommandExecutor));
+                addQueryExecuter = !graph.HasFamily(typeof (IQueryExecutor));
             });
+            if (addCommandExecuter)
+            {
+                For<ICommandExecutor>().Singleton().Use<CommandExecutor>();
+            }
+            if (addQueryExecuter)
+            {
+                For<IQueryExecutor>().Singleton().Use<QueryExecutor>();
+            }
         }
     }
 }

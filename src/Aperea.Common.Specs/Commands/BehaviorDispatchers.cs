@@ -12,7 +12,7 @@ namespace Aperea.Common.Specs.Commands
     {
         OnEstablish context = accessor =>
         {
-            var container = ObjectFactory.Container;
+             container = new Container();
             container.Configure(c => c.AddRegistry<CommonCommandRegistry>());
 
             accessor.Configure<IServiceLocator>(new StructureMapServiceLocator(container));
@@ -23,8 +23,10 @@ namespace Aperea.Common.Specs.Commands
 
         OnCleanup cleanup = subject =>
         {
-            ObjectFactory.ResetDefaults();
-            ObjectFactory.Initialize(expression => { });
+            //container.ResetDefaults();
+            //container.Model.
         };
+
+        static Container container;
     }
 }

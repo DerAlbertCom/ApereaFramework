@@ -11,8 +11,8 @@
     <tags>ApereaFramework, AutoMapper,ASP.NET MVC,MVC</tags>
     <dependencies>
       <dependency id="Aperea.Bootstrap" version="[0.7.3.76]" />
-      <dependency id="Microsoft.AspNet.Mvc" version="[4.0,5.0)" />
-      <dependency id="AutoMapper" version="[2.2.1,3.0)" />
+      <dependency id="Microsoft.AspNet.Mvc" version="[5.2,6.0)" />
+      <dependency id="AutoMapper" version="[3.2.1,4.0)" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />

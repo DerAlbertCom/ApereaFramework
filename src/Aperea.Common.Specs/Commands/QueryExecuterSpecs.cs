@@ -1,4 +1,5 @@
 ﻿using Aperea.Commands;
+using FluentAssertions;
 using Machine.Fakes;
 using Machine.Specifications;
 using Microsoft.Practices.ServiceLocation;
@@ -18,7 +19,7 @@ namespace Aperea.Common.Specs.Commands
 
         Because of = () => result = Subject.ExecuteQuery(command);
 
-        It should_the_fooQueryHandler_should_return_tbbt = () => result.ShouldEqual("TBBT");
+        It should_the_fooQueryHandler_should_return_tbbt = () => result.Should().Be("TBBT");
         static string result;
     }
 
@@ -35,7 +36,7 @@ namespace Aperea.Common.Specs.Commands
 
         Because of = () => result = Subject.ExecuteQuery(command);
 
-        It should_the_fooQueryHandler_should_return_himym = () => result.ShouldEqual("HIMYM");
+        It should_the_fooQueryHandler_should_return_himym = () => result.Should().Be("HIMYM");
         static string result;
     }
 }
