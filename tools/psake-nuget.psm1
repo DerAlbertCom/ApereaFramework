@@ -27,7 +27,7 @@ function Install-Packages {
 
 	$packages = Get-ChildItem $configFilter
 	foreach ($package in $packages) {
-	   .\src\.nuget\nuget.exe install $package.Fullname /OutputDirectory $packagesFolder
+	   .\tools\nuget\nuget.exe restore $package.Fullname /OutputDirectory $packagesFolder
 	}
 }
 

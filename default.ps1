@@ -3,7 +3,7 @@
     $src_dir = "$project_dir\src"
     $out_dir = "$project_dir\out"
     
-    $nuget_path = "$src_dir\.nuget"
+    $nuget_path = "$project_dir\tools\.nuget"
     $nuspec_dir = "$project_dir\nuspecs"
     $nupgk_dir = "$project_dir\nupkg"
     $version_file = "$src_dir\FrameworkVersion.cs"
@@ -68,11 +68,11 @@ Task CreateNuGet -Depends Build, SetPackageVersion  {
     Write-Host "Creating NuGet-Packages" -ForegroundColor Green   
 	md $nupgk_dir -force   
 
-    Exec { nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.WebApi.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { nuget.exe pack "$nuspec_dir\Aperea.Common.nuspec" /OutputDirectory "$nupgk_dir\" }    
-    Exec { nuget.exe pack "$nuspec_dir\Aperea.Data.EntityFramework.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.WebApi.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Common.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Data.EntityFramework.nuspec" /OutputDirectory "$nupgk_dir\" }    
 }
 
 
@@ -83,11 +83,11 @@ Task PushIt -Depends Release  {
     $version = Get-AssemblyInfoVersion $version_file
 
     Write-Host "Pushing NuGet-Packages" -ForegroundColor Green   
-    Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
-    Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
-    Exec { nuget.exe push "$nupgk_dir\Aperea.Bootstrap.WebApi.$version.nupkg" }    
-    Exec { nuget.exe push "$nupgk_dir\Aperea.Common.$version.nupkg" }  
-    Exec { nuget.exe push "$nupgk_dir\Aperea.Data.EntityFramework.$version.nupkg" }  
+    Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
+    Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
+    Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.WebApi.$version.nupkg" }    
+    Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Common.$version.nupkg" }  
+    Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Data.EntityFramework.$version.nupkg" }  
 }
 
 Task NuGetPush -Depends  PushIt, BumpRevision  {
