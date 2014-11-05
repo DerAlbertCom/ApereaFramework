@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30626.0
+VisualStudioVersion = 12.0.31010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap", "Aperea.Bootstrap\Aperea.Bootstrap.csproj", "{C47866C6-D305-48D7-98AE-C540380F722F}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Common", "Aperea.Common\Aperea.Common.csproj", "{7F427295-0130-4B0F-B142-D0D2E3B69FA3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Common.Specs", "Aperea.Common.Specs\Aperea.Common.Specs.csproj", "{61721FF3-2F96-4E5D-9433-798F349E1F25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperea.Bootstrap.Logging", "Aperea.Bootstrap.Logging\Aperea.Bootstrap.Logging.csproj", "{48BE56FB-7766-426B-8F27-2543E7C6A446}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{61721FF3-2F96-4E5D-9433-798F349E1F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61721FF3-2F96-4E5D-9433-798F349E1F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61721FF3-2F96-4E5D-9433-798F349E1F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48BE56FB-7766-426B-8F27-2543E7C6A446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48BE56FB-7766-426B-8F27-2543E7C6A446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48BE56FB-7766-426B-8F27-2543E7C6A446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48BE56FB-7766-426B-8F27-2543E7C6A446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

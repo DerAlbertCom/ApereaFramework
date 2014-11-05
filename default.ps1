@@ -59,6 +59,7 @@ Task SetPackageVersion {
 
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.nuspec" $version
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
+    Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.Logging.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Bootstrap.WebApi.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Common.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
     Set-PackageVersion "$nuspec_dir\Aperea.Data.EntityFramework.nuspec" $version @{"Aperea.Bootstrap"=$depVersion}
@@ -70,6 +71,7 @@ Task CreateNuGet -Depends Build, SetPackageVersion  {
 
     Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Mvc.nuspec" /OutputDirectory "$nupgk_dir\" }    
+    Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.Logging.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Bootstrap.WebApi.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Common.nuspec" /OutputDirectory "$nupgk_dir\" }    
     Exec { .\tools\nuget\nuget.exe pack "$nuspec_dir\Aperea.Data.EntityFramework.nuspec" /OutputDirectory "$nupgk_dir\" }    
@@ -85,6 +87,7 @@ Task PushIt -Depends Release  {
     Write-Host "Pushing NuGet-Packages" -ForegroundColor Green   
     Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.$version.nupkg" }    
     Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Mvc.$version.nupkg" }    
+    Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.Logging.$version.nupkg" }    
     Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Bootstrap.WebApi.$version.nupkg" }    
     Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Common.$version.nupkg" }  
     Exec { .\tools\nuget\nuget.exe push "$nupgk_dir\Aperea.Data.EntityFramework.$version.nupkg" }  
@@ -93,5 +96,3 @@ Task PushIt -Depends Release  {
 Task NuGetPush -Depends  PushIt, BumpRevision  {
     $version = Get-AssemblyInfoVersion $version_file    
 }
-
-
