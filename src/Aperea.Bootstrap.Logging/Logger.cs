@@ -142,7 +142,7 @@ namespace Aperea
             get { return _log.Logger.Name; }
         }
 
-        public static ILogger GetLogger(Type type)
+        public static Logger GetLogger(Type type)
         {
             return new Logger(LogManager.GetLogger(type));
         }

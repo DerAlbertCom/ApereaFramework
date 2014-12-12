@@ -139,9 +139,9 @@ namespace Aperea
     /// <list>
     /// <item>FDT      ::= FDTRow [;FDTRow]*</item>
     /// <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
-    /// <item>Input    ::= ParameterName: Value [, Input]*</item>
-    /// <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
-    /// <item>Value    ::= true | false | null | notnull | canbenull</item>
+    /// <item>Input    ::= ParameterName: Connection [, Input]*</item>
+    /// <item>Output   ::= [ParameterName: Connection]* {halt|stop|void|nothing|Connection}</item>
+    /// <item>Connection    ::= true | false | null | notnull | canbenull</item>
     /// </list>
     /// If method has single input parameter, it's name could be omitted.<br/>
     /// Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)

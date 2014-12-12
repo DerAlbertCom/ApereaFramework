@@ -31,8 +31,7 @@ namespace Aperea.Infrastructure.IoC
                 c.For(typeof (Lazy<>))
                     .Use(typeof (Lazy<>));
 
-                c.For<IServiceLocator>().Singleton()
-                    .Use(ServiceLocator.Current);
+                c.For<IServiceLocator>().Use(context=>new StructureMapServiceLocator(context.GetInstance<IContainer>()));
             });
         }
 

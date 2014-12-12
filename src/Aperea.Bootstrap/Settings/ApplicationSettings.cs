@@ -6,17 +6,40 @@ namespace Aperea.Settings
 {
     public class ApplicationSettings : IApplicationSettings
     {
+        private readonly IJsonSettings settings;
+
+        public ApplicationSettings():this(new JsonSettings())
+        {
+            
+        }
+        public ApplicationSettings(IJsonSettings settings)
+        {
+            this.settings = settings;
+        }
+
         public T Get<T>(string key)
         {
             return Get(key, () => default(T));
         }
 
-        public T Get<T>(string key, Func<T> defaultFunc)
+        public T Get<T>(string key, Func<T> defaultValueFunction)
         {
             string value = ConfigurationManager.AppSettings[key];
             if (string.IsNullOrEmpty(value))
-                return defaultFunc();
+            {
+                return settings.Get(key, defaultValueFunction);
+            }
             return ChangeType<T>(value);
+        }
+
+        public Connection GetConnectionString(string name)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings[name];
+            if (connectionString == null)
+            {
+                return settings.GetConnectionString(name);
+            }
+            return new Connection(connectionString.ConnectionString, connectionString.ProviderName);
         }
 
         static T ChangeType<T>(string value)

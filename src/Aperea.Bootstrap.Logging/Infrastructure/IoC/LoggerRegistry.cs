@@ -7,10 +7,10 @@ namespace Aperea.Infrastructure.IoC
     {
         public LoggerRegistry()
         {
-            For<ILogger>().Use<ILogger>("Logger with",CreateILogForSpecificType);
+            For<ILogger>().Use<Logger>("Logger with", CreateILogForSpecificType);
         }
 
-        private ILogger CreateILogForSpecificType(IContext context)
+        private Logger CreateILogForSpecificType(IContext context)
         {
             return Logger.GetLogger(context.ParentType ?? context.GetType());
         }
