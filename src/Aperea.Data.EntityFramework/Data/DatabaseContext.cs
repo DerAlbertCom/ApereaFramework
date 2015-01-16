@@ -27,7 +27,7 @@ namespace Aperea.Data
 
         public void Dispose()
         {
-            if (dbContext == null || !dbContext.IsValueCreated) return;
+            if (dbContext == null) return;
 
             if (dbContext.IsValueCreated)
             {
