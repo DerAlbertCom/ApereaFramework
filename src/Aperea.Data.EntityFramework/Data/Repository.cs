@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Aperea.Data
 {
@@ -48,6 +48,11 @@ namespace Aperea.Data
         public void Update(T person)
         {
             context.DbContext.Entry(person).State = EntityState.Modified;
+        }
+
+        public Task<int> SaveAllChangesAsync()
+        {
+            return context.DbContext.SaveChangesAsync();
         }
 
         public IQueryable<T> Include(params string[] paths)
