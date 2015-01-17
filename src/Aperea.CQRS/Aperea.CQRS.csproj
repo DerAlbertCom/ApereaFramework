@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C6190361-1A62-44E5-B983-1A0E7582AB32}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aperea.CQRS</RootNamespace>
+    <AssemblyName>Aperea.CQRS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aperea.Bootstrap, Version=0.8.0.83, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Aperea.Bootstrap.0.8.0.83\lib\net40\Aperea.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.3.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bus\Direct\IQueue.cs" />
+    <Compile Include="Bus\Direct\MessageRouter.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Bus\Direct\DirectBus.cs" />
+    <Compile Include="Bus\Direct\InMemoryQueue.cs" />
+    <Compile Include="Bus\Direct\IRouteMessages.cs" />
+    <Compile Include="Bus\Direct\RouteNotRegisteredException.cs" />
+    <Compile Include="Commands\IoCMessageRouter.cs" />
+    <Compile Include="EventStore\Aggregate\BaseAggregateRoot.cs" />
+    <Compile Include="EventStore\Aggregate\BaseEntity.cs" />
+    <Compile Include="EventStore\Aggregate\TryGetByIdExtension.cs" />
+    <Compile Include="EventStore\Aggregate\EntityList.cs" />
+    <Compile Include="EventStore\Aggregate\UnregisteredDomainEventException.cs" />
+    <Compile Include="EventStore\ConcurrencyViolationException.cs" />
+    <Compile Include="EventStore\DomainEvent.cs" />
+    <Compile Include="EventStore\DomainRepository.cs" />
+    <Compile Include="EventStore\IDomainEvent.cs" />
+    <Compile Include="EventStore\IDomainRepository.cs" />
+    <Compile Include="EventStore\IEntityEventProvider.cs" />
+    <Compile Include="EventStore\IEventProvider.cs" />
+    <Compile Include="EventStore\IRegisterChildEntities.cs" />
+    <Compile Include="EventStore\ITransactional.cs" />
+    <Compile Include="EventStore\IUnitOfWork.cs" />
+    <Compile Include="Bus\IBus.cs" />
+    <Compile Include="Bus\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\EventStoreRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EventStore\Storage\EventStoreIdentityMap.cs" />
+    <Compile Include="EventStore\Storage\EventStoreUnitOfWork.cs" />
+    <Compile Include="EventStore\Storage\IDomainEventStorage.cs" />
+    <Compile Include="EventStore\Storage\IEventStoreUnitOfWork.cs" />
+    <Compile Include="EventStore\Storage\IIdentityMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
