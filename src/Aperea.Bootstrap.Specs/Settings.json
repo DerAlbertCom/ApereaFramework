@@ -1,0 +1,13 @@
+﻿{
+    "appSettings": {
+        "setting1": "foo",
+        "setting2": "bar"
+    },
+    "connectionString": {
+        "serviceBus": "theConnectedString",
+        "sqlServer": {
+            "connectionString": "theStringIsConnected",
+            "providerName" :  "theNameOfTheProvider"
+        }
+    }
+}
