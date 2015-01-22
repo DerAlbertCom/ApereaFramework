@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Aperea.Bootstrap.Mvc</id>
-    <version>0.8.0.85</version>
+    <version>0.8.0.86</version>
     <authors>Albert Weinert</authors>
     <owners>Albert Weinert</owners>
     <projectUrl>https://github.com/DerAlbertCom/ApereaFramework/</projectUrl>
@@ -10,7 +10,7 @@
     <description>Aperea.Bootstrap.MVC is a small opinionated bootstrapper for MVC 4 Applications, it Aperea.Bootstrap, AutoMapper and StructureMap.</description>
     <tags>ApereaFramework, AutoMapper,ASP.NET MVC,MVC</tags>
     <dependencies>
-      <dependency id="Aperea.Bootstrap" version="[0.8.0.85]" />
+      <dependency id="Aperea.Bootstrap" version="[0.8.0.86]" />
       <dependency id="Microsoft.AspNet.Mvc" version="[5.2.2,6.0)" />
       <dependency id="AutoMapper" version="[3.2.1,4.0)" />
     </dependencies>
