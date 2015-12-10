@@ -1,5 +1,5 @@
 This are my base library for working with 
 
-	StructureMap 2.6.2
-	ASP.NET MVC 3
-	EntityFramework 4.1
+	StructureMap 4.0
+	ASP.NET MVC 5.2.3
+	EntityFramework 6.1
