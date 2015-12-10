@@ -1,4 +1,4 @@
-﻿using StructureMap.Configuration.DSL;
+﻿using StructureMap;
 
 namespace Aperea.Infrastructure.IoC
 {

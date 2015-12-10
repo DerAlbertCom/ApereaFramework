@@ -1,4 +1,5 @@
 ﻿using Aperea.Data;
+using StructureMap;
 using StructureMap.Configuration.DSL;
 using StructureMap.Web;
 

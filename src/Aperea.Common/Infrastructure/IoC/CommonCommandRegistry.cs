@@ -1,4 +1,5 @@
 ﻿using Aperea.Commands;
+using StructureMap;
 using StructureMap.Configuration.DSL;
 
 namespace Aperea.Infrastructure.IoC
